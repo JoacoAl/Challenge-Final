@@ -1,11 +1,6 @@
 package com.example.challengefinal.growshop.models;
 
-import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
-import org.springframework.hateoas.server.ExposesResourceFor;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class OrdenProducto {
@@ -18,10 +13,9 @@ public class OrdenProducto {
 
     private int cantidadDeProductos;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ordenDeCompra_id")
-    private OrdenDeCompra ordenDeCompra;
+    private Orden orden;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producto_id")
     private Producto producto;
@@ -52,12 +46,12 @@ public class OrdenProducto {
         this.cantidadDeProductos = cantidadDeProductos;
     }
 
-    public OrdenDeCompra getOrdenDeCompra() {
-        return ordenDeCompra;
+    public Orden getOrdenDeCompra() {
+        return orden;
     }
 
-    public void setOrdenDeCompra(OrdenDeCompra ordenDeCompra) {
-        this.ordenDeCompra = ordenDeCompra;
+    public void setOrdenDeCompra(Orden orden) {
+        this.orden = orden;
     }
 
     public Producto getProducto() {

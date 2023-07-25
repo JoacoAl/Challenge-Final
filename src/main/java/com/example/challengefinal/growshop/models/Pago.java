@@ -3,33 +3,34 @@ package com.example.challengefinal.growshop.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-public class PagoDeCompra {
+public class Pago {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(strategy = "native", name = "native")
     private  long id;
 
+    private TipoDePago tipoDePago;
+
     private double monto;
 
     private LocalDateTime fechaDePago;
 
-    private TipoDePago tipoDePago;
 
-    @OneToOne(mappedBy = "pagoDeCompra", fetch = FetchType.EAGER)
-    private OrdenDeCompra ordenDeCompra ;
+    @OneToOne(mappedBy = "pago", fetch = FetchType.EAGER)
+    private Orden ordenDeCompra ;
 
-    public PagoDeCompra() {
+    public Pago() {
     }
 
-    public PagoDeCompra(double monto, LocalDateTime fechaDePago, TipoDePago tipoDePago) {
+    public Pago(TipoDePago tipoDePago,double monto, LocalDateTime fechaDePago ) {
+        this.tipoDePago = tipoDePago;
         this.monto = monto;
         this.fechaDePago = fechaDePago;
-        this.tipoDePago = tipoDePago;
+
     }
 
     public double getMonto() {
@@ -56,4 +57,11 @@ public class PagoDeCompra {
         this.tipoDePago = tipoDePago;
     }
 
+    public Orden getOrdenDeCompra() {
+        return ordenDeCompra;
+    }
+
+    public void setOrdenDeCompra(Orden ordenDeCompra) {
+        this.ordenDeCompra = ordenDeCompra;
+    }
 }

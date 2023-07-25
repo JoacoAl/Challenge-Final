@@ -4,14 +4,16 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class OrdenDeCompra {
+public class Orden {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(strategy = "native", name = "native")
-    private  long id;
+    private long id;
 
     private String numeroDeOrden;
 
@@ -22,13 +24,16 @@ public class OrdenDeCompra {
     private Cliente cliente;
 
     @OneToOne
-    @JoinColumn(name = "pagoDeCompra_id")
-    private PagoDeCompra pagoDeCompra;
+    @JoinColumn(name = "pago_id")
+    private Pago pago;
 
-    public OrdenDeCompra() {
+    @OneToMany(mappedBy = "orden", fetch = FetchType.EAGER)
+    private Set<OrdenProducto> ordenProductos = new HashSet<>();
+
+    public Orden() {
     }
 
-    public OrdenDeCompra(String numeroDeOrden, LocalDateTime fecha) {
+    public Orden(String numeroDeOrden, LocalDateTime fecha) {
         this.numeroDeOrden = numeroDeOrden;
         this.fecha = fecha;
     }
@@ -57,11 +62,36 @@ public class OrdenDeCompra {
         this.cliente = cliente;
     }
 
-    public PagoDeCompra getPagoDeCompra() {
-        return pagoDeCompra;
+    public void añadirPago(Pago pago) {
+        pago.setOrdenDeCompra(this);
     }
 
-    public void setPagoDeCompra(PagoDeCompra pagoDeCompra) {
-        this.pagoDeCompra = pagoDeCompra;
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+
+    public Set<OrdenProducto> getOrdenProductos() {
+        return ordenProductos;
+    }
+
+    public void setOrdenProductos(Set<OrdenProducto> ordenProductos) {
+        this.ordenProductos = ordenProductos;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void añadirOrdenProducto(OrdenProducto ordenProducto){
+        ordenProducto.setOrdenDeCompra(this);
+        ordenProductos.add(ordenProducto);
     }
 }

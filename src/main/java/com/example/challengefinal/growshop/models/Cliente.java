@@ -1,9 +1,6 @@
 package com.example.challengefinal.growshop.models;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.net.DatagramSocket;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +15,7 @@ public class Cliente {
     private  String nombre, apellido, email, direccion, contraseña, telefono;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private List<OrdenDeCompra> ordenesDeCompra;
+    private Set<Orden> ordenesDeCompra = new HashSet<>();
 
 
     public Cliente() {
@@ -31,6 +28,14 @@ public class Cliente {
         this.direccion = direccion;
         this.telefono = telefono;
         this.contraseña = contraseña;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -81,11 +86,16 @@ public class Cliente {
         this.contraseña = contraseña;
     }
 
-    public List<OrdenDeCompra> getOrdenesDeCompra() {
+    public Set<Orden> getOrdenesDeCompra() {
         return ordenesDeCompra;
     }
 
-    public void setOrdenesDeCompra(List<OrdenDeCompra> ordenesDeCompra) {
+    public void setOrdenesDeCompra(Set<Orden> ordenesDeCompra) {
         this.ordenesDeCompra = ordenesDeCompra;
+    }
+
+    public void añadirOrdenes(Orden orden){
+        orden.setCliente(this);
+        ordenesDeCompra.add(orden);
     }
 }

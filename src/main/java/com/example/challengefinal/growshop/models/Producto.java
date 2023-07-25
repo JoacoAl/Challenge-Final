@@ -3,10 +3,9 @@ package com.example.challengefinal.growshop.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Producto {
@@ -26,6 +25,9 @@ public class Producto {
 
     private long cantidad;
 
+    @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
+    private Set<OrdenProducto> ordenProductos = new HashSet<>();
+
     public Producto() {
     }
 
@@ -35,6 +37,31 @@ public class Producto {
         this.precio = precio;
         this.tipoDeCategoria = tipoDeCategoria;
         this.cantidad = cantidad;
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(long cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Set<OrdenProducto> getOrdenProductos() {
+        return ordenProductos;
+    }
+
+    public void setOrdenProductos(Set<OrdenProducto> ordenProductos) {
+        this.ordenProductos = ordenProductos;
     }
 
     public String getNombre() {
@@ -67,5 +94,10 @@ public class Producto {
 
     public void setTipoDeCategoria(String tipoDeCategoria) {
         this.tipoDeCategoria = tipoDeCategoria;
+    }
+
+    public void añadirOrdenProducto(OrdenProducto ordenProducto){
+        ordenProducto.setProductos(this);
+        ordenProductos.add(ordenProducto);
     }
 }
