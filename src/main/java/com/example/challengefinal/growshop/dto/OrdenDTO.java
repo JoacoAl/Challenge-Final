@@ -9,6 +9,7 @@ import net.bytebuddy.asm.Advice;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class OrdenDTO {
 
@@ -18,20 +19,17 @@ public class OrdenDTO {
 
     private LocalDateTime fecha;
 
-    private Cliente cliente;
-
     private Pago pago;
 
-    private Set<OrdenProducto> ordenProductos;
+    private Set<OrdenProductoDTO> ordenProductos;
 
 
     public OrdenDTO(Orden orden) {
         this.id = orden.getId();
         this.numeroDeOrden = orden.getNumeroDeOrden();
         this.fecha = orden.getFecha();
-        this.cliente = orden.getCliente();
         this.pago = orden.getPago();
-        this.ordenProductos = orden.getOrdenProductos();
+        this.ordenProductos = orden.getOrdenProductos().stream().map(ordenProducto -> new OrdenProductoDTO(ordenProducto)).collect(Collectors.toSet());
     }
 
     public String getNumeroDeOrden() {
@@ -42,15 +40,11 @@ public class OrdenDTO {
         return fecha;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
     public Pago getPago() {
         return pago;
     }
 
-    public Set<OrdenProducto> getOrdenProductos() {
+    public Set<OrdenProductoDTO> getOrdenProductos() {
         return ordenProductos;
     }
 }

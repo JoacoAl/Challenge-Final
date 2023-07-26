@@ -1,5 +1,6 @@
 package com.example.challengefinal.growshop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -19,6 +20,8 @@ public class Orden {
 
     private LocalDateTime fecha;
 
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
@@ -90,7 +93,7 @@ public class Orden {
         this.id = id;
     }
 
-    public void añadirOrdenProducto(OrdenProducto ordenProducto){
+    public void añadirOrdenProducto(OrdenProducto ordenProducto) {
         ordenProducto.setOrdenDeCompra(this);
         ordenProductos.add(ordenProducto);
     }

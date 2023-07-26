@@ -4,6 +4,7 @@ import com.example.challengefinal.growshop.models.Cliente;
 import com.example.challengefinal.growshop.models.Orden;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ClienteDTO {
 
@@ -11,14 +12,14 @@ public class ClienteDTO {
     private Long id;
     private String nombre, apellido, email;
 
-    private Set<Orden> ordenSet;
+    private Set<OrdenDTO> ordenSet;
 
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
         this.nombre = cliente.getNombre();
         this.apellido = cliente.getApellido();
-        this.email = cliente.getApellido();
-        this.ordenSet = cliente.getOrdenesDeCompra();
+        this.email = cliente.getEmail();
+        this.ordenSet = cliente.getOrdenesDeCompra().stream().map(orden -> new OrdenDTO(orden)).collect(Collectors.toSet());
     }
 
     public Long getId() {
@@ -37,7 +38,7 @@ public class ClienteDTO {
         return email;
     }
 
-    public Set<Orden> getOrdenSet() {
-        return ordenSet;
+    public Set<OrdenDTO> getOrdenSet() {
+       return ordenSet;
     }
 }

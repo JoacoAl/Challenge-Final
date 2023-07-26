@@ -1,5 +1,6 @@
 package com.example.challengefinal.growshop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(strategy = "native", name = "native")
-    private  long id;
+    private long id;
 
     private TipoDePago tipoDePago;
 
@@ -19,14 +20,14 @@ public class Pago {
 
     private LocalDateTime fechaDePago;
 
-
+    @JsonIgnore
     @OneToOne(mappedBy = "pago", fetch = FetchType.EAGER)
-    private Orden ordenDeCompra ;
+    private Orden ordenDeCompra;
 
     public Pago() {
     }
 
-    public Pago(TipoDePago tipoDePago,double monto, LocalDateTime fechaDePago ) {
+    public Pago(TipoDePago tipoDePago, double monto, LocalDateTime fechaDePago) {
         this.tipoDePago = tipoDePago;
         this.monto = monto;
         this.fechaDePago = fechaDePago;
@@ -63,5 +64,13 @@ public class Pago {
 
     public void setOrdenDeCompra(Orden ordenDeCompra) {
         this.ordenDeCompra = ordenDeCompra;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

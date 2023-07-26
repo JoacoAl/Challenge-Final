@@ -1,6 +1,7 @@
 package com.example.challengefinal.growshop.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Producto {
 
     private long cantidad;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
     private Set<OrdenProducto> ordenProductos = new HashSet<>();
 
