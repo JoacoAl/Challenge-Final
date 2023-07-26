@@ -38,7 +38,7 @@ public class AutenticaciónWeb extends GlobalAuthenticationConfigurerAdapter {
             Cliente cliente = clienteRepositorio.findByEmail(inputEmail);
 
             if (cliente != null) {
-                if (cliente.getEmail().contains("admin")) {
+                if (cliente.getEmail().contains("-gozogrowshop")) {
                     return new User(cliente.getEmail(), cliente.getContraseña(), AuthorityUtils.createAuthorityList("ADMIN"));
                 } else {
 

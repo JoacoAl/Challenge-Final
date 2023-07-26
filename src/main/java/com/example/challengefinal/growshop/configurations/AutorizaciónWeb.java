@@ -16,14 +16,24 @@ import javax.servlet.http.HttpSession;
 
 @EnableWebSecurity
 @Configuration
-public class AutorizaciónWeb  {
+public class AutorizaciónWeb {
 
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests();
+        http.authorizeRequests()
 
-                //DAR AUTORIZACION
+                .antMatchers("/api/login").permitAll()
+
+                //ADMIN
+                .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/api/productos", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN");
+
+
+
+
+
+
+        //DAR AUTORIZACION
 
         http.formLogin()
                 .usernameParameter("email")
