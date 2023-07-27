@@ -22,7 +22,7 @@ public class Producto {
 
     private double precio;
 
-    private String tipoDeCategoria;
+    private Categoria categoria;
 
     private long cantidad;
 
@@ -33,11 +33,11 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, double precio, String tipoDeCategoria, long cantidad) {
+    public Producto(String nombre, String descripcion, double precio, Categoria categoria, long cantidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.tipoDeCategoria = tipoDeCategoria;
+        this.categoria = categoria;
         this.cantidad = cantidad;
     }
 
@@ -90,12 +90,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public String getTipoDeCategoria() {
-        return tipoDeCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setTipoDeCategoria(String tipoDeCategoria) {
-        this.tipoDeCategoria = tipoDeCategoria;
+    public void setCategoria(Categoria tipoDeCategoria) {
+        this.categoria = categoria;
     }
 
     public void añadirOrdenProducto(OrdenProducto ordenProducto){
