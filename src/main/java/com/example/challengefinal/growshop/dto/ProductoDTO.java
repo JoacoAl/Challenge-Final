@@ -1,5 +1,6 @@
 package com.example.challengefinal.growshop.dto;
 
+import com.example.challengefinal.growshop.models.Categoria;
 import com.example.challengefinal.growshop.models.Producto;
 
 public class ProductoDTO {
@@ -12,7 +13,7 @@ public class ProductoDTO {
 
     private double precio;
 
-    private String tipoDeCategoria;
+    private Categoria categoria;
 
     private long cantidad;
 
@@ -21,7 +22,7 @@ public class ProductoDTO {
         this.nombre = producto.getNombre();
         this.descripcion = producto.getDescripcion();
         this.precio = producto.getPrecio();
-        this.tipoDeCategoria = producto.getTipoDeCategoria();
+        this.categoria = producto.getCategoria();
         this.cantidad = producto.getCantidad();
     }
 
@@ -41,8 +42,8 @@ public class ProductoDTO {
         return precio;
     }
 
-    public String getTipoDeCategoria() {
-        return tipoDeCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
     public long getCantidad() {
