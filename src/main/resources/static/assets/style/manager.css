@@ -6,15 +6,25 @@
 
 footer, header{
     min-height: 10vh;
-    background-color: rgb(211, 181, 137);
+    background-color: rgb(255, 255, 255);
 }
 
 main{
     min-height: 80vh;
 }
 
-.h2{
-    background-color: rgba(255, 215, 159, 0.651);
+.div{
+  background-image: url(/assets/img-manager/sky-clouds.gif);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.section_form{
+  background-color: #0071e250;
+
 }
 
 /* header */
@@ -25,7 +35,8 @@ main{
 }
 
 .img-nav{
-    width: 5rem;
+    width: 4rem;
+    border-radius: 20px;
 }
 
 /* boton de logout */
@@ -83,8 +94,8 @@ main{
   }
 
   .button-nav{
-    width: 5rem;
-    height: 2.5rem;
+    width: 6rem;
+    height: 4rem;
     border-radius: 20px;
     background-color: beige;
   }
@@ -126,9 +137,7 @@ main{
     text-transform: uppercase;
   }
   
-  .section_form{
-    background-color: bisque;
-  }
+
 
   .inputBusqueda {
     height: 2.5rem;
@@ -137,9 +146,9 @@ main{
     background-color: #dbe1f6;
   }
 
-  .div-filtros{
+  /* .div-filtros{
     background-color: rgba(255, 215, 159, 0.651);
-  }
+  } */
 
   /* card-diseño */ 
   .card-title {
@@ -221,13 +230,12 @@ main{
 
   .card-b {
     box-sizing: border-box;
-    width: 240px;
-    height: 410px;
-    background: rgba(217, 217, 217, 0.58);
+    width: 260px;
+    height: 500px;
+    background: rgb(217, 217, 217);
     border: 1px solid white;
-    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    box-shadow: 12px 17px 21px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(6px);
-    border-radius: 17px;
     text-align: center;
     transition: all 0.5s;
     display: flex;
@@ -239,9 +247,8 @@ main{
   }
   .img-card-2{
     object-fit: cover;
-    width: 14.5rem;
+    width: 15.7rem;
     height: 11rem;
-    border-radius: 20px;
   }
 
   .card-b:hover {
@@ -254,5 +261,53 @@ main{
 
   .div-buttons{
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
   }
+
+  .button-delete {
+    border: 2px solid #ae2509;
+    background-color: #ae2509;
+    border-radius: 0.9em;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+   }
+   
+   .button-delete span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+   
+   .button-delete:hover {
+    background-color: #6e0606;
+   }
+
+   .button-modificar {
+    border: 2px solid #24b4fb;
+    background-color: #24b4fb;
+    border-radius: 0.9em;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+   }
+   
+   .button-modificar span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+   
+   .button-modificar:hover {
+    background-color: #0071e2;
+   }
+
+   .container-cards{
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+   }
