@@ -23,7 +23,30 @@ const app = createApp({
       },
     methods:{
         createdProduct(){
+            this.precio = document.querySelector('#precio').value;
 
+            this.precio = this.precio.replace(/[^0-9]/g, '');
+
+            this.precio = parseInt(this.precio);
+
+            const formDatas = new URLSearchParams();
+            formDatas.append('nombre', this.nombre);  
+            formDatas.append('descripcion', this.descripcion); 
+            formDatas.append('precio', this.precio);  
+            formDatas.append('categoria', this.categoria); 
+            formDatas.append('stock', this.stock);  
+            formDatas.append('file', this.file);  
+            axios.post('/api/clients/current/cards', formDatas, {
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              }
+            })
+            .then(res =>{
+
+            })
+            .catch(error => {
+
+            });
         }
     },
     computed:{
@@ -32,10 +55,3 @@ const app = createApp({
 })
 app.mount("#app")
 
-// this.precio = document.querySelector('#precio').value;
-
-// // Elimina los caracteres no numéricos
-// this.precio = this.precio.replace(/[^0-9]/g, '');
-
-// // Convierte la cadena a un número
-// this.precio = parseInt(this.precio);

@@ -13,6 +13,10 @@ main{
     min-height: 80vh;
 }
 
+.div-nav{
+  gap: 2rem;
+}
+
 .div{
   background-image: url(/assets/img-manager/sky-clouds.gif);
     width: 100%;
@@ -231,7 +235,7 @@ main{
   .card-b {
     box-sizing: border-box;
     width: 260px;
-    height: 500px;
+    height: 450px;
     background: rgb(217, 217, 217);
     border: 1px solid white;
     box-shadow: 12px 17px 21px rgba(0, 0, 0, 0.22);
