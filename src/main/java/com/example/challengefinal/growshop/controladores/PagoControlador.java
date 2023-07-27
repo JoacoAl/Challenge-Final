@@ -3,6 +3,7 @@ package com.example.challengefinal.growshop.controladores;
 import com.example.challengefinal.growshop.Repositorios.PagoRepositorio;
 import com.example.challengefinal.growshop.dto.PagoDTO;
 import com.example.challengefinal.growshop.models.Pago;
+import com.example.challengefinal.growshop.servicios.ServicioPago;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,18 +17,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class PagoControlador {
     @Autowired
-    PagoRepositorio pagoRepositorio;
+    private ServicioPago servicioPago;
 
     @GetMapping("/pagos")
     public Set<PagoDTO> traerPagosDTO(){
-        return pagoRepositorio.findAll().stream().map(pago -> new PagoDTO(pago)).collect(Collectors.toSet());
+        return servicioPago.traerPagosDTO();
     }
 
     @GetMapping("/pagos/{id}")
     public PagoDTO traerPagoDTO(@PathVariable Long id){
-        Pago pago = pagoRepositorio.findById(id).orElse(null);
-        PagoDTO pagoDTO = new PagoDTO(pago);
-        return pagoDTO;
+       return servicioPago.traerPagoDTO(id);
     }
 
 }

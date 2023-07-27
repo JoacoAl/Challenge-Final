@@ -4,6 +4,7 @@ import com.example.challengefinal.growshop.Repositorios.OrdenRepositorio;
 import com.example.challengefinal.growshop.dto.OrdenDTO;
 import com.example.challengefinal.growshop.dto.PagoDTO;
 import com.example.challengefinal.growshop.models.Orden;
+import com.example.challengefinal.growshop.servicios.ServicioOrden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,18 +19,16 @@ import java.util.stream.Collectors;
 public class OrdenControlador {
 
     @Autowired
-    OrdenRepositorio ordenRepositorio;
+    private ServicioOrden servicioOrden;
 
     @GetMapping("/ordenes")
     public Set<OrdenDTO> traerOrdenesDTO(){
-        return ordenRepositorio.findAll().stream().map(orden -> new OrdenDTO(orden)).collect(Collectors.toSet());
+        return servicioOrden.traerOrdenesDTO();
     }
 
     @GetMapping("/ordenes/{id}")
     public OrdenDTO traerOrdenDTO(@PathVariable Long id){
-        Orden orden = ordenRepositorio.findById(id).orElse(null);
-        OrdenDTO ordenDTO = new OrdenDTO(orden);
-        return ordenDTO;
+        return servicioOrden.traerOrdenDTO(id);
     }
 
 }
