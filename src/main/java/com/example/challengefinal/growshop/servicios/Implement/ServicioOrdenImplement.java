@@ -5,10 +5,11 @@ import com.example.challengefinal.growshop.dto.OrdenDTO;
 import com.example.challengefinal.growshop.models.Orden;
 import com.example.challengefinal.growshop.servicios.ServicioOrden;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@Service
 public class ServicioOrdenImplement implements ServicioOrden {
 
     @Autowired

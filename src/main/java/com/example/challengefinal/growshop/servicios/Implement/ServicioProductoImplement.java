@@ -7,10 +7,12 @@ import com.example.challengefinal.growshop.models.Producto;
 import com.example.challengefinal.growshop.servicios.ServicioPago;
 import com.example.challengefinal.growshop.servicios.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ServicioProductoImplement implements ServicioProducto {
     @Autowired
     private ProductoRepositorio productoRepositorio;

@@ -5,10 +5,11 @@ import com.example.challengefinal.growshop.dto.PagoDTO;
 import com.example.challengefinal.growshop.models.Pago;
 import com.example.challengefinal.growshop.servicios.ServicioPago;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@Service
 public class ServicioPagoImplement implements ServicioPago {
 
     @Autowired
