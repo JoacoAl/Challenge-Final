@@ -29,4 +29,6 @@ public class ClienteControlador {
     public  ClienteDTO traerClientePorId(@PathVariable Long id){
           return servicioCliente.traerClientePorId(id);
     }
+
+
 }
