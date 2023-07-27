@@ -15,14 +15,26 @@ public class ServicioClienteImplement implements ServicioCliente {
 
     @Autowired
     public ClienteRepositorio clienteRepositorio;
+
     @Override
     public List<ClienteDTO> traerClientesDTO() {
         return clienteRepositorio.findAll().stream().map(cliente -> new ClienteDTO(cliente)).collect(Collectors.toList());
     }
+
     @Override
     public ClienteDTO traerClientePorId(Long id) {
         Cliente cliente = clienteRepositorio.findById(id).orElse(null);
         ClienteDTO clienteDTO = new ClienteDTO(cliente);
         return clienteDTO;
+    }
+
+    @Override
+    public Cliente traerClientePorEmail(String email) {
+        return clienteRepositorio.findByEmail(email);
+    }
+
+    @Override
+    public void save(Cliente cliente) {
+         clienteRepositorio.save(cliente);
     }
 }
