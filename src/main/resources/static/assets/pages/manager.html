@@ -4,46 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/pages/style/manager.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/assets/style/manager.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Manager</title>
 </head>
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                  </li>
-                </ul>
+      <nav>
+        <div class="container-div-header d-flex justify-content-evenly align-center">
+          <div class="m-2">
+            <img class="img-nav" src="/assets/img-manager/OIG.jpeg" alt="">
+          </div>
+          <div class="d-flex justify-content-center align-center">
+            <h1>GOZO GROW SHOP</h1>
+          </div>
+          <div>
+            <button class="button-nav"><i class="bi bi-person-badge-fill"></i>clientes</button>
+          </div>
+          <div>
+            <button class="cssbuttons-io-button m-2" @click.prevent="LogOut()"> Logout
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path></svg>
               </div>
-            </div>
-          </nav>
+            </button>
+          </div>
+        </div>
+      </nav>
     </header>
-    <main>
+    <main id="app">
+      <div class="d-flex justify-content-center align-center h2">
+        <h2>agregar productos</h2>
+      </div>
+      
+      <section class="section_form">
+        <div class="d-flex justify-content-center align-center m">
+          <form id="consultation-form" class="feed-form">
+              <input required="" placeholder="nombre" type="text">
+              <input name="descripcion" required="" placeholder="descripcion" type="text">
+              <input name="email" required="" placeholder="price" type="text">
+              <input name="category" required="" placeholder="category" type="text">
+              <input name="stock" required="" placeholder="stock" type="number">
+              <input name="stock" required="" placeholder="stock" type="file">
+              <div class="m-1">
+                <button class="button_submit">AGREGAR NUEVO PRODUCTO</button>
+              </div>
+          </form>
+        </div>
+      </section>
+
+      <section>
+        <div class="d-flex justify-content-end align-center div-filtros m-2">
+          <span class="d-flex justify-content-center my-4 align-items-center">
+            <input
+              v-model="busqueda"
+              class="form-control me-2 inputBusqueda"
+              type="search"
+              placeholder="Buscar"
+              aria-label="Search"
+            />
+            <button class="btn lupa" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </span>
+        </div>
+      </section>
+      
+      <div class="d-flex justify-content-center align-center m-5">
+        
+        <div class="card-b d-flex flex-column justify-content-center align-center">
+            <div class="m-2"><img class="img-card-2" src="/assets/img-manager/OIG.jpeg" alt=""></div>
+            <div class="card-title">Product title</div>
+            <div class="card-subtitle">Product description. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+            <div class="card-price"><span>$</span> 123.45</div>
+            <div class="card-footer m-3">
+                <div class="d-flex justify-content-evenly div-buttons">
+                  <button class="card-btn d-flex justify-content-center align-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path d="m397.78 316h-205.13a15 15 0 0 1 -14.65-11.67l-34.54-150.48a15 15 0 0 1 14.62-18.36h274.27a15 15 0 0 1 14.65 18.36l-34.6 150.48a15 15 0 0 1 -14.62 11.67zm-193.19-30h181.25l27.67-120.48h-236.6z"></path><path d="m222 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path><path d="m368.42 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path><path d="m158.08 165.49a15 15 0 0 1 -14.23-10.26l-25.71-77.23h-47.44a15 15 0 1 1 0-30h58.3a15 15 0 0 1 14.23 10.26l29.13 87.49a15 15 0 0 1 -14.23 19.74z"></path></svg>
+                  </button>
+                  <button class="card-btn d-flex justify-content-center align-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg></button>
+                </div>
+            </div> 
+        </div>
+
+      </div>
 
     </main>
     <footer>
 
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="/assets/pages/script/manager.js"></script>
+    <script src="/assets/script/manager.js"></script>
 </body>
 </html>
