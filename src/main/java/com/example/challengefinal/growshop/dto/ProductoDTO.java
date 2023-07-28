@@ -17,6 +17,7 @@ public class ProductoDTO {
 
     private long cantidad;
 
+    public ProductoDTO(){}
     public ProductoDTO(Producto producto) {
         this.id = producto.getId();
         this.nombre = producto.getNombre();
