@@ -1,16 +1,13 @@
 package com.example.challengefinal.growshop.controladores;
 
-import com.example.challengefinal.growshop.Repositorios.ProductoRepositorio;
 import com.example.challengefinal.growshop.dto.ProductoDTO;
 import com.example.challengefinal.growshop.models.Producto;
 import com.example.challengefinal.growshop.servicios.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
 import org.springframework.security.core.Authentication;
-=======
->>>>>>> 07591f26994aa072faed3e22384e8857a4e4d5f3
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.IllegalFormatCodePointException;
@@ -28,20 +25,17 @@ public class ProductoControlador {
     public List<ProductoDTO> traerProductosDTO() {
         return servicioProducto.traerProductosDTO();
     }
-<<<<<<< HEAD
 
     @GetMapping("/productos")
     public List<ProductoDTO> traerProductosDTOactivos() {
         return servicioProducto.traerProductosDTO().stream().filter(productoDTO -> productoDTO.isActivo()).collect(Collectors.toList());
     }
 
-=======
->>>>>>> 07591f26994aa072faed3e22384e8857a4e4d5f3
+
     @GetMapping("/productos/{id}")
     public ProductoDTO traerProductoDTO(@PathVariable Long id) {
         return servicioProducto.traerProductoDTO(id);
     }
-<<<<<<< HEAD
 
     @PostMapping("/productos")
     public ResponseEntity<Object> borrarProductos(@RequestParam String nombre, Authentication authentication) {
@@ -50,14 +44,14 @@ public class ProductoControlador {
             return new ResponseEntity<>("No estas autenticado", HttpStatus.FORBIDDEN);
         }
 
-        if (nombre == null){
+        if (nombre == null) {
             return new ResponseEntity<>("Los data es invalida", HttpStatus.FORBIDDEN);
 
         }
 
         Producto producto = servicioProducto.traerProductoPorNombre(nombre);
 
-        if (producto == null){
+        if (producto == null) {
             return new ResponseEntity<>("No se encontro ningun producto con ese nombre", HttpStatus.FORBIDDEN);
         }
         producto.setActivo(false);
@@ -65,7 +59,9 @@ public class ProductoControlador {
 
         return new ResponseEntity<>("El producto fue borrado exitosamente", HttpStatus.ACCEPTED);
 
-=======
+    }
+
+
     @PostMapping("/productos/agregar")
     public ResponseEntity<Object> crearProductoNuevo(@RequestBody ProductoDTO productoDTO) {
         List<ProductoDTO> productos = servicioProducto.traerProductosDTO();
@@ -81,10 +77,12 @@ public class ProductoControlador {
         if (productos.stream().anyMatch(productoDTO1 -> productoDTO1.getNombre().equals(productoDTO.getNombre()))) {
             return new ResponseEntity<>("No puedes tener dos productos distintos con el mismo nombre", HttpStatus.FORBIDDEN);
         } else {
-            Producto nuevoProducto = new Producto(productoDTO.getNombre(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getCantidad());
+            Producto nuevoProducto = new Producto(productoDTO.getNombre(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getCantidad(), true);
             servicioProducto.guardar(nuevoProducto);
             return new ResponseEntity<>("Producto añadido", HttpStatus.CREATED);
         }
->>>>>>> 07591f26994aa072faed3e22384e8857a4e4d5f3
+
     }
 }
+
+
