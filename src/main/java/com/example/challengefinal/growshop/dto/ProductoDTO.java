@@ -13,7 +13,7 @@ public class ProductoDTO {
 
     private double precio;
 
-    private Categoria categoria;
+    private Categoria tipoDeCategoria;
 
     private long cantidad;
 
@@ -24,7 +24,7 @@ public class ProductoDTO {
         this.nombre = producto.getNombre();
         this.descripcion = producto.getDescripcion();
         this.precio = producto.getPrecio();
-        this.categoria = producto.getCategoria();
+        this.tipoDeCategoria = producto.getCategoria();
         this.cantidad = producto.getCantidad();
         this.activo = producto.isActivo();
     }
@@ -46,7 +46,7 @@ public class ProductoDTO {
     }
 
     public Categoria getCategoria() {
-        return categoria;
+        return tipoDeCategoria;
     }
 
     public long getCantidad() {
