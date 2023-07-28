@@ -27,4 +27,16 @@ public class ServicioProductoImplement implements ServicioProducto {
         ProductoDTO productoDTO = new ProductoDTO(producto);
         return productoDTO;
     }
+
+    @Override
+    public Producto traerProductoPorNombre(String nombre) {
+        return productoRepositorio.traerPorNombre(nombre);
+    }
+
+    @Override
+    public void save(Producto producto) {
+        productoRepositorio.save(producto);
+    }
+
+
 }

@@ -26,6 +26,8 @@ public class Producto {
 
     private long cantidad;
 
+    private boolean activo;
+
     @JsonIgnore
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
     private Set<OrdenProducto> ordenProductos = new HashSet<>();
@@ -33,12 +35,13 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, double precio, Categoria categoria, long cantidad) {
+    public Producto(String nombre, String descripcion, double precio, Categoria categoria, long cantidad, boolean activo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.categoria = categoria;
         this.cantidad = cantidad;
+        this.activo = activo;
     }
 
 
@@ -101,5 +104,13 @@ public class Producto {
     public void añadirOrdenProducto(OrdenProducto ordenProducto){
         ordenProducto.setProductos(this);
         ordenProductos.add(ordenProducto);
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

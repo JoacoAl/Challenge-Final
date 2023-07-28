@@ -32,9 +32,9 @@ public class GrowshopApplication {
             Cliente clienteAdmin = new Cliente("Admin", "Admin", "admin-gozogrowshop@gmail.com", "CCC 333", "333333333", codificadorDeContraseña.encode("1234"), 19);
 
 
-            Producto producto1 = new Producto("Encendedor", "Encendedor de plastico BIC", 250, Categoria.ACCESORIOS, 40);
-            Producto producto2 = new Producto("Pica", "Picador rolling circus", 330, Categoria.ACCESORIOS, 6);
-            Producto producto3 = new Producto("Liyo", "Liyos de celulosa", 125, Categoria.ACCESORIOS, 20);
+            Producto producto1 = new Producto("Encendedor", "Encendedor de plastico BIC", 250, Categoria.ACCESORIOS, 40, true);
+            Producto producto2 = new Producto("Pica", "Picador rolling circus", 330, Categoria.ACCESORIOS, 6, true);
+            Producto producto3 = new Producto("Liyo", "Liyos de celulosa", 125, Categoria.ACCESORIOS, 20, true);
 
 
             clienteRepositorio.save(clientePrueba);

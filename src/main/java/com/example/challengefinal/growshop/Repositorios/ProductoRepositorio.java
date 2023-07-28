@@ -7,4 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface ProductoRepositorio extends JpaRepository<Producto, Long> {
+
+    Producto traerPorNombre (String nombre);
 }

@@ -17,6 +17,8 @@ public class ProductoDTO {
 
     private long cantidad;
 
+    private boolean activo;
+
     public ProductoDTO(Producto producto) {
         this.id = producto.getId();
         this.nombre = producto.getNombre();
@@ -24,6 +26,7 @@ public class ProductoDTO {
         this.precio = producto.getPrecio();
         this.categoria = producto.getCategoria();
         this.cantidad = producto.getCantidad();
+        this.activo = producto.isActivo();
     }
 
     public Long getId() {
@@ -48,5 +51,9 @@ public class ProductoDTO {
 
     public long getCantidad() {
         return cantidad;
+    }
+
+    public boolean isActivo() {
+        return activo;
     }
 }
