@@ -12,8 +12,11 @@ public interface ServicioProducto {
     List<ProductoDTO> traerProductosDTO();
     ProductoDTO traerProductoDTO(@PathVariable Long id);
 
-    Producto traerProductoPorNombre(String Nombre);
+    Producto traerProductoPorId(Long id);
+
 
     void save(Producto producto);
+
     Producto guardar(Producto producto);
+
 }

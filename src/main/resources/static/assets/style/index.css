@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&family=Ysabeau+SC&display=swap%27");
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&family=Red+Hat+Display&family=Rowdies&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+.logo-navbar {
+  width: 180px;
+}
+
+nav {
+  /*   background-color: black !important;
+ */
+  background: rgba(148, 63, 63, 0);
+  border-color: transparent;
+  padding: 20px 0px;
+  z-index: 2;
+  position: fixed !important;
+  width: 100%;
+  height: 140px;
+}
+
+.navbar-brand {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 23px !important;
+  text-shadow: 1px 1px 2px black;
+  padding: 2px;
+}
+
+.navbar-brand:hover {
+  color: green !important;
+  text-decoration: underline;
+}
+
+.container {
+  width: 100%;
+  height: 90px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1140px !important;
+}
+
+ul {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.a-nav {
+  display: inline-block;
+  padding: 5px 0px;
+  margin: 0px 7px;
+  border-bottom: transparent 2px solid;
+  font-stretch: condensed !important;
+}
+.emoji-arg {
+  width: 45px;
+}
+
+/* carousel */
+
+.section-carousel {
+  position: relative;
+  z-index: 1;
+}
+.img-carrousel {
+  height: 700px !important;
+}
+
+.span-carousel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+}
+
+.span-carousel > h1 {
+  font-size: 70px;
+  font-family: "Rowdies", cursive;
+  text-shadow: 1px 1px 1px black;
+}
+
+.span-carousel > h2 {
+  font-family: "Rowdies", cursive;
+  text-shadow: 1px 1px 1px black;
+}
