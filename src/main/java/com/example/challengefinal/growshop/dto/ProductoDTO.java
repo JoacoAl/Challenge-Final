@@ -21,7 +21,6 @@ public class ProductoDTO {
 
     public ProductoDTO(){}
 
-
     public ProductoDTO(Producto producto) {
         id = producto.getId();
         nombre = producto.getNombre();

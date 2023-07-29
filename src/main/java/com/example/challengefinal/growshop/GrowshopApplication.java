@@ -300,7 +300,6 @@ public class GrowshopApplication {
             ///////// ACCESORIOS ////////
 
 
-
             clienteRepositorio.save(clientePrueba);
             clienteRepositorio.save(clientePrueba2);
             clienteRepositorio.save(clientePrueba3);
