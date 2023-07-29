@@ -11,6 +11,12 @@ java {
 	sourceCompatibility = '11'
 }
 
+bootRun {
+
+	sourceResources sourceSets.main
+
+}
+
 repositories {
 	mavenCentral()
 }
