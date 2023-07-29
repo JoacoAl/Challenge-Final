@@ -55,6 +55,8 @@ createApp({
 
 
         //ACCESORIOS
+        this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS")
+        console.log(this.accesorios);
       })
       .catch(exception => {
         console.log(exception);
@@ -63,7 +65,13 @@ createApp({
   },
   computed: {
     filtroBusqueda (){
-        this.cultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria) || this.checkedCheckbox.length == 0)
+        if(this.checkedCheckbox.length === 0){
+          this.traerProductos();
+        }else{
+          this.cultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
+          this.tabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca))
+
+        }
         
     },
     
