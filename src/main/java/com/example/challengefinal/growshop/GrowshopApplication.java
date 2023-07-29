@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 public class GrowshopApplication {
@@ -40,7 +41,7 @@ public class GrowshopApplication {
             Producto cerritoOriginal = new Producto("Tabaco Cerrito Original 40gr","Cerrito", "Tabaco Cerrito es un blend de diferentes variedades de tabaco virginia. Se caracteriza mayormente por una humedad perfecta para poder manipularlo de manera más sencilla y un sabor y aroma muy equilibrados.", 1250, Categoria.TABACO,"Tabaco", 25, true);
             Producto cerritoChocolate = new Producto("Tabaco Cerrito Chocolate 40gr","Cerrito", "Tabaco Cerrito es un blend de diferentes variedades de tabaco virginia. Se caracteriza mayormente por una humedad perfecta para poder manipularlo de manera más sencilla y un sabor y aroma muy equilibrados.", 1250, Categoria.TABACO,"Tabaco", 12, true );
             Producto cerritoVainilla = new Producto("Tabaco Cerrito Vainilla 40gr","Cerrito", "Tabaco Cerrito es un blend de diferentes variedades de tabaco virginia. Se caracteriza mayormente por una humedad perfecta para poder manipularlo de manera más sencilla y un sabor y aroma muy equilibrados.", 1250, Categoria.TABACO,"Tabaco", 15, true);
-            Producto vanHaasenVanilla = new Producto("Tabaco Van Haasen Vainilla 20gr","Van Haasen", "Tabaco Van Häasen original es un blend de variedades virginia. Es un tabaco de intensidad suave, roma y sabor equilibrado y con la humedad perfecta para poder armar cigarrillos.", 1000, Categoria.TABACO,"Tabaco", 15, true);
+            Producto vanHaasenVainilla = new Producto("Tabaco Van Haasen Vainilla 20gr","Van Haasen", "Tabaco Van Häasen original es un blend de variedades virginia. Es un tabaco de intensidad suave, roma y sabor equilibrado y con la humedad perfecta para poder armar cigarrillos.", 1000, Categoria.TABACO,"Tabaco", 15, true);
             Producto vanHaasenVirginia = new Producto("Tabaco Van Haasen Virginia 20gr","Van Haasen", "Tabaco Van Häasen original es un blend de variedades virginia. Es un tabaco de intensidad suave, roma y sabor equilibrado y con la humedad perfecta para poder armar cigarrillos.", 1000, Categoria.TABACO,"Tabaco", 9, true);
             Producto moroMango = new Producto("Tabaco Moro mango x30gr", "Moro", "Tabaco Moro mango para armar cigarrillos saborizados. Los tabacos de Moro se caracterizan por ser frescos y por tener un cuerpo muy agradable a la boca. En este caso la variedad de mango presenta un sabor muy equilibrado que se fusiona a la perfección con el sabor natural del tabaco, además, tiene un aroma dulce.", 1700, Categoria.TABACO,"Tabaco", 24, true);
             Producto moroVainilla = new Producto("Tabaco Moro vainilla x30gr", "Moro", "Tabaco Moro mango para armar cigarrillos saborizados. Los tabacos de Moro se caracterizan por ser frescos y por tener un cuerpo muy agradable a la boca. En este caso la variedad de mango presenta un sabor muy equilibrado que se fusiona a la perfección con el sabor natural del tabaco, además, tiene un aroma dulce.", 1700, Categoria.TABACO,"Tabaco", 15, true);
@@ -48,6 +49,18 @@ public class GrowshopApplication {
             Producto lasHojas = new Producto("Tabaco Las Hojas x50gr", "Las Hojas", "Tabaco Las hojas es un tabaco natural de intensidad intermedia ideal para quienes gustan del clásico tabaco rubio. Todas las variedades de Las Hojas están hechas con la máxima calidad en la selección del tabaco, por eso es uno de los mejores del mercado. En este caso, su paquete por 50gr. Permita que puedas disfrutar por mucho más tiempo de su sabor.", 700, Categoria.TABACO,"Tabaco", 10, true);
             Producto lasHojasNatural = new Producto("Tabaco Las Hojas Natural x30gr", "Las Hojas", "Tabaco Las hojas Natural es un tabaco producido sin utilizar ningún tipo de químico o aditivo durante su proceso. Con una intensidad intermedia, esta variedad de tabaco Las Hojas es de un sabor muy agradable para quienes prefieren cigarrillos más suaves, además está empacado especialmente para que mantenga la frescura y humedad necesaria.", 1300, Categoria.TABACO,"Tabaco", 5, true);
             Producto lasHojasUva = new Producto("Tabaco Las Hojas Uva x30gr", "Las Hojas", "Tabaco Las hojas de uva es un tabaco con un sabor y aroma fresco a uva muy recomendado para quienes gustan de tabacos suaves. Esta variedad de tabaco Las Hojas, al igual que todas las demás, es totalmente natural ya que no se utiliza ningún tipo de químico ni aditivo durante su proceso, eso hace que el sabor al tabaco natural se sienta mucho más y se combine a la perfección con la uva.", 1300, Categoria.TABACO,"Tabaco", 12, true);
+
+            productoRepositorio.save(cerritoOriginal);
+            productoRepositorio.save(cerritoVainilla);
+            productoRepositorio.save(cerritoChocolate);
+            productoRepositorio.save(vanHaasenVainilla);
+            productoRepositorio.save(vanHaasenVirginia);
+            productoRepositorio.save(moroMango);
+            productoRepositorio.save(moroVainilla);
+            productoRepositorio.save(moroGreen);
+            productoRepositorio.save(lasHojas);
+            productoRepositorio.save(lasHojasNatural);
+            productoRepositorio.save(lasHojasUva);
 
             ////////// CULTIVO //////////
             //Carpas//

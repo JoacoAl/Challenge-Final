@@ -18,7 +18,7 @@ public class Producto {
 
     private String nombre;
     private String marca;
-
+    @Column(name = "descripcion", length = 500)
     private String descripcion;
 
     private double precio;

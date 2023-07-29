@@ -17,6 +17,5 @@ public interface ServicioProducto {
 
     void save(Producto producto);
 
-    Producto guardar(Producto producto);
 
 }
