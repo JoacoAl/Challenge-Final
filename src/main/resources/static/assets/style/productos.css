@@ -8,25 +8,116 @@
 .logo-navbar {
     width: 180px;
   }
-  
-nav {
-    /*   background-color: black !important;
-   */
-    background: rgba(0, 0, 0, 0);
+nav{
+  min-height: 8rem;
+  flex-grow: 1 !important;
+}
+.navbar-default{
+  background: rgba(50,50,50,0);
     border-color: transparent;
     padding: 20px 0px;
-    z-index: 2;
-    transition: height 0.3s ease;
-    position: fixed !important;
+    z-index: 999;
+    position: fixed;
     width: 100%;
-    height: 12rem;
-  }
-nav.scrolled{
-    height: 9rem;
+    -webkit-transition: all ease-in-out 0.70s;
+    -moz-transition: all ease-in-out 0.70s;
+    -o-transition: all ease-in-out 0.70s;
+    -ms-transition: all ease-in-out 0.70s;
+    transition: all ease-in-out 0.70s;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
 }
+.navbar-light .navbar-toggler {
+	color							: rgba(255, 255, 255, 0.5);
+border-color						: rgba(255, 255, 255, 0.68);
+margin-top							: 20px;
+margin-right						: 20px;
+}
+
+.top-nav {
+	background						: #000;
+	padding							: 5px 0px;
+    -webkit-transition				: all ease-in-out 0.70s;
+    -moz-transition					: all ease-in-out 0.70s;
+    -o-transition					: all ease-in-out 0.70s;
+    -ms-transition					: all ease-in-out 0.70s;
+    transition						: all ease-in-out 0.70s;
+}
+
+.top-nav .navbar-nav > li > .dropdown-menu {
+    border-top-left-radius          : 0;
+    border-top-right-radius         : 0;
+    left                            : 0px;
+    padding                         : 10px 0 0 0;
+    background          			: #184168;
+    border-radius                   : 0 0 0 0; 
+    -webkit-box-shadow              : 0 0 0 #000000;
+    -moz-box-shadow                 : 0 0 0 #000000;
+    -ms-box-shadow                  : 0 0 0 #000000;
+    -o-box-shadow                   : 0 0 0 #000000;
+    box-shadow                      : 0 0 0 #000000;
+    border-width                    : 0;
+	min-width						: 200px;
+    -webkit-transition				: all ease-in-out 0.70s;
+    -moz-transition					: all ease-in-out 0.70s;
+    -o-transition					: all ease-in-out 0.70s;
+    -ms-transition					: all ease-in-out 0.70s;
+    transition						: all ease-in-out 0.70s;    
+
+}
+.top-nav .navbar-nav > li > a:hover {
+	color							: #56bfc7
+}
+.top-nav .navbar-nav > li > .dropdown-menu .dropdown-item:hover {
+	color							: #56bfc7
+}
+
+.nav-interno, .nav-interno .navbar-nav > li > .dropdown-menu {
+	background						: white;
+    -webkit-transition				: all ease-in-out 0.70s;
+    -moz-transition					: all ease-in-out 0.70s;
+    -o-transition					: all ease-in-out 0.70s;
+    -ms-transition					: all ease-in-out 0.70s;
+    transition						: all ease-in-out 0.70s;
+}
+
+.nav-interno_home, .nav-interno_home .navbar-nav > li > .dropdown-menu {
+	background						: transparent;
+background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+
+    -webkit-transition				: all ease-in-out 0.70s;
+    -moz-transition					: all ease-in-out 0.70s;
+    -o-transition					: all ease-in-out 0.70s;
+    -ms-transition					: all ease-in-out 0.70s;
+    transition						: all ease-in-out 0.70s;
+}
+
+.nav-interno .navbar-nav > li a {
+    border-right					: #3b3b3b 1px solid;
+	color							: #3b3b3b !important;
+    -webkit-transition				: all ease-in-out 0.70s;
+    -moz-transition					: all ease-in-out 0.70s;
+    -o-transition					: all ease-in-out 0.70s;
+    -ms-transition					: all ease-in-out 0.70s;
+    transition						: all ease-in-out 0.70s;
+}
+
+.nav-interno .navbar-nav > li:last-child a {
+	padding-right					: 0px;
+    border-right					: 0px solid transparent;
+
+}
+/* .scrolled > .navContent{
+  transform: scale(0.8);
+} */
   .navbar-brand {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 23px !important;
+    font-size: 32px !important;
     text-shadow: 1px 1px 2px black;
     padding: 2px;
   }
@@ -38,7 +129,7 @@ nav.scrolled{
 
   .container {
     width: 100%;
-    height: 90px;
+    min-height: 8rem !important;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -74,9 +165,21 @@ main > h1, h2, h3, h4, h5{
     font-weight: bolder;
     font-size: 60px;
 }
-.categoria{
+.categoria-tabaco{
     height: 85vh;
     background-image: url("https://www.clarin.com/img/2016/06/16/HkbqTP3KVx_1256x620.jpg");
+    background-size: cover;
+    background-position: 20%;
+}
+.categoria-accesorios{
+    height: 85vh;
+    background-image: url("https://www.headcandysmokeshop.com/cdn/shop/files/Head-Candy-Watermarked-1800x1000-2_1800x1000.jpg?v=1628115990");
+    background-size: cover;
+    background-position: 20%;
+}
+.categoria-cultivo{
+    height: 85vh;
+    background-image: url("https://img.interempresas.net/fotos/3930179.jpeg");
     background-size: cover;
     background-position: 20%;
 }
@@ -84,10 +187,6 @@ main > h1, h2, h3, h4, h5{
     margin-top: 3rem;
     margin-bottom: 5rem;
 }
-/* before adding the img to the div with the 
-"card-img" class, remove css styles 
-.card-img .img::before and .card-img .img::after,
-then set the desired styles for .card-img. */
 .card {
     --font-color: #323232;
     --font-color-sub: #666;
@@ -270,3 +369,10 @@ footer{
     background-color: rgb(200, 163, 235);
   }
   
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+  .recomendados{
+    display: flex;
+    flex-direction: column;
+  }
+}
