@@ -90,7 +90,7 @@ public class ProductoControlador {
             return new ResponseEntity<>("No puedes tener dos productos distintos con el mismo nombre", HttpStatus.FORBIDDEN);
         } else {
             Producto nuevoProducto = new Producto(productoDTO.getNombre(),productoDTO.getMarca(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getSubCategoria(), productoDTO.getCantidad(), true);
-            servicioProducto.guardar(nuevoProducto);
+            servicioProducto.save(nuevoProducto);
             return new ResponseEntity<>("Producto añadido", HttpStatus.CREATED);
         }
     }

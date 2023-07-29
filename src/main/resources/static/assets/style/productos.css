@@ -129,7 +129,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 
   .container {
     width: 100%;
-    min-height: 8rem !important;
+    min-height: 6rem !important;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
