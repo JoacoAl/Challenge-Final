@@ -20,15 +20,62 @@ const {createApp} = Vue
 createApp({
   data() {
     return {
-      
+        productos: [],
+        tabacos: [],
+        accesorios: [],
+        cultivo: [],
+        tabacosFiltrados: [],
+        categoriasCultivo: [],
+        checkedCheckbox: []
     };
   },
   created(){
-
+    this.traerProductos();
   },
   methods: {
-    
+    traerProductos(){
+      axios
+      .get('/api/productos')
+      .then(response =>{
+        this.productos = response.data
+
+        //TABACOS
+        this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
+        console.log(this.tabacos);
+        let marcas = this.tabacos.map( tabaco => tabaco.marca)
+            const categorias = [...new Set(marcas)]
+            this.tabacosFiltrados = categorias
+
+        //CULTIVO
+        this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
+        console.log(this.cultivo);
+        let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
+            const catCultivos = [...new Set(categoriasDeCultivo)]
+            this.categoriasCultivo = catCultivos;
+
+
+        //ACCESORIOS
+        this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS")
+        console.log(this.accesorios);
+      })
+      .catch(exception => {
+        console.log(exception);
+      })
+    }
   },
+  computed: {
+    filtroBusqueda (){
+        if(this.checkedCheckbox.length === 0){
+          this.traerProductos();
+        }else{
+          this.cultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
+          this.tabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca))
+
+        }
+        
+    },
+    
+}
 }).mount("#app")
 
 

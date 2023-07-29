@@ -15,7 +15,8 @@ public class ProductoDTO {
     private double precio;
 
     private Categoria tipoDeCategoria;
-
+    private String subCategoria;
+    private String imagen;
     private long cantidad;
     private boolean activo;
 
@@ -28,6 +29,8 @@ public class ProductoDTO {
         descripcion = producto.getDescripcion();
         precio = producto.getPrecio();
         tipoDeCategoria = producto.getCategoria();
+        subCategoria = producto.getSubCategoria();
+        imagen = producto.getImagen();
         cantidad = producto.getCantidad();
         activo = producto.isActivo();
     }
@@ -53,6 +56,12 @@ public class ProductoDTO {
     public Categoria getCategoria() {
         return tipoDeCategoria;
     }
+
+    public String getSubCategoria() {
+        return subCategoria;
+    }
+
+    public String getImagen() {return imagen;}
 
     public long getCantidad() {
         return cantidad;

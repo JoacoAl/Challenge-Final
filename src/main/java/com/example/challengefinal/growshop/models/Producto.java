@@ -18,13 +18,16 @@ public class Producto {
 
     private String nombre;
     private String marca;
-
+    @Column(name = "descripcion", length = 2000)
     private String descripcion;
 
     private double precio;
 
     private Categoria categoria;
+    private String subCategoria;
 
+    @Column(name = "imagen", length = 500)
+    private String imagen;
     private long cantidad;
 
     private boolean activo;
@@ -36,12 +39,14 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, long cantidad, boolean activo) {
+    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, String subCategoria,String imagen, long cantidad, boolean activo) {
         this.nombre = nombre;
         this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
         this.categoria = categoria;
+        this.subCategoria = subCategoria;
+        this.imagen = imagen;
         this.cantidad = cantidad;
         this.activo = activo;
     }
@@ -101,6 +106,18 @@ public class Producto {
 
     public void setCategoria(Categoria tipoDeCategoria) {
         this.categoria = categoria;
+    }
+
+    public String getSubCategoria() {return subCategoria;}
+
+    public void setSubCategoria(String subCategoria) {this.subCategoria = subCategoria;}
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public void añadirOrdenProducto(OrdenProducto ordenProducto){

@@ -89,7 +89,9 @@ public class ProductoControlador {
         if (productos.stream().anyMatch(productoDTO1 -> productoDTO1.getNombre().equals(productoDTO.getNombre()))) {
             return new ResponseEntity<>("No puedes tener dos productos distintos con el mismo nombre", HttpStatus.FORBIDDEN);
         } else {
-            Producto nuevoProducto = new Producto(productoDTO.getNombre(),productoDTO.getMarca(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getCantidad(), true);
+
+            Producto nuevoProducto = new Producto(productoDTO.getNombre(),productoDTO.getMarca(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getSubCategoria(), productoDTO.getImagen(), productoDTO.getCantidad(), true);
+
             servicioProducto.save(nuevoProducto);
             return new ResponseEntity<>("Producto añadido", HttpStatus.CREATED);
         }
