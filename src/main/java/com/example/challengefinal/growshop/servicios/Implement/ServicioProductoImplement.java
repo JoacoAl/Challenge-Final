@@ -29,7 +29,20 @@ public class ServicioProductoImplement implements ServicioProducto {
     }
 
     @Override
+<<<<<<< HEAD
+    public Producto traerProductoPorNombre(String nombre) {
+        return productoRepositorio.traerPorNombre(nombre);
+    }
+
+    @Override
+    public void save(Producto producto) {
+        productoRepositorio.save(producto);
+    }
+
+
+=======
     public Producto guardar(Producto producto) {
         return productoRepositorio.save(producto);
     }
+>>>>>>> 07591f26994aa072faed3e22384e8857a4e4d5f3
 }
