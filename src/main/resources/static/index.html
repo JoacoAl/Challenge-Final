@@ -21,114 +21,64 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav">
+        <div class="container-fluid contenedor">
+            <img src="./assets/images/image3.png" class="logo"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse d-flex justify-content-evenly align-items-center g-1" id="navbarNavDropdown">
+           
+              <li class="nav-item li">
+                <a class="nav-link active" aria-current="page" href="#">INICIO</a>
+              </li>
+              <li class="nav-item li">
+                <a class="nav-link" href="#">CONTACTO</a>
+              </li>
+              <li class="nav-item dropdown li">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  PRODUCTOS
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Cultivos</a></li>
+                  <li><a class="dropdown-item" href="#">Tabacos</a></li>
+                  <li><a class="dropdown-item" href="#">Acessorios</a></li>
+                </ul>
+              </li>
+          </div>  
+    </div>
+      </nav>
    
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-evenly align-items-center">
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html"><img src="./assets/images/image3.png" class="logo">
-                
-            </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Contacto</a>
-                        </li>
-    
-                    </ul>
-                </div>
-                <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="./assets/pages/perfil.html">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="./assets/pages/perfil.html">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </nav>
-  
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
     <header>
-        <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-bs-target="#template-mo-zay-hero-carousel" class="active"></li>
-                <li data-bs-target="#template-mo-zay-hero-carousel" ></li>
-                <li data-bs-target="#template-mo-zay-hero-carousel" ></li>
-            </ol>
+        <div id="template-mo-zay-hero-carousel" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="container">
-                            <div >
-                                <img class="imgcarrusel" src="./assets/images/image3.png" alt="">
-                            </div>
-                        </div>   
-                </div>           
-                <div class="carousel-item">
-                    <div class="container">
-                            <div class="">
-                                <img class="imgcarrusel" src="./assets/images/image3.png" alt="">
-                            </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container">
-                            <div class="">
-                                <img class="imgcarrusel" src="./assets/images/image3.png" alt="">
-                            </div>
-                    </div>
-                </div>
-            <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="" role="button" data-bs-slide="prev">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <a class="carousel-control-next text-decoration-none w-auto pe-3" href="" role="button" data-bs-slide="next">
-                <i class="fas fa-chevron-right"></i>
-            </a>
-        </div>
-    </div>
+              <div class="carousel-item active">
+                <img src="./assets/images/image3.png" class="d-block imgcarrusel alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="./assets/images/image3.png" class="d-block imgcarrusel" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="./assets/images/image3.png" class="d-block imgcarrusel" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        
+    
     </header>
 <div class=" d-flex justify-content-center section2">
         <section class="section1" >
@@ -167,82 +117,37 @@
                 </div>
             </div>
         </div>
-       
-        <div class="bg-success">
-            <div class="container ">
-                <div class="row  ">
                     <div class="col-lg">
-                        <h2 class="h2  text-center catego1">Productos destacado</h2>
+                        <h2 class="h2  text-center">Productos destacado</h2>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-4 mb-4">
-                        <div class="card  h-100 ">
-                            <a href="">
-                                <img src="./assets/images/img4.jpg" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <ul class="list-unstyled d-flex justify-content-between">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                    <li class="text-muted text-right"></li>
-                                </ul>
-                                <a href="" class="h2 text-decoration-none text-dark">Pipa de Vidrio</a>
-                                <p class="text-muted"></p>
-                            </div>
-                        </div>
-                    </div>
-                  <div class="col-12 col-md-4 mb-4">
-                        <div class="card h-100">
-                             <img src="./assets/images/Habano_bolivar_1.jpg" class="card-img-top" alt="">
-                          <div class="card-body">
-                                <ul class="list-unstyled d-flex justify-content-between">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li> 
-                                </ul>
-                                <a href="" class="h2 text-decoration-none text-dark">Tabaco</a>
-                                <p class="card-text">
-                                   
-                                </p>
-                                <p class="text-muted"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 mb-4">
-                        <div class="card h-100">
-                            <a href="">
-                                <img src="./assets/images/img1.jpg" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <ul class="list-unstyled d-flex justify-content-between">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                    </li>
-                                    <li class="text-muted text-right"></li>
-                                </ul>
-                                <a href="" class="h2 text-decoration-none text-dark">Vapers</a>
-                              
-                                <p class="text-muted"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
+     
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-        </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active carrusel1">
+                <img src="./assets/images/herotabacos.png" class="d-block imgcarrusel" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="./assets/images/img5.jpg" class="d-block imgcarrusel" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="./assets/images/50g-ok.jpg" class="d-block imgcarrusel" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         
 
       </main>

@@ -1,5 +1,5 @@
 
-body, ul, li, p, div,input,label {
+body, ul, p, div,input,label {
   font-family: 'Roboto', sans-serif;
   font-size: 18px !important;
   font-weight: 300 !important;
@@ -34,13 +34,22 @@ body, ul, li, p, div,input,label {
   font-size: 22px !important;
 }
 .carousel-item {
-  height: 40rem !important;}
-
+  height: 35rem !important;}
+  .carrusel1 {
+    height: 30rem !important;}
   select{
     width: 12rem;
     height: 2rem;
 
 }
+.contenedor{
+  background-color: #ba2419;
+}
+.nav {
+  background-color: #59ab6e;
+  padding: 1rem;
+}
+
 .section1{
     display: flex;
     justify-content: center;
@@ -49,9 +58,15 @@ body, ul, li, p, div,input,label {
     
 
 }
+.li{
+  font-size: 20px;
+  background-color: #fff;
+}
 .logo{
   width: 12rem;
   padding: 1rem;
+  background-color: azure;
+
 }
 
 section img{
@@ -73,11 +88,12 @@ section img:hover{
 }
 .imgcarrusel{
   width: 100%;
-  height: 30rem;
+  height: 35rem;
+  background-size: cover;
 }
 main{
   min-height: 80vh;
-  background: linear-gradient(90deg, rgba(46,217,83,1) 19%, rgba(246,0,0,1) 44%, rgba(51,91,18,1) 86%);
+  /* background: linear-gradient(90deg, rgba(46,217,83,1) 19%, rgba(246,0,0,1) 44%, rgba(51,91,18,1) 86%); */
 }
 .textos1{
   font-family: 'Roboto', sans-serif;
@@ -112,7 +128,7 @@ main{
 
 /* Hero Carousel */
  #template-mo-zay-hero-carousel { 
-   background: #ec2626 !important;  
+   background: #f26868 !important;  
   
 }
 /* Accordion */
@@ -152,6 +168,9 @@ main{
 .brand-img:hover {
   filter: grayscale(0%);
   opacity: 1;
+}
+#carouselExampleIndicators{
+  background-color: #0bff7e;
 }
 /* Carousel Hero */
 #template-mo-zay-hero-carousel .carousel-indicators li {
