@@ -152,6 +152,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
   .emoji-arg {
     width: 45px;
   }
+.shopping-cart{
+  height: 2rem;
+  background-color: white;
+}
 main{
     min-height: 85vh !important;
     background-color: rgb(241, 254, 255);
