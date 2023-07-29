@@ -24,6 +24,7 @@ public class Producto {
     private double precio;
 
     private Categoria categoria;
+    private String subCategoria;
 
     private long cantidad;
 
@@ -36,12 +37,13 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, long cantidad, boolean activo) {
+    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, String subCategoria, long cantidad, boolean activo) {
         this.nombre = nombre;
         this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
         this.categoria = categoria;
+        this.subCategoria = subCategoria;
         this.cantidad = cantidad;
         this.activo = activo;
     }
@@ -102,6 +104,10 @@ public class Producto {
     public void setCategoria(Categoria tipoDeCategoria) {
         this.categoria = categoria;
     }
+
+    public String getSubCategoria() {return subCategoria;}
+
+    public void setSubCategoria(String subCategoria) {this.subCategoria = subCategoria;}
 
     public void añadirOrdenProducto(OrdenProducto ordenProducto){
         ordenProducto.setProductos(this);
