@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <nav class="navbar p-0 navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">
+                    <img class="imagenNavbar" src="../img-contacto-detalle/logoGOZO.png" alt="logo" srcset="">
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Productos
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="../pages/accesorios.html">Accesorios</a></li>
+                          <li><a class="dropdown-item" href="../pages/cultivo.html">Cultivo</a></li>
+                          <li><a class="dropdown-item" href="../pages/tabaco.html">Tabaco</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./contacto.html">Contacto</a>
+                      </li>
+                    </ul>
+                </div>
+                <div class="collapse flex-grow-0 navbar-collapse justify-content-end " id="navbarNavDropdown">
+                    <a href="../pages/detallesUsuario.html"><img class="imagenUsuario" src="../img-contacto-detalle/usuario.png" alt=""></a>
+                </div>
+                </div>
+              </nav>
+        </header>
+        <main>
+            <label for="remitente">Direccion de tu correo electronico:</label>
+            <input type="text" id="remitente" v-model="correoDTO.remitente">
+            <label for="comentario" >Comentario:</label>
+            <input type="text" id="comentario" v-model="correoDTO.comentario">
+            <button @click.prevent="crearCorreo()">ENVIAR</button>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="../script/contacto.js"></script>
+</body>
+</html>
