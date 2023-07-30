@@ -25,4 +25,9 @@ public class ServicioOrdenImplement implements ServicioOrden {
         OrdenDTO ordenDTO = new OrdenDTO(orden);
         return ordenDTO;
     }
+
+    @Override
+    public void eliminarorden(long id) {
+        ordenRepositorio.deleteById(id);
+    }
 }

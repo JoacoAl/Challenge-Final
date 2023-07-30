@@ -3,8 +3,7 @@ package com.example.challengefinal.growshop.dto;
 import com.example.challengefinal.growshop.models.Categoria;
 import com.example.challengefinal.growshop.models.Producto;
 
-public class ProductoDTO {
-
+public class CrearProductoDTO {
     private Long id;
 
     private String nombre;
@@ -19,10 +18,11 @@ public class ProductoDTO {
 
     private String img;
 
-    public ProductoDTO() {
+    public CrearProductoDTO() {
     }
 
-    public ProductoDTO(Producto producto) {
+
+    public CrearProductoDTO(Producto producto) {
         this.id = producto.getId();
         this.nombre = producto.getNombre();
         this.descripcion = producto.getDescripcion();

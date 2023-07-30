@@ -24,15 +24,12 @@ public class AutorizaciónWeb {
         http.authorizeRequests()
 
                 .antMatchers("/api/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clientes").permitAll();
 
-
-                //ADMIN
-                .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/api/productos", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/productos/agregar").hasAuthority("ADMIN");
-
-
-
+//
+//                //ADMIN
+//                .antMatchers("/rest/**","/api/clientes", "/api/productos", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN");
+//
 
 
 

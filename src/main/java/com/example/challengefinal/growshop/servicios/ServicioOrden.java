@@ -9,4 +9,6 @@ public interface ServicioOrden {
 
     Set<OrdenDTO> traerOrdenesDTO();
     OrdenDTO traerOrdenDTO(@PathVariable Long id);
+
+    void eliminarorden(@PathVariable long id);
 }
