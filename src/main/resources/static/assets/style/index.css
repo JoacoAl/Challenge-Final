@@ -11,10 +11,6 @@
 .logo-navbar {
   width: 160px;
 }
-
-.logo-navbar {
-  width: 180px;
-}
 nav {
   min-height: 6rem;
   flex-grow: 1 !important;
@@ -216,6 +212,7 @@ ul {
 /* mama cultiva */
 .mamacultiva {
   height: 400px;
+  object-fit: contain;
 }
 
 .text-mamacultiva {
@@ -329,7 +326,12 @@ footer > h1 {
     opacity: 1;
   }
 }
+.ilustraciones{
+  height: 27rem;
+  width: 100vh;
+}
 .ilustraciones > img {
   width: 475px;
-  height: 300px;
+  height: 100%;
+  object-fit: cover;
 }

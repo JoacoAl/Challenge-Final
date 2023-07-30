@@ -2,7 +2,7 @@ window.addEventListener("scroll", function() {
     const navbar = document.getElementById("navbar");
     const scrollPosition = window.scrollY;
     const navbarHeight = navbar.offsetHeight;
-    const headerHeight = 300; 
+    const headerHeight = 200; 
 
     const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
     if (scrollPosition > headerHeight) {
@@ -25,7 +25,9 @@ createApp({
         accesorios: [],
         cultivo: [],
         tabacosFiltrados: [],
-        categoriasCultivo: [],
+        cultivoFiltrado: [],
+        filtroTabacos: [],
+        filtroCultivo: [],
         checkedCheckbox: []
     };
   },
@@ -38,6 +40,11 @@ createApp({
       .get('/api/productos')
       .then(response =>{
         this.productos = response.data
+
+        this.format = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+      });
 
         //TABACOS
         this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
@@ -65,12 +72,13 @@ createApp({
   },
   computed: {
     filtroBusqueda (){
-        if(this.checkedCheckbox.length === 0){
-          this.traerProductos();
+        if(this.checkedCheckbox.length != 0){
+          this.filtroCultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria) || this.checkedCheckbox.length == 0)
+          this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca) || this.checkedCheckbox.length == 0)
         }else{
-          this.cultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
-          this.tabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca))
-
+          this.filtroCultivo = this.cultivo;
+          this.filtroTabacos = this.tabacos;
+          this.traerProductos();
         }
         
     },
