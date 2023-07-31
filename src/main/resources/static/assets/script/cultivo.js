@@ -23,16 +23,12 @@ createApp({
     return {
         productos: [],
 
-        tabacos: [],
-        accesorios: [],
         cultivo: [],
 
-        tabacosFiltrados: [],
         cultivoFiltrado: [],
         
-        filtroTabacos: [],
         filtroCultivo: [],
-
+        
         checkedCheckbox: [],
         seleccionadas: [],
         tabacosFiltrados: [],
@@ -40,34 +36,9 @@ createApp({
     };
   },
   created(){
-     this.traerProductosTabacos();
      this.traerProductosCultivo();
-    //  this.traerProductosAccesorio();
   },
   methods: {
-    traerProductosTabacos(){
-      axios
-      .get('/api/productos')
-      .then(response =>{
-        this.productos = response.data
-
-        this.format = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-      });
-
-        //TABACOS
-        this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
-        let marcas = this.tabacos.map( tabaco => tabaco.marca)
-            const categorias = [...new Set(marcas)]
-            this.tabacosFiltrados = categorias
-            console.log(this.tabacos);
-      })
-      .catch(exception => {
-        console.log(exception);
-      })
-    },
-
     traerProductosCultivo(){
       axios
       .get('/api/productos')
@@ -143,14 +114,6 @@ createApp({
         this.filtroCultivo = this.cultivo;
       }
   },  
-    filtroBusquedaTabacos() {
-      if (this.checkedCheckbox.length != 0) {
-        this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));
-        console.log(this.filtroTabacos)
-      } else {
-        this.filtroTabacos = this.tabacos;
-      }
-    },
 }
 }).mount("#app")
 

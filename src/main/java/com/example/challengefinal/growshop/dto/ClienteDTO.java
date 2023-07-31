@@ -10,7 +10,7 @@ public class ClienteDTO {
 
 
     private Long id;
-    private String nombre, apellido, email;
+    private String nombre, apellido, email, telefono;
 
     private Set<OrdenDTO> ordenSet;
 
@@ -20,6 +20,7 @@ public class ClienteDTO {
         this.apellido = cliente.getApellido();
         this.email = cliente.getEmail();
         this.ordenSet = cliente.getOrdenesDeCompra().stream().map(orden -> new OrdenDTO(orden)).collect(Collectors.toSet());
+        this.telefono = cliente.getTelefono();
     }
 
     public Long getId() {
@@ -29,15 +30,15 @@ public class ClienteDTO {
     public String getNombre() {
         return nombre;
     }
-
     public String getApellido() {
         return apellido;
     }
-
     public String getEmail() {
         return email;
     }
-
+    public String getTelefono() {
+        return telefono;
+    }
     public Set<OrdenDTO> getOrdenSet() {
        return ordenSet;
     }

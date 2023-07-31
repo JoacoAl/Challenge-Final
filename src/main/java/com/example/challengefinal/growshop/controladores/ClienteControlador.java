@@ -48,7 +48,7 @@ public class ClienteControlador {
             return new ResponseEntity<>("El email esta en uso", HttpStatus.FORBIDDEN);
         }
 
-        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(),clienteRegistroDTO.getEmail(),clienteRegistroDTO.getDireccion(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
+        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(),clienteRegistroDTO.getEmail(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getDireccion(), clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
 
         servicioCliente.save(cliente);
 
