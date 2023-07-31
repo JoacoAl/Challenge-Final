@@ -28,13 +28,16 @@ public class ServicioProductoImplement implements ServicioProducto {
         return productoDTO;
     }
 
+
     @Override
-    public Producto guardar(Producto producto) {
-        return productoRepositorio.save(producto);
+    public Producto traerProductoPorId(Long id) {
+        return productoRepositorio.findById(id).orElse(null);
     }
 
     @Override
-    public void borrar(long id) {
-        productoRepositorio.deleteById(id);
+    public void save(Producto producto) {
+        productoRepositorio.save(producto);
     }
+
+
 }

@@ -40,18 +40,19 @@ public class ClienteControlador {
     public ResponseEntity<Object> registrarCliente(@RequestBody ClienteRegistroDTO clienteRegistroDTO){
 
         if (clienteRegistroDTO.getNombre().isBlank() || clienteRegistroDTO.getApellido().isBlank() || clienteRegistroDTO.getEmail().isBlank() || clienteRegistroDTO.getContraseña().isBlank()|| clienteRegistroDTO.getDireccion().isBlank() || clienteRegistroDTO.getEdad() <= 0 || clienteRegistroDTO.getTelefono().isBlank() ){
-            return new ResponseEntity<>("Missing Data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Falta informacion", HttpStatus.FORBIDDEN);
         }
 
         if (servicioCliente.traerClientePorEmail(clienteRegistroDTO.getEmail()) != null){
-            return new ResponseEntity<>("The email has already in use", HttpStatus.FORBIDDEN);
+
+            return new ResponseEntity<>("El email esta en uso", HttpStatus.FORBIDDEN);
         }
 
-        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(),clienteRegistroDTO.getEmail(),clienteRegistroDTO.getDireccion(), clienteRegistroDTO.getContraseña(), clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
+        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(),clienteRegistroDTO.getEmail(),clienteRegistroDTO.getDireccion(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
 
         servicioCliente.save(cliente);
 
-        return new ResponseEntity<>("The user was register successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("El usuario fue registrado exitosamente", HttpStatus.CREATED);
 
     }
 }

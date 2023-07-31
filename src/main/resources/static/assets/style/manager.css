@@ -4,44 +4,31 @@
     box-sizing: border-box;
 }
 
-body{
-  background-color: rgb(151, 151, 151)
-}
-
 footer, header{
     min-height: 10vh;
-    background-color: rgb(222, 231, 231);
+    background-color: rgb(255, 255, 255);
 }
 
 main{
     min-height: 80vh;
-
 }
 
 .div-nav{
   gap: 2rem;
 }
 
-/* .div{
-  /* background-image: url(/assets/img-manager/sky-clouds.gif);
+.div{
+  background-image: url(/assets/img-manager/sky-clouds.gif);
     width: 100%;
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center; */
-
-
-.section_form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-
+    background-position: center;
 }
 
-.div-primer-section{
+.section_form{
   background-color: #0071e250;
-  width: 70rem;
+
 }
 
 /* header */
@@ -52,7 +39,8 @@ main{
 }
 
 .img-nav{
-    width: 16rem;
+    width: 4rem;
+    border-radius: 20px;
 }
 
 /* boton de logout */
@@ -75,7 +63,7 @@ main{
     height: 2.8em;
     padding-right: 3.3em;
   }
-
+  
   .cssbuttons-io-button .icon {
     background: white;
     margin-left: 1em;
@@ -90,21 +78,21 @@ main{
     right: 0.3em;
     transition: all 0.3s;
   }
-
+  
   .cssbuttons-io-button:hover .icon {
     width: calc(100% - 0.6em);
   }
-
+  
   .cssbuttons-io-button .icon svg {
     width: 1.1em;
     transition: transform 0.3s;
     color: #545b78;
   }
-
+  
   .cssbuttons-io-button:hover .icon svg {
     transform: translateX(0.1em);
   }
-
+  
   .cssbuttons-io-button:active .icon {
     transform: scale(0.95);
   }
@@ -123,7 +111,7 @@ main{
     flex-direction: column;
     width: 300px;
   }
-
+  
   .feed-form input {
     height: 54px;
     border-radius: 5px;
@@ -132,15 +120,15 @@ main{
     border: none;
     padding: 0 20px;
     font-weight: 300;
-    font-size:20px;
-    color: #000000;
+    font-size: 14px;
+    color: #4B4B4B;
   }
-
+  
   .button_submit:hover, .feed-form input:hover {
     transform: scale(1.009);
     box-shadow: 0px 0px 3px 0px #212529;
   }
-
+  
   .button_submit {
     width: 100%;
     height: 54px;
@@ -152,6 +140,8 @@ main{
     font-weight: 500;
     text-transform: uppercase;
   }
+  
+
 
   .inputBusqueda {
     height: 2.5rem;
@@ -159,6 +149,10 @@ main{
     border: 1px solid #957fca;
     background-color: #dbe1f6;
   }
+
+  /* .div-filtros{
+    background-color: rgba(255, 215, 159, 0.651);
+  } */
 
   /* card-diseño */ 
   .card-title {

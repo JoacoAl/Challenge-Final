@@ -17,16 +17,20 @@ public class Producto {
     private  long id;
 
     private String nombre;
-
+    private String marca;
+    @Column(name = "descripcion", length = 2000)
     private String descripcion;
 
     private double precio;
 
     private Categoria categoria;
-
+    private String subCategoria;
+    private String currency_id;
+    @Column(name = "imagen", length = 500)
+    private String imagen;
     private long cantidad;
 
-    private String img;
+    private boolean activo;
 
     @JsonIgnore
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
@@ -35,22 +39,22 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, double precio, Categoria categoria, long cantidad, String img) {
+    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, String subCategoria,String imagen, long cantidad, boolean activo, String currency_id) {
         this.nombre = nombre;
+        this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
         this.categoria = categoria;
+        this.subCategoria = subCategoria;
+        this.imagen = imagen;
         this.cantidad = cantidad;
-        this.img = img;
+        this.activo = activo;
+        this.currency_id = currency_id;
     }
 
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getCantidad() {
@@ -77,6 +81,10 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public String getMarca() {return marca;}
+
+    public void setMarca(String marca) {this.marca = marca;}
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -101,16 +109,34 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public String getImg() {
-        return img;
+    public String getSubCategoria() {return subCategoria;}
+
+    public void setSubCategoria(String subCategoria) {this.subCategoria = subCategoria;}
+
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public void añadirOrdenProducto(OrdenProducto ordenProducto){
         ordenProducto.setProductos(this);
         ordenProductos.add(ordenProducto);
+    }
+
+    public boolean isActivo() {return activo;}
+
+    public String getCurrency_id() {
+        return currency_id;
+    }
+
+    public void setCurrency_id(String currency_id) {
+        this.currency_id = currency_id;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }
