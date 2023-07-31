@@ -327,11 +327,11 @@ footer > h1 {
   }
 }
 .ilustraciones{
-  height: 27rem;
+  min-height: 27rem;
   width: 100vh;
 }
 .ilustraciones > img {
-  width: 475px;
-  height: 100%;
+  /* width: 25%; */
+  height: 30rem;
   object-fit: cover;
 }
