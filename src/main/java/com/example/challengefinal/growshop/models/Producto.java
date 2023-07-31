@@ -25,7 +25,7 @@ public class Producto {
 
     private Categoria categoria;
     private String subCategoria;
-
+    private String currency_id;
     @Column(name = "imagen", length = 500)
     private String imagen;
     private long cantidad;
@@ -39,7 +39,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, String subCategoria,String imagen, long cantidad, boolean activo) {
+    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, String subCategoria,String imagen, long cantidad, boolean activo, String currency_id) {
         this.nombre = nombre;
         this.marca = marca;
         this.descripcion = descripcion;
@@ -49,6 +49,7 @@ public class Producto {
         this.imagen = imagen;
         this.cantidad = cantidad;
         this.activo = activo;
+        this.currency_id = currency_id;
     }
 
 
@@ -126,6 +127,14 @@ public class Producto {
     }
 
     public boolean isActivo() {return activo;}
+
+    public String getCurrency_id() {
+        return currency_id;
+    }
+
+    public void setCurrency_id(String currency_id) {
+        this.currency_id = currency_id;
+    }
 
     public void setActivo(boolean activo) {
         this.activo = activo;

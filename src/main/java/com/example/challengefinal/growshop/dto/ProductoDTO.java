@@ -11,7 +11,7 @@ public class ProductoDTO {
     private String marca;
 
     private String descripcion;
-
+    private String currency_id;
     private double precio;
 
     private Categoria tipoDeCategoria;
@@ -33,6 +33,7 @@ public class ProductoDTO {
         imagen = producto.getImagen();
         cantidad = producto.getCantidad();
         activo = producto.isActivo();
+        currency_id = producto.getCurrency_id();
     }
 
     public Long getId() {
@@ -69,5 +70,9 @@ public class ProductoDTO {
 
     public boolean isActivo() {
         return activo;
+    }
+
+    public String getCurrency_id() {
+        return currency_id;
     }
 }
