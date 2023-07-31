@@ -1,8 +1,8 @@
 package com.example.challengefinal.growshop.controladores;
 
-import com.example.challengefinal.growshop.sendEmail.CorreoDTO;
-import com.example.challengefinal.growshop.sendEmail.EmailSend;
-import com.example.challengefinal.growshop.sendEmail.Correo;
+import com.example.challengefinal.growshop.dto.CorreoDTO;
+import com.example.challengefinal.growshop.models.EmailSend;
+import com.example.challengefinal.growshop.models.Correo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,15 +24,27 @@ public class CorreoControlador {
             if (correoDTO.getRemitente() == null) {
                 return new ResponseEntity<>("Falta el remitente en el formulario", HttpStatus.BAD_REQUEST);
             }
+            if (correoDTO.getRemitente().isBlank()) {
+            return new ResponseEntity<>("Falta ingresar remitente en el formulario", HttpStatus.BAD_REQUEST);
+            }
             if ( correoDTO.getComentario() == null) {
                 return new ResponseEntity<>("Falta el comentario en el formulario", HttpStatus.BAD_REQUEST);
+            }
+            if ( correoDTO.getComentario().isBlank()) {
+            return new ResponseEntity<>("Falta ingresar el comentario en el formulario", HttpStatus.BAD_REQUEST);
+            }
+            if (correoDTO.getAsunto().isBlank()){
+                return new ResponseEntity<>("Ingrese el asunto", HttpStatus.FORBIDDEN);
+            }
+            if (correoDTO.getAsunto() == null){
+            return new ResponseEntity<>("Falta ingresar el asunto", HttpStatus.FORBIDDEN);
             }
 
             // Crear un mensaje de correo electrónico
             Correo correo = new Correo();
             correo.setRemitente(correoDTO.getRemitente());
             correo.setDestinatario("growshopgozo@gmail.com"); // Reemplaza con la dirección de correo destino
-            correo.setAsunto("Prueba");
+            correo.setAsunto(correoDTO.getAsunto());
             correo.setComentario(correoDTO.getComentario());
 
             // Enviar el correo electrónico utilizando el EmailSender

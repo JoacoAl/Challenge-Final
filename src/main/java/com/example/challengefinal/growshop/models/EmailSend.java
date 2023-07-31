@@ -1,5 +1,6 @@
-package com.example.challengefinal.growshop.sendEmail;
+package com.example.challengefinal.growshop.models;
 
+import com.example.challengefinal.growshop.models.Correo;
 import org.springframework.stereotype.Service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -31,10 +32,10 @@ public class EmailSend {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(remitente));
-            message.addRecipient(Message.RecipientType.CC,new InternetAddress( remitente));
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(username));
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress( remitente));
 
-            String mensajeAdicional = "Hola, su correo fue enviado con éxito a GOzo, aquí le dejamos lo que envió:\n" + comentario;
+            String mensajeAdicional = "Hola, su correo fue enviado con éxito a Gozo, aquí le dejamos lo que envió:" + comentario;
 
 
             message.setSubject(asunto);

@@ -17,14 +17,20 @@ public class Producto {
     private  long id;
 
     private String nombre;
-
+    private String marca;
+    @Column(name = "descripcion", length = 2000)
     private String descripcion;
 
     private double precio;
 
     private Categoria categoria;
+    private String subCategoria;
 
+    @Column(name = "imagen", length = 500)
+    private String imagen;
     private long cantidad;
+
+    private boolean activo;
 
     @JsonIgnore
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
@@ -33,21 +39,21 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, double precio, Categoria categoria, long cantidad) {
+    public Producto(String nombre, String marca, String descripcion, double precio, Categoria categoria, String subCategoria,String imagen, long cantidad, boolean activo) {
         this.nombre = nombre;
+        this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
         this.categoria = categoria;
+        this.subCategoria = subCategoria;
+        this.imagen = imagen;
         this.cantidad = cantidad;
+        this.activo = activo;
     }
 
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getCantidad() {
@@ -74,6 +80,10 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public String getMarca() {return marca;}
+
+    public void setMarca(String marca) {this.marca = marca;}
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -98,8 +108,26 @@ public class Producto {
         this.categoria = categoria;
     }
 
+    public String getSubCategoria() {return subCategoria;}
+
+    public void setSubCategoria(String subCategoria) {this.subCategoria = subCategoria;}
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public void añadirOrdenProducto(OrdenProducto ordenProducto){
         ordenProducto.setProductos(this);
         ordenProductos.add(ordenProducto);
+    }
+
+    public boolean isActivo() {return activo;}
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

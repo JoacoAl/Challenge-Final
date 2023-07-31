@@ -1,8 +1,9 @@
-package com.example.challengefinal.growshop.sendEmail;
+package com.example.challengefinal.growshop.dto;
 
 public class CorreoDTO {
     private String remitente; // Dirección de correo del remitente
     private String comentario;
+    private String asunto;
 
     public CorreoDTO() {
     }
@@ -13,5 +14,9 @@ public class CorreoDTO {
 
     public String getComentario() {
         return comentario;
+    }
+
+    public String getAsunto() {
+        return asunto;
     }
 }

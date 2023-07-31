@@ -1,0 +1,337 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&family=Ysabeau+SC&display=swap%27");
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&family=Red+Hat+Display&family=Rowdies&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+.logo-navbar {
+  width: 160px;
+}
+nav {
+  min-height: 6rem;
+  flex-grow: 1 !important;
+}
+.navbar-default {
+  background: rgba(50, 50, 50, 0);
+  border-color: transparent;
+  padding: 20px 0px;
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  transition: all ease-in-out 0.7s;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+}
+.navbar-light .navbar-toggler {
+  color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.68);
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.top-nav {
+  background: #000;
+  padding: 5px 0px;
+  transition: all ease-in-out 0.7s;
+}
+
+.top-nav .navbar-nav > li > .dropdown-menu {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  left: 0px;
+  padding: 10px 0 0 0;
+  background: #184168;
+  border-radius: 0 0 0 0;
+  box-shadow: 0 0 0 #000000;
+  border-width: 0;
+  min-width: 200px;
+  transition: all ease-in-out 0.7s;
+}
+.top-nav .navbar-nav > li > a:hover {
+  color: #56bfc7;
+}
+.top-nav .navbar-nav > li > .dropdown-menu .dropdown-item:hover {
+  color: #56bfc7;
+}
+
+.nav-interno,
+.nav-interno .navbar-nav > li > .dropdown-menu {
+  background: white;
+  transition: all ease-in-out 0.7s;
+}
+
+.nav-interno_home,
+.nav-interno_home .navbar-nav > li > .dropdown-menu {
+  background: transparent;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+  transition: all ease-in-out 0.7s;
+}
+
+.nav-interno .navbar-nav > li a {
+  border-right: #3b3b3b 1px solid;
+  color: #3b3b3b !important;
+  transition: all ease-in-out 0.7s;
+}
+
+.nav-interno .navbar-nav > li:last-child a {
+  padding-right: 0px;
+  border-right: 0px solid transparent;
+}
+/* .scrolled > .navContent{
+transform: scale(0.8);
+} */
+.navbar-brand {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 32px !important;
+  text-shadow: 1px 1px 2px black;
+  padding: 2px;
+}
+
+.navbar-brand:hover {
+  color: green !important;
+  text-decoration: underline;
+}
+
+.container {
+  width: 100%;
+  min-height: 5rem !important;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1140px !important;
+}
+
+ul {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.a-nav {
+  display: inline-block;
+  padding: 5px 0px;
+  margin: 0px 7px;
+  border-bottom: transparent 2px solid;
+  font-stretch: condensed !important;
+}
+.emoji-arg {
+  width: 45px;
+}
+
+/* carousel */
+
+.section-carousel {
+  position: relative;
+  z-index: 1;
+}
+.img-carrousel {
+  height: 700px !important;
+}
+
+.span-carousel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px;
+}
+
+.span-carousel > h1 {
+  font-size: 70px;
+  font-family: "Rowdies", cursive;
+  text-shadow: 1px 1px 1px black;
+}
+
+.span-carousel > h2 {
+  font-family: "Rowdies", cursive;
+  text-shadow: 1px 1px 1px black;
+}
+
+.icons-navbar {
+  font-size: 28px;
+}
+
+.icons-navbar:hover {
+  color: rgb(24, 126, 24) !important;
+}
+
+/* MAIN */
+.items-marcas {
+  width: 400px;
+  height: 300px;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+  background-color: red;
+}
+
+.item-1 {
+  background: rgba(242, 204, 33, 1);
+}
+.item-2 {
+  background: rgba(188, 55, 140, 1);
+}
+
+.item-3 {
+  background: rgba(255, 255, 255, 0);
+}
+.item-3:hover {
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
+
+.item-4 {
+  background: rgba(113, 163, 216, 1);
+}
+
+.item-5 {
+  background: rgba(119, 96, 166, 1);
+}
+
+.img-item {
+  width: 200px;
+}
+
+.imagen-hover {
+  transition: transform 0.3s ease;
+}
+
+/* mama cultiva */
+.mamacultiva {
+  height: 400px;
+  object-fit: contain;
+}
+
+.text-mamacultiva {
+  font-family: "Rowdies", cursive;
+  text-shadow: 1px 1px 1px black;
+}
+
+.p-mamacultiva {
+  font-family: "Rowdies", cursive;
+  text-shadow: 1px 1px 0px black;
+}
+.bg-mamacultiva {
+  background: rgba(123, 185, 29, 1);
+}
+
+.bg-apurogozo {
+  background: rgba(243, 150, 55, 1);
+}
+
+.a-mamacultiva {
+  text-decoration: underline;
+}
+
+.div-mamacultiva {
+  border: 1px solid rgb(148, 148, 148);
+}
+
+/* footer */
+
+footer {
+  background-color: rgb(116, 63, 146);
+  object-fit: cover;
+  min-height: 40rem;
+}
+footer > h1 {
+  font-size: 60px;
+}
+.iframe-footer {
+  border-radius: 10px;
+}
+.text-footer {
+  font-family: "Rowdies", cursive;
+}
+
+/* redes sociales footer */
+
+.card {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
+  background-color: rgb(116, 63, 146) !important;
+  border: 0px !important;
+}
+
+/* for all social containers*/
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: rgb(51, 29, 65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+}
+/* instagram*/
+.containerOne:hover {
+  background-color: #aca900;
+  transition-duration: 0.3s;
+}
+/* twitter*/
+.containerTwo:hover {
+  background-color: #aca900;
+  transition-duration: 0.3s;
+}
+/* Whatsapp*/
+.containerFour:hover {
+  background-color: #aca900;
+  transition-duration: 0.3s;
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.socialSvg {
+  width: 17px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.ilustraciones{
+  height: 27rem;
+  width: 100vh;
+}
+.ilustraciones > img {
+  width: 475px;
+  height: 100%;
+  object-fit: cover;
+}

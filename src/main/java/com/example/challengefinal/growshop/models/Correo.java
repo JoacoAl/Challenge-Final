@@ -1,4 +1,4 @@
-package com.example.challengefinal.growshop.sendEmail;
+package com.example.challengefinal.growshop.models;
 
 public class Correo {
     private String remitente;

@@ -8,22 +8,31 @@ public class ProductoDTO {
     private Long id;
 
     private String nombre;
+    private String marca;
 
     private String descripcion;
 
     private double precio;
 
     private Categoria tipoDeCategoria;
-
+    private String subCategoria;
+    private String imagen;
     private long cantidad;
+    private boolean activo;
+
+    public ProductoDTO(){}
 
     public ProductoDTO(Producto producto) {
-        this.id = producto.getId();
-        this.nombre = producto.getNombre();
-        this.descripcion = producto.getDescripcion();
-        this.precio = producto.getPrecio();
-        this.tipoDeCategoria = producto.getCategoria();
-        this.cantidad = producto.getCantidad();
+        id = producto.getId();
+        nombre = producto.getNombre();
+        marca = producto.getMarca();
+        descripcion = producto.getDescripcion();
+        precio = producto.getPrecio();
+        tipoDeCategoria = producto.getCategoria();
+        subCategoria = producto.getSubCategoria();
+        imagen = producto.getImagen();
+        cantidad = producto.getCantidad();
+        activo = producto.isActivo();
     }
 
     public Long getId() {
@@ -33,6 +42,8 @@ public class ProductoDTO {
     public String getNombre() {
         return nombre;
     }
+
+    public String getMarca() {return marca;}
 
     public String getDescripcion() {
         return descripcion;
@@ -46,7 +57,17 @@ public class ProductoDTO {
         return tipoDeCategoria;
     }
 
+    public String getSubCategoria() {
+        return subCategoria;
+    }
+
+    public String getImagen() {return imagen;}
+
     public long getCantidad() {
         return cantidad;
+    }
+
+    public boolean isActivo() {
+        return activo;
     }
 }
