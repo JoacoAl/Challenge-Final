@@ -152,8 +152,13 @@ form {
   resize: none;
 }
 .imagenmata{
-  
   height: 50vh !important;
+  object-fit: cover;
+}
+.fondo{
+  background-image: url(../img-contacto-detalle/flor.png);
+  /* background-repeat: no-repeat !important; */
+  background-position: right !important;
 }
 /* ----------------- */
 .card{
