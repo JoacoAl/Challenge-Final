@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@EnableWebSecurity
+//@EnableWebSecurity
 @Configuration
 public class AutorizaciónWeb {
 
@@ -23,12 +23,15 @@ public class AutorizaciónWeb {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
-                .antMatchers("/api/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
-
+                .antMatchers("/api/login", "/api/productos").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clientes").permitAll();
 
                 //ADMIN
-                .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/api/productos", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN");
+//                .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN")
+//                .antMatchers(HttpMethod.POST, "/api/productos/agregar").hasAuthority("ADMIN");
+//                //CLIENTES
+
+
 
 
 

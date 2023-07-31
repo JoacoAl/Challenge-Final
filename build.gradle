@@ -11,11 +11,19 @@ java {
 	sourceCompatibility = '11'
 }
 
+bootRun {
+
+	sourceResources sourceSets.main
+
+}
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	implementation 'com.mercadopago:sdk-java:2.1.11'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'

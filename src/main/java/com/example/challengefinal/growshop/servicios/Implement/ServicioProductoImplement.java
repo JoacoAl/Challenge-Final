@@ -28,10 +28,10 @@ public class ServicioProductoImplement implements ServicioProducto {
         return productoDTO;
     }
 
+
     @Override
-<<<<<<< HEAD
-    public Producto traerProductoPorNombre(String nombre) {
-        return productoRepositorio.traerPorNombre(nombre);
+    public Producto traerProductoPorId(Long id) {
+        return productoRepositorio.findById(id).orElse(null);
     }
 
     @Override
@@ -40,9 +40,4 @@ public class ServicioProductoImplement implements ServicioProducto {
     }
 
 
-=======
-    public Producto guardar(Producto producto) {
-        return productoRepositorio.save(producto);
-    }
->>>>>>> 07591f26994aa072faed3e22384e8857a4e4d5f3
 }
