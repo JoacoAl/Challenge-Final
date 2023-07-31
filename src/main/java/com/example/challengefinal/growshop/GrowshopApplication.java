@@ -537,11 +537,11 @@ public class GrowshopApplication {
             Producto armadorSmoking = new Producto("Smoking 78mm Armador Acrílico","Smoking", "Maquina de Armar\n" + "Smoking Tamaño: 78mm", 1490, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_863528-MLA51078479047_082022-O.webp", 15, true ,"ARS");
             Producto armadorBlunt = new Producto("Armador Tabaquera Blunt Rey / Acrilico / Colores","Blunt Rey", "Porta cigarrera Blunt Rey\n" + "Tamaño: 11x8cm. Material: Acrílico", 2260, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_719688-MLA52218614417_102022-O.webp", 15, true ,"ARS");
 
-            productoRepositorio.save(moroMango);
-            productoRepositorio.save(moroVainilla);
-            productoRepositorio.save(moroGreen);
-            productoRepositorio.save(lasHojas);
-            productoRepositorio.save(lasHojasNatural);
+            productoRepositorio.save(maquinaOcb);
+            productoRepositorio.save(maquinaAtomic);
+            productoRepositorio.save(armadorOcb);
+            productoRepositorio.save(armadorBlunt);
+            productoRepositorio.save(armadorSmoking);
 
 //            narguiles
             Producto narguiShisha = new Producto("Narguile Shisha Pipa De Agua- Completo 37cm Local Arguile","Tebho Shop", "NR085 NARGUILE MEDIANO\n" +
