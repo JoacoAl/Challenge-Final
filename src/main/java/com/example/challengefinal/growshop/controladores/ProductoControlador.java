@@ -91,7 +91,6 @@ public class ProductoControlador {
         } else {
 
             Producto nuevoProducto = new Producto(productoDTO.getNombre(),productoDTO.getMarca(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getSubCategoria(), productoDTO.getImagen(), productoDTO.getCantidad(), true);
-
             servicioProducto.save(nuevoProducto);
             return new ResponseEntity<>("Producto añadido", HttpStatus.CREATED);
         }
