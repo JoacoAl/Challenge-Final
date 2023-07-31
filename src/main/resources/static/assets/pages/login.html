@@ -19,9 +19,10 @@
                   <input placeholder="Apellido" v-model="apellido" required="" type="text" />
                   <input name="customerEmail" v-model="email" placeholder="Email" type="email" />
                   <input name="customerEmail" v-model="contraseña" placeholder="Contraseña" type="password" />
-                  <input name="customerPhone" v-model="telefono" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Telefono" type="tel" />
+                  <input placeholder="Edad" v-model="edad" required="" type="text" />
+                  <input name="customerPhone" v-model="telefono" placeholder="Telefono" type="tel" />
                   <input placeholder="Direccion" v-model="direccion" required="" type="text" />
-                  <button @click="" type="button">REGISTRARSE</button>
+                  <button @click="registrar" type="button">REGISTRARSE</button>
                   <h5 class="mt-5">Ya tenes cuenta? <a href="#" @click="mostrarLogin">Ingresa!</a></h5>
                 </form>
               </div>
