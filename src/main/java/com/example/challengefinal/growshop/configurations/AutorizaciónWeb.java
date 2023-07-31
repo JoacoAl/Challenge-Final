@@ -24,7 +24,7 @@ public class AutorizaciónWeb {
         http.authorizeRequests()
 
                 .antMatchers("/api/login", "/api/productos").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/clientes").permitAll();
+                .antMatchers(HttpMethod.POST, "/api/login","/api/clientes").permitAll();
 
                 //ADMIN
 //                .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN")
@@ -42,7 +42,7 @@ public class AutorizaciónWeb {
 
         http.formLogin()
                 .usernameParameter("email")
-                .passwordParameter("password")
+                .passwordParameter("contraseña")
                 .loginPage("/api/login");
         http.logout().logoutUrl("/api/logout").deleteCookies("JSSESIONID");
 
