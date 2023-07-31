@@ -9,6 +9,12 @@ const app = createApp ({
         }
     },
     created(){
+
+      this.format = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    
       this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
       console.log(this.seleccionadas)
   

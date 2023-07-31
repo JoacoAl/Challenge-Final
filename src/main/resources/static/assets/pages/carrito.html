@@ -82,7 +82,7 @@
                                     <p><b>{{elemento.nombre}}</b></p>
                                 </div>
                                 <div class="col-2 d-flex justify-content-center align-center flex-column">
-                                    <p class="d-flex justify-content-center align-center"> ${{elemento.precio}}</p>
+                                    <p class="d-flex justify-content-center align-center"> {{format.format(elemento.precio)}}</p>
                                 </div>
                             <div class="col-1 d-flex justify-content-center align-center flex-column">
                                 <p class="d-flex justify-content-center align-center"></p>
@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-2 d-flex justify-content-center align-center flex-column">
                                 <p class="d-flex justify-content-center align-center"></p>
-                                <p class="d-flex justify-content-center align-center color-precio">${{elemento.cantidad * elemento.precio}}</p>
+                                <p class="d-flex justify-content-center align-center color-precio">{{format.format(elemento.cantidad * elemento.precio)}}</p>
                             </div>
                             <div class="col-1 d-flex justify-content-center align-center flex-column">
                                 <i :class="seleccionadas.some(e => e.id == elemento.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'" role="button" @click="descartarProducto(elemento.id)" role="button" ></i>         
@@ -111,7 +111,7 @@
                     </div>
                     <div class="separador-total d-flex justify-content-around align-center">
                         <h5>Total:</h5>
-                        <h5>${{totalCompra + 15}}</h5>
+                        <h5>{{format.format(totalCompra)}}</h5>
                     </div>
                     <!-- boton de mercado pago -->
                     <div class="mercadopago d-flex justify-content-around align-center m-4">
