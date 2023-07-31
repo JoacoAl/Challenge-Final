@@ -20,7 +20,7 @@
             <h2>PANEL ADMIN DE</h2>
           </div>
           <div class="d-flex justify-content-center align-center">
-            <img class="img-nav" src="/assets/img-manager/image.png" alt="">
+            <img class="img-nav" src="/assets/img-contacto-detalle/logoGOZO.png" alt="">
           </div>
         </div>
 
@@ -46,11 +46,21 @@
         <div class="d-flex justify-content-center align-center">
           <form id="consultation-form" class="feed-form" action="/api/productos/agregar" method="post" enctype="multipart/form-data">
             <input v-model="nombre" required="" placeholder="nombre" type="text">
+
+            <input v-model="marca" required="" placeholder="marca" type="text">
+
             <input v-model="descripcion" name="descripcion" required="" placeholder="descripcion corta" type="text">
+
             <input v-model="precio" name="precio" required="" placeholder="precio" type="number">
+
             <input v-model="categoria" name="category" required="" placeholder="categoria" type="text">
+
+            <input v-model="subCategoria" name="subCategoria" required="" placeholder="sub categoria" type="text">
+
             <input v-model="cantidad" name="cantidad" required="" placeholder="cantidad" type="number">
+
             <input name="file" required="" type="file">
+
             <div class="m-1 p-4">
               <button @click.prevent="createdProduct()" class="button_submit">AGREGAR NUEVO PRODUCTO</button>
             </div>
@@ -82,7 +92,7 @@
         <div class="container-cards d-flex justify-content-center align-center m-2">
 
           <div class="card-b d-flex flex-column justify-content-center align-center" v-for="producto of productosFiltrados">
-            <div class="m-2"><img class="img-card-2" :src="producto.imagen" alt=""></div>
+            <div class="m-2 div-contain-imagen"><img class="img-card-2" :src="producto.imagen" alt=""></div>
             <div class="card-title">{{producto.nombre}}</div><br>
             <div class="card-price"><span>Stock:</span> {{producto.cantidad}}</div><br>
             <div class="card-price"><span>Categoria:</span> {{producto.categoria}}</div><br>
@@ -121,12 +131,19 @@
         <div class="d-flex justify-content-center align-center">
           <form class="feed-form">
             <input v-model="nombreCliente" required="" placeholder="nombre" type="text">
+
             <input v-model="apellido" required="" placeholder="apellido" type="text">
+
             <input v-model="email" required="" placeholder="email" type="email">
+
             <input v-model="contraseña" required="" placeholder="contraseña" type="text">
+
             <input v-model="edad"  required="" placeholder="edad" type="number">
+
             <input v-model="telefono" required="" placeholder="telefono" type="text">
+
             <input v-model="direccion" required="" placeholder="direccion" type="text">
+
             <div class="m-1 p-4">
               <button @click.prevent="register()" class="button_submit">AGREGAR NUEVO PRODUCTO</button>
             </div>

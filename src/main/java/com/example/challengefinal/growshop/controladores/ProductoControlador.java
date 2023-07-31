@@ -70,11 +70,11 @@ public class ProductoControlador {
 
     @PostMapping("/productos/agregar")
     public ResponseEntity<Object> crearProductoNuevo(@RequestBody ProductoDTO productoDTO, Authentication authentication) {
-        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
-
-        if (admin == null) {
-            return new ResponseEntity<>("No estas autenticado", HttpStatus.FORBIDDEN);
-        }
+//        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
+//
+//        if (admin == null) {
+//            return new ResponseEntity<>("No estas autenticado", HttpStatus.FORBIDDEN);
+//        }
 
         List<ProductoDTO> productos = servicioProducto.traerProductosDTO();
         if (productoDTO.getCantidad() <= 0) {

@@ -4,14 +4,17 @@ const {createApp} = Vue;
 const app = createApp({
     data(){
         return{
+            productos: [],
+            clientes: [],
+            //formulario productos
             nombre:"",
+            marca: "",
             descripcion: "",
             precio:"",
             categoria: "",
+            subCategoria: "",
             cantidad: null,
-            productos: [],
-            clientes: [],
-            // formulario
+            // formulario clientes
             nombreCliente: "",
             apellido: "",
             email: "",
@@ -74,11 +77,13 @@ const app = createApp({
                 // Save the file URL to your database
                 const data = {
                     nombre: this.nombre,
+                    marca: this.marca,
                     descripcion: this.descripcion,
                     precio: this.precio,
                     categoria: this.categoria,
+                    subCategoria: this.subCategoria,
                     cantidad: this.cantidad,
-                    img: fileURL
+                    imagen: fileURL
                 };
 
                 axios.post('/api/productos/agregar', data, {
