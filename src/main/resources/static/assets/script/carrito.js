@@ -1,3 +1,20 @@
+window.addEventListener("scroll", function() {
+  const navbar = document.getElementById("navbar");
+  const scrollPosition = window.scrollY;
+  const navbarHeight = navbar.offsetHeight;
+  const headerHeight = 200; 
+
+  const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
+  if (scrollPosition > headerHeight) {
+      navbar.classList.add("top-nav");
+      navbar.classList.remove("navbar-interno_home")
+    } else {
+      navbar.classList.remove("top-nav");
+      navbar.classList.add("navbar-interno_home")
+    }
+  navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+});
+
 const {createApp} = Vue;
 
 const app = createApp ({
@@ -6,7 +23,6 @@ const app = createApp ({
             seleccionadas: [],
             totalCompra: 0,
             totalProductos: 0,
-            cantidadProductosCarrito: this.getCantidadProductosCarrito() || 0
         }
     },
     created(){
@@ -21,6 +37,7 @@ const app = createApp ({
               if (window.location.search.includes('payment_id')) {
                 // El usuario ha sido redirigido desde la página de pago
                 // Muestra un mensaje de éxito y borra el carrito
+                this.generarOrdenPago();
                 alert('¡Tu compra ha sido exitosa!');
                 this.deleteCompras();
             }
@@ -35,7 +52,7 @@ const app = createApp ({
             currency_id: 'ARS',
             unit_price: producto.precio
         }));
-
+    
         // Crea la preferencia de pago con los items dinámicos
         fetch('https://api.mercadopago.com/checkout/preferences', {
             method: 'POST',
@@ -55,11 +72,37 @@ const app = createApp ({
             // Aquí puedes obtener el ID y la URL de la preferencia de pago
             const preferenceId = data.id;
             const preferenceUrl = data.init_point;
-
+    
             // Redirige al usuario a la página de pago
             window.location.href = preferenceUrl;
+        })
+        .then(() => {
+            // Aquí puedes llamar al método generarOrdenPago para crear la orden de compra
+            
         });
     },
+    
+    generarOrdenPago() {
+      const items = this.seleccionadas.map(producto => ({
+        id: producto.id,
+        totalProductos: producto.cantidad,
+        total: producto.precio,
+        nombre: producto.nombre
+      }));
+      axios.post('/api/crear/orden', items, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error.response)
+        });
+    }
+    ,
+
     deleteCompras() {
         localStorage.removeItem("seleccionadas");
         this.seleccionadas = [];
@@ -84,10 +127,6 @@ const app = createApp ({
           this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
           this.json = JSON.stringify(this.elementosFiltrados);
           localStorage.setItem('seleccionadas', this.json);
-
-          // Actualiza la cantidad actual de productos seleccionados en el LocalStorage
-          const nuevaCantidadProductos = this.elementosFiltrados.reduce((total, elemento) => total + elemento.cantidad, 0);
-          localStorage.setItem('cantidadProductosCarrito', nuevaCantidadProductos.toString());
   
           await Swal.fire({
               title: '¡Producto descartado!',
@@ -96,14 +135,6 @@ const app = createApp ({
   
           window.location.href = "/assets/pages/carrito.html";
       }
-      
-  },
-  getCantidadProductosCarrito() {
-    const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
-    if (storedCantidadProductosCarrito) {
-      return parseInt(storedCantidadProductosCarrito);
-    }
-    return 0; // Valor predeterminado si no se encuentra en el LocalStorage
   },
 },
 
@@ -127,4 +158,3 @@ const app = createApp ({
     },
 })
 app.mount("#app")
-
