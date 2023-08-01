@@ -37,7 +37,7 @@ public class ProductoControlador {
 
     @GetMapping("/productos/activos")
     public List<ProductoDTO> traerProductosDTOactivos() {
-        return servicioProducto.traerProductosDTO().stream().filter(productoDTO -> productoDTO.isActivo()).collect(Collectors.toList());
+        return servicioProducto.traerProductosDTO().stream().filter(ProductoDTO::isActivo).collect(Collectors.toList());
     }
 
 
@@ -46,38 +46,20 @@ public class ProductoControlador {
         return servicioProducto.traerProductoDTO(id);
     }
 
-//    @PostMapping("/productos/borrar")
-//    public ResponseEntity<Object> borrarProductos(@RequestParam Long id, Authentication authentication) {
-//
-//        if (authentication.getName() == null) {
-//            return new ResponseEntity<>("No estas autenticado", HttpStatus.FORBIDDEN);
-//        }
-//
-//        if (id == null) {
-//            return new ResponseEntity<>("Los data es invalida", HttpStatus.FORBIDDEN);
-//
-//        }
-//
-//        Producto producto = servicioProducto.traerProductoPorId(id);
-//
-//        if (producto == null) {
-//            return new ResponseEntity<>("No se encontro ningun producto con ese nombre", HttpStatus.FORBIDDEN);
-//        }
-//        producto.setActivo(false);
-//        servicioProducto.save(producto);
-//
-//        return new ResponseEntity<>("El producto fue borrado exitosamente", HttpStatus.ACCEPTED);
-//
-//    }
 
-    @PatchMapping("/productos/{Id}/deactivate")
-    public ResponseEntity<Object> borrarProducto(@PathVariable Long Id) {
-        Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(Id));
+
+    @PatchMapping("/productos/{id}/deactivate")
+    public ResponseEntity<Object> borrarProducto(@PathVariable Long id, Authentication authentication) {
+        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
+
+        if (admin == null) {
+            return new ResponseEntity<>("No estas autenticado", HttpStatus.BAD_REQUEST);
+        }
+        Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(id));
 
         if (productoOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
         Producto producto = productoOptional.get();
 
         producto.setActivo(false);
@@ -85,7 +67,13 @@ public class ProductoControlador {
         return ResponseEntity.ok().build();
     }
     @PatchMapping("/productos/{Id}/activate")
-    public ResponseEntity<Object> activarProductos(@PathVariable Long Id) {
+    public ResponseEntity<Object> activarProductos(@PathVariable Long Id, Authentication authentication) {
+        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
+
+        if (admin == null) {
+            return new ResponseEntity<>("No estas autenticado", HttpStatus.BAD_REQUEST);
+        }
+
         Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(Id));
 
         List<ProductoDTO> productoDTOS = servicioProducto.traerProductosDTO().stream().filter(ProductoDTO::isActivo).collect(Collectors.toList());
@@ -98,15 +86,16 @@ public class ProductoControlador {
         producto.setActivo(true);
         servicioProducto.save(producto);
         return ResponseEntity.ok().build();
+
     }
 
-    @PatchMapping("/productos/modificar/{id}")
+    @PatchMapping("/productos/{id}/modificar")
     public ResponseEntity<Object> modificarProductos(@PathVariable long id, @RequestBody ProductoModificarDTO modificacion, Authentication authentication){
-//        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
-//
-//        if (admin == null) {
-//            return new ResponseEntity<>("No estas autenticado", HttpStatus.BAD_REQUEST);
-//        }
+        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
+
+        if (admin == null) {
+            return new ResponseEntity<>("No estas autenticado", HttpStatus.BAD_REQUEST);
+        }
 
         Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(id));
         if (productoOptional.isEmpty()) {

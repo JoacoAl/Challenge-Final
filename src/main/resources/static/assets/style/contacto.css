@@ -148,12 +148,22 @@ form {
   padding: 1.5rem !important;
   box-shadow: inset 0 -3em 3em rgb(0 0 0 / 8%), 0 0 0 2px rgb(255 255 255 / 0%), 0.3em 0.3em 1em rgb(0 0 0) !important;
 }
+main, p{
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 24px;
+}
+
 .textarea {
   resize: none;
 }
 .imagenmata{
-  
-  height: 50vh !important;
+  height: 70vh !important;
+  object-fit: cover;
+}
+.fondo{
+  background-image: url(../img-contacto-detalle/flor.png);
+  /* background-repeat: no-repeat !important; */
+  background-position: right !important;
 }
 /* ----------------- */
 .card{

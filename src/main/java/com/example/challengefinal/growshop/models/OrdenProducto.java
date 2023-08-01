@@ -11,7 +11,7 @@ public class OrdenProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private double montoTotal;
+    private double precioUnitario;
 
     private int cantidadDeProductos;
 
@@ -31,20 +31,18 @@ public class OrdenProducto {
     public OrdenProducto() {
     }
 
-    public OrdenProducto(double montoTotal, int cantidadDeProductos, String nombre) {
-        this.montoTotal = montoTotal;
+    public OrdenProducto(double precioUnitario, int cantidadDeProductos, String nombre) {
+        this.precioUnitario = precioUnitario;
         this.cantidadDeProductos = cantidadDeProductos;
         this.nombre = nombre;
     }
 
 
-    public double getMontoTotal() {
-        return montoTotal;
+    public double getPrecioUnitario() {
+        return precioUnitario;
     }
 
-    public void setMontoTotal(double montoTotal) {
-        this.montoTotal = montoTotal;
-    }
+    public void setPrecioUnitario(double precioUnitario) {this.precioUnitario = precioUnitario;}
 
     public int getCantidadDeProductos() {
         return cantidadDeProductos;

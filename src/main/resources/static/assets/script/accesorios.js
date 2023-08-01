@@ -14,39 +14,38 @@ window.addEventListener("scroll", function() {
       }
     navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
   });
+  const myModal = document.getElementById('exampleModal');
+const myInput = myModal.querySelector('.modal-body input');
 
-
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus();
+});
 const {createApp} = Vue
 
 createApp({
   data() {
     return {
         productos: [],
-        cultivo: [],
+        accesorios: [],
 
-        cultivoFiltrado: [],
+        accesoriosFiltrados: [],
         
-        filtroCultivo: [],
-        
+        filtroAccesorios: [],
+
         checkedCheckbox: [],
 
         seleccionadas: [],
 
-        categoriasCultivo: [],
+        categoriasAccesorios: [],
 
-        productoSeleccionado:{}
+        productoSeleccionado: {},
     };
   },
   created(){
-     this.traerProductosCultivo();
+     this.traerProductosAccesorios();
   },
   methods: {
-    mostrarModal(producto) {
-      if (producto) {
-        this.productoSeleccionado = producto;
-      }
-    },
-    traerProductosCultivo(){
+    traerProductosAccesorios(){
       axios
       .get('/api/productos')
       .then(response =>{
@@ -56,21 +55,22 @@ createApp({
           style: 'currency',
           currency: 'USD',
       });
-        //CULTIVO
-        this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
-        console.log(this.cultivo);
-        let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
-            const catCultivos = [...new Set(categoriasDeCultivo)]
-            this.categoriasCultivo = catCultivos;
-            console.log(this.categoriasCultivo)
+
+        //ACCESORIOS
+        this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS");
+        let marcas = this.accesorios.map( accesorio => accesorio.subCategoria)
+            const categorias = [...new Set(marcas)]
+            this.accesoriosFiltrados = categorias
+            console.log(this.accesorios);
+            console.log(this.accesoriosFiltrados);
       })
       .catch(exception => {
         console.log(exception);
       })
     },
 
-    // localstorage
     toggleSeleccion(id) {
+      console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
       swal({
         title: "Agregar al carrito",
@@ -109,22 +109,21 @@ createApp({
         }
       });
     },
-
+    mostrarModal(producto) {
+      if (producto) {
+        this.productoSeleccionado = producto;
+      }
+    },
     
   },
   computed: {
-    filtroBusquedaCultivo(){
-      if(this.checkedCheckbox.length != 0){
-        this.filtroCultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
-        console.log(this.filtroCultivo)
-      }else{
-        this.filtroCultivo = this.cultivo;
+    filtroBusquedaAccesorios() {
+      if (this.checkedCheckbox.length != 0) {
+        this.filtroAccesorios = this.accesorios.filter(accesorio => this.checkedCheckbox.includes(accesorio.subCategoria));
+        console.log(this.filtroAccesorios)
+      } else {
+        this.filtroAccesorios = this.accesorios;
       }
-  },  
+    },
 }
 }).mount("#app")
-
-
-
-
-

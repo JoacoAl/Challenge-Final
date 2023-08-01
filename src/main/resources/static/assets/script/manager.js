@@ -177,7 +177,7 @@ const app = createApp({
                 cantidad: this.Pcantidad,
                 precio: this.Pprecio,
             }
-            axios.patch(`http://localhost:8080/api/productos/modificar/${this.selectedProductId}`, data, {
+            axios.patch(`http://localhost:8080/api/productos/${this.selectedProductId}/modificar`, data, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -193,9 +193,26 @@ const app = createApp({
                 Swal.fire('Error', err.message, 'error');
                 window.location.href = "#close";
             });
-        }
+        },
 
-        
+        LogOut() {
+            axios.post('/api/logout')
+                .then(() => {
+                    // Successful logout
+                    // Redirect to accounts.html
+                    window.location.href = '/index.html';
+                })
+                .catch(error => {
+                    // Failed logout
+                    // Show error message to user
+                    swal({
+                        title: 'Error',
+                        text: 'Error logging out',
+                        icon: 'error',
+                        button: 'OK'
+                    });
+                });
+        },
         
     },
 })

@@ -14,8 +14,12 @@ window.addEventListener("scroll", function() {
       }
     navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
   });
+  const myModal = document.getElementById('exampleModal');
+const myInput = myModal.querySelector('.modal-body input');
 
-
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus();
+});
 const {createApp} = Vue
 
 createApp({
@@ -24,24 +28,20 @@ createApp({
         productos: [],
 
         tabacos: [],
-        accesorios: [],
-        cultivo: [],
 
         tabacosFiltrados: [],
-        cultivoFiltrado: [],
         
         filtroTabacos: [],
-        filtroCultivo: [],
 
         checkedCheckbox: [],
         seleccionadas: [],
         tabacosFiltrados: [],
-        categoriasCultivo: [],
+
+        productoSeleccionado: {},
     };
   },
   created(){
      this.traerProductosTabacos();
-    //  this.traerProductosAccesorio();
   },
   methods: {
     traerProductosTabacos(){
@@ -68,6 +68,7 @@ createApp({
     },
 
     toggleSeleccion(id) {
+      console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
       swal({
         title: "Agregar al carrito",
@@ -106,7 +107,11 @@ createApp({
         }
       });
     },
-
+    mostrarModal(producto) {
+      if (producto) {
+        this.productoSeleccionado = producto;
+      }
+    },
     
   },
   computed: {
@@ -119,10 +124,13 @@ createApp({
         this.filtroTabacos = this.tabacos;
       }
     },
+    filtroBusquedaAccesorios() {
+      if (this.checkedCheckbox.length != 0) {
+        this.filtroAccesorios = this.accesorios.filter(accesorio => this.checkedCheckbox.includes(accesorio.subCategoria));
+        console.log(this.filtroAccesorios)
+      } else {
+        this.filtroAccesorios = this.accesorios;
+      }
+    },
 }
 }).mount("#app")
-
-
-
-
-

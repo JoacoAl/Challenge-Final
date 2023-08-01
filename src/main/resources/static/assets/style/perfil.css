@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&family=Ysabeau+SC&display=swap%27");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(../images/gozoLocal.JPEG) center center no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+ 
+}
+.container{
+    margin: auto;
+    /* display: table; */
+    background-color: #fff;
+    padding: 2rem;
+    width: 50rem;
+    border-radius: 5rem;
+  }
+ 
+  .right{
+    float:center;
+    display: table;
+    width: 100%;
+  }
+  .fa{
+    display: inline-block;
+  }
+
+  .has-feedback .form-control {
+      padding-right: 4.5px;
+  }
+  select[multiple], select[size] {
+      height: auto;
+  }
+  .form-control {
+      border-radius: 0;
+      box-shadow: none;
+      border-color: #d2d6de;
+  }
+  .form-control {
+      display: block;
+      width: 100%;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #555;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+  }
+  label {
+    cursor: default;
+  }
+  label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+  /* input {
+    display: block;
+    width: 100%;
+    font-size: 14pt;
+    line-height: 28pt;
+    font-family: "Fjalla One";
+    margin-bottom: 28pt;
+    border: none;
+    border-bottom: 5px solid black;
+    background: #68dc03;
+    min-width: 250px;
+    padding-left: 5px;
+    outline: none;
+    color: black;
+  } */
+  
+
+
+  .text-center {
+      text-align: center;
+  }
+  .btn{
+    margin: 2 auto;
+    padding: 10px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    touch-action: manipulation;
+    margin-top: 50px;
+  }
+  a {
+      color: #3c8dbc;
+  }
+  a {
+      color: #337ab7;
+      text-decoration: none;
+  }
+
+  
+  .control-label{
+    float: left;
+  }
+  .form-horizontal .form-group {
+      margin-right: 20px;
+      margin-left: 15px;
+  }
+  .form-group {
+      margin-bottom: 10px;
+  }
+  
+  .buton {
+    background-color: #2dae02 !important;
+    border-color: rgb(1, 1, 1);
+  
+  }
+  .btn {
+    border-radius: 5px;
+    box-shadow: none;
+    border: 2px solid ;
+  }
+  
+  .has-feedback {
+      position: relative;
+  }
+  
+  .left.box-primary {
+      border-top-color: #3c8dbc;
+      
+  }
+  .left {
+      position: relative;
+      border-radius: 15px;
+      background: #cdcdcd;
+      border-top: 3px solid #d2d6de;
+      margin-bottom: 5px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+      padding: 10px;
+  }
+ 

@@ -32,22 +32,10 @@ const app = createApp({
     },
     methods:{
         crearCorreo(){
-            if (this.correoDTO.remitente.length !== 0 & this.correoDTO.comentario.length !== 0 & this.correoDTO.asunto.length === 0) {
+            if (this.correoDTO.remitente.length === 0 || this.correoDTO.comentario.length === 0 || this.correoDTO.asunto.length === 0) {
                 Swal.fire({
                     icon:'error',
-                    title: 'Por favor, ingrese el asunto!'});
-            }else if (this.correoDTO.remitente.length !== 0 & this.correoDTO.comentario.length === 0 & this.correoDTO.asunto.length !== 0) {
-                Swal.fire({
-                    icon:'error',
-                    title: 'Por favor, ingrese el comentario!'});
-            }if (this.correoDTO.remitente.length === 0 & this.correoDTO.comentario.length !== 0 & this.correoDTO.asunto.length !== 0) {
-                Swal.fire({
-                    icon:'error',
-                    title: 'Por favor ingrese el correo!'});
-            }if (this.correoDTO.remitente.length === 0 & this.correoDTO.comentario.length === 0 & this.correoDTO.asunto.length === 0) {
-                Swal.fire({
-                    icon:'error',
-                    title: 'Por favor ingrese los datos!'});
+                    title: 'Por favor ingrese los datos faltantes!'});
             }
             else{
             let correoDTO={
@@ -60,15 +48,13 @@ const app = createApp({
                 console.log(res),
                 Swal.fire({
                     icon:'success',
-                    title: 'El correo se envio exitosamente'}),
-                    /* setTimeout(()=>{
-                        window.location.href = "contacto"
-                      },1800) */
+                    title: 'El correo se envio exitosamente',
+                    timer: 3000}),
+                    setTimeout(()=>{
+                        location.reload()
+                      },3500)
                 ).catch(error => {
-                    this.error1 = error.response.data
-                Swal.fire({
-                    icon:'error',
-                    title: `${this.error1}`});
+                    console.log(error);
                 })
         }
     }
