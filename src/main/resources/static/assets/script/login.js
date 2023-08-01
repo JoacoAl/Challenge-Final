@@ -77,6 +77,7 @@ createApp({
                     this.apellido = "";
                     this.email = "";
                     this.contraseña = "";
+                    this.edad = "";
                     this.telefono = "";
                     this.direccion = "";
                 })

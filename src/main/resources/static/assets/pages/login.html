@@ -15,13 +15,13 @@
             <div v-if="registro" class="contact-us">
                 <form>
                   <legend>GOZO GROWSHOP</legend>
-                  <input placeholder="Nombre" v-model="nombre" required="" type="text" />
-                  <input placeholder="Apellido" v-model="apellido" required="" type="text" />
-                  <input name="customerEmail" v-model="email" placeholder="Email" type="email" />
-                  <input name="customerEmail" v-model="contraseña" placeholder="Contraseña" type="password" />
-                  <input placeholder="Edad" v-model="edad" required="" type="text" />
-                  <input name="customerPhone" v-model="telefono" placeholder="Telefono" type="tel" />
-                  <input placeholder="Direccion" v-model="direccion" required="" type="text" />
+                  <input placeholder="Nombre" v-model="nombre" @keyup.enter="registrar" required="" type="text" />
+                  <input placeholder="Apellido" v-model="apellido" @keyup.enter="registrar" required="" type="text" />
+                  <input name="customerEmail" v-model="email" @keyup.enter="registrar" placeholder="Email" type="email" />
+                  <input name="customerEmail" v-model="contraseña" @keyup.enter="registrar" placeholder="Contraseña" type="password" />
+                  <input placeholder="Edad" v-model="edad" @keyup.enter="registrar" required="" type="text" />
+                  <input name="customerPhone" v-model="telefono" @keyup.enter="registrar" placeholder="Telefono" type="tel" />
+                  <input placeholder="Direccion" v-model="direccion" @keyup.enter="registrar" required="" type="text" />
                   <button @click="registrar" type="button">REGISTRARSE</button>
                   <h5 class="mt-5">Ya tenes cuenta? <a href="#" @click="mostrarLogin">Ingresa!</a></h5>
                 </form>
@@ -30,17 +30,18 @@
             <div v-if="!registro" class="contact-us">
                 <form>
                   <legend class="text-center">GOZO GROWSHOP</legend>
-                  <input name="customerEmail" placeholder="Email" v-model="email" type="email" />
-                  <input name="customerEmail" placeholder="Contraseña" v-model="contraseña" type="password" />
+                  <input name="customerEmail" placeholder="Email" @keyup.enter="ingreso" v-model="email" type="email" />
+                  <input name="customerEmail" placeholder="Contraseña" @keyup.enter="ingreso" v-model="contraseña" type="password" />
                   <button @click="ingreso" type="button">INGRESAR</button>
                   <h5 class="mt-5">Todavía no tenes cuenta? <a href="#" @click="mostrarRegistro">Create una!</a></h5>
-
-                </form>
-              </div>
+                  </form>
+            </div>
         </main>
     </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="../script/login.js"></script>
