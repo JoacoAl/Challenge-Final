@@ -24,7 +24,7 @@
   align-items: center;
   justify-content: center;
   background-color: white;
-  z-index: 1000000;
+  z-index: 10000000;
   opacity: 1;
   transition: opacity 3s ease;
 }
