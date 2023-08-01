@@ -2,6 +2,7 @@ package com.example.challengefinal.growshop.controladores;
 
 import ch.qos.logback.core.net.server.Client;
 import com.example.challengefinal.growshop.dto.ProductoDTO;
+import com.example.challengefinal.growshop.dto.ProductoModificarDTO;
 import com.example.challengefinal.growshop.models.Cliente;
 import com.example.challengefinal.growshop.models.Producto;
 import com.example.challengefinal.growshop.servicios.ServicioCliente;
@@ -36,7 +37,7 @@ public class ProductoControlador {
 
     @GetMapping("/productos/activos")
     public List<ProductoDTO> traerProductosDTOactivos() {
-        return servicioProducto.traerProductosDTO().stream().filter(productoDTO -> productoDTO.isActivo()).collect(Collectors.toList());
+        return servicioProducto.traerProductosDTO().stream().filter(ProductoDTO::isActivo).collect(Collectors.toList());
     }
 
 
@@ -45,8 +46,15 @@ public class ProductoControlador {
         return servicioProducto.traerProductoDTO(id);
     }
 
+
+
     @PatchMapping("/productos/{id}/deactivate")
-    public ResponseEntity<Object> borrarProducto(@PathVariable Long id) {
+    public ResponseEntity<Object> borrarProducto(@PathVariable Long id, Authentication authentication) {
+        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
+
+        if (admin == null) {
+            return new ResponseEntity<>("No estas autenticado", HttpStatus.BAD_REQUEST);
+        }
         Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(id));
 
         if (productoOptional.isEmpty()) {
@@ -56,80 +64,72 @@ public class ProductoControlador {
 
         producto.setActivo(false);
         servicioProducto.save(producto);
-        return new ResponseEntity<>("La cuenta fue borrada con exito", HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
-
-    @PostMapping("/productos/agregar")
-    public ResponseEntity<Object> crearProductoNuevo(@RequestBody ProductoDTO productoDTO, Authentication authentication) {
-        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
-
-        if (admin == null) {
-            return new ResponseEntity<>("No estas autenticado", HttpStatus.FORBIDDEN);
-        }
-
-        List<ProductoDTO> productos = servicioProducto.traerProductosDTO();
-        if (productoDTO.getCantidad() <= 0) {
-            return new ResponseEntity<>("Asigne una cantidad de stock", HttpStatus.BAD_REQUEST);
-        }
-        if (productoDTO.getDescripcion().isBlank()) {
-            return new ResponseEntity<>("Defina una descripcion del producto", HttpStatus.BAD_REQUEST);
-        }
-        if (productoDTO.getPrecio() <= 0) {
-            return new ResponseEntity<>("Defina un precio para el producto", HttpStatus.BAD_REQUEST);
-        }
-        if (productos.stream().anyMatch(productoDTO1 -> productoDTO1.getNombre().equals(productoDTO.getNombre()))) {
-            return new ResponseEntity<>("No puedes tener dos productos distintos con el mismo nombre", HttpStatus.FORBIDDEN);
-        } else {
-
-            Producto nuevoProducto = new Producto(productoDTO.getNombre(),productoDTO.getMarca(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getSubCategoria(), productoDTO.getImagen(), productoDTO.getCantidad(), true, "ARS");
-
-            servicioProducto.save(nuevoProducto);
-            return new ResponseEntity<>("Producto añadido", HttpStatus.CREATED);
-        }
-    }
-
-    @PostMapping("/productos/modificar")
-    public ResponseEntity<Object> modificarProducto(@RequestParam ProductoDTO productoDTO, Authentication authentication) {
-
+    @PatchMapping("/productos/{Id}/activate")
+    public ResponseEntity<Object> activarProductos(@PathVariable Long Id, Authentication authentication) {
         Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
 
         if (admin == null) {
             return new ResponseEntity<>("No estas autenticado", HttpStatus.BAD_REQUEST);
         }
 
-        if (productoDTO.getNombre() == null) {
+        Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(Id));
+
+        List<ProductoDTO> productoDTOS = servicioProducto.traerProductosDTO().stream().filter(ProductoDTO::isActivo).collect(Collectors.toList());
+
+        if (productoOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Producto producto = productoOptional.get();
+
+        producto.setActivo(true);
+        servicioProducto.save(producto);
+        return ResponseEntity.ok().build();
+
+    }
+
+    @PatchMapping("/productos/{id}/modificar")
+    public ResponseEntity<Object> modificarProductos(@PathVariable long id, @RequestBody ProductoModificarDTO modificacion, Authentication authentication){
+        Cliente admin = servicioCliente.traerClientePorEmail(authentication.getName());
+
+        if (admin == null) {
+            return new ResponseEntity<>("No estas autenticado", HttpStatus.BAD_REQUEST);
+        }
+
+        Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(id));
+        if (productoOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        if (modificacion.getNombre() == null) {
             return new ResponseEntity<>("El producto no existe", HttpStatus.BAD_REQUEST);
         }
-        if (productoDTO.getCantidad() <= 0) {
+        if (modificacion.getCantidad() <= 0) {
             return new ResponseEntity<>("Asigne una cantidad de stock", HttpStatus.BAD_REQUEST);
         }
-        if (productoDTO.getDescripcion().isBlank()) {
+        if (modificacion.getDescripcion().isBlank()) {
             return new ResponseEntity<>("Defina una descripcion del producto", HttpStatus.BAD_REQUEST);
         }
-        if (productoDTO.getPrecio() <= 0) {
+        if (modificacion.getPrecio() <= 0) {
             return new ResponseEntity<>("Defina un precio para el producto", HttpStatus.BAD_REQUEST);
         }
-        if (productoDTO.getCategoria() == null) {
-            return new ResponseEntity<>("Defina una categoria para el producto", HttpStatus.BAD_REQUEST);
+        if (modificacion.getMarca() == null) {
+            return new ResponseEntity<>("Defina una marca para el producto", HttpStatus.BAD_REQUEST);
         }
 
-        Producto producto = servicioProducto.traerProductoPorId(productoDTO.getId());
+        Producto producto = productoOptional.get();
 
-        if (producto == null) {
-            return new ResponseEntity<>("No se encontro el producto que se quiere modificar", HttpStatus.BAD_REQUEST);
-        }
-
-        producto.setNombre(productoDTO.getNombre());
-        producto.setDescripcion(productoDTO.getDescripcion());
-        producto.setCantidad(productoDTO.getCantidad());
-        producto.setCategoria(productoDTO.getCategoria());
-        producto.setPrecio(productoDTO.getPrecio());
+        producto.setNombre(modificacion.getNombre());
+        producto.setMarca(modificacion.getMarca());
+        producto.setDescripcion(modificacion.getDescripcion());
+        producto.setCantidad(modificacion.getCantidad());
+        producto.setPrecio(modificacion.getPrecio());
 
         servicioProducto.save(producto);
 
-        return new ResponseEntity<>("El producto fue modificado correctamente", HttpStatus.OK);
-
+        return ResponseEntity.ok().build();
     }
+
 }
 
 

@@ -12,6 +12,5 @@ public interface ServicioCliente {
     ClienteDTO traerClientePorId(@PathVariable Long id);
 
     Cliente traerClientePorEmail(String email);
-
     void save (Cliente cliente);
 }

@@ -1,8 +1,18 @@
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&family=Ysabeau+SC&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+=======
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&family=Ysabeau+SC&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&family=Red+Hat+Display&family=Rowdies&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 }
 /* LOADER */
 .loader {
@@ -189,6 +199,7 @@ p {
   font-family: "Ubuntu", sans-serif;
   font-size: 24px;
 }
+<<<<<<< HEAD
 main > h1,
 h2,
 h3,
@@ -197,6 +208,12 @@ h5 {
   font-family: "Ysabeau SC", serif;
   font-weight: bolder;
   font-size: 60px;
+=======
+main > h1, h2, h3, h4, h5{
+    font-family: "Rowdies", cursive;
+    font-weight: bolder;
+    font-size: 40px;
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 }
 .categoria-tabaco {
   height: 85vh;
@@ -463,6 +480,7 @@ footer {
   }
 }
 
+
 .ancor-shop {
   background-color: #6a5991;
   padding: 0;
@@ -491,6 +509,7 @@ footer {
   font-size: 30px;
 }
 
+<<<<<<< HEAD
 .div-listas {
   border-bottom: 3px rgb(2, 61, 2) solid;
   border-top: 3px rgb(2, 61, 2) solid;
@@ -529,6 +548,122 @@ footer {
   width: 30px;
   height: fit-content;
 }
+=======
+.div-listas{
+  border-bottom: 3px rgb(0, 0, 0) solid;
+  border-top: 3px rgb(0, 0, 0) solid;
+}
+
+.div-carrito-totales{
+    border: 5px solid rgba(0, 0, 0, 0.068);
+    border-top: 3px rgb(0, 0, 0) solid;
+    height: 43rem;
+}
+
+.separador-total{
+    border-top: 3px rgb(0, 0, 0) solid;
+    border-bottom: 3px rgb(0, 0, 0) solid;
+}
+
+.mercadopago-button {
+    width: 30rem;
+    height: 40px;
+    background-image: linear-gradient(rgb(34, 12, 133), rgb(34, 12, 133));
+    border: none;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    box-shadow: 1px 3px 0px rgb(34, 12, 133);
+    transition-duration: .3s;
+    font-size: 30px;
+  }
+  
+  .cartIcon-pagar {
+    width: 30px;
+    height: fit-content;
+  }
+  
+  .cartIcon-pagar path {
+    fill: white;
+  }
+  
+  .mercadopago-button:active {
+    transform: translate(2px ,0px);
+    box-shadow: 0px 1px 0px rgb(79, 56, 180);
+    padding-bottom: 1px;
+  }
+
+  .button-borrar {
+    width: 300px;
+    height: 50px;
+    background-image: linear-gradient(rgb(133, 12, 12), rgb(133, 12, 12));
+    border: none;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    box-shadow: 1px 3px 0px rgb(133, 12, 12);
+    transition-duration: .3s;
+    font-size: 30px;
+  }
+  
+  .cartIcon-borrar {
+    width: 30px;
+    height: fit-content;
+  }
+  
+  .cartIcon-borrar path {
+    fill: white;
+  }
+  
+  .button-borrar:active {
+    transform: translate(2px ,0px);
+    box-shadow: 0px 1px 0px rgb(180, 75, 56);
+    padding-bottom: 1px;
+  }
+  
+  .button-comprar {
+    width: 330px;
+    height: 50px;
+    background-image: linear-gradient(rgb(12, 133, 12), rgb(36, 133, 12));
+    border: none;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    box-shadow: 1px 3px 0px rgb(36, 133, 12);
+    transition-duration: .3s;
+    font-size: 30px;
+  }
+  
+  .cartIcon-comprar {
+    width: 30px;
+    height: fit-content;
+  }
+  
+  .cartIcon-comprar path {
+    fill: white;
+  }
+  
+  .button-comprar:active {
+    transform: translate(2px ,0px);
+    box-shadow: 0px 1px 0px rgb(81, 180, 56);
+    padding-bottom: 1px;
+  }
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 
 .cartIcon-pagar path {
   fill: white;
@@ -540,6 +675,7 @@ footer {
   padding-bottom: 1px;
 }
 
+<<<<<<< HEAD
 .button-borrar {
   width: 300px;
   height: 50px;
@@ -613,4 +749,105 @@ footer {
 .img-relleno-carrito {
   width: 30rem;
   height: 23rem;
+=======
+  .imagenes-carrito{
+    width: 30rem;
+    border-radius: 5px;
+  }
+
+  /* footer */
+
+footer {
+  background-color: rgb(116, 63, 146);
+  object-fit: cover;
+  min-height: 40rem;
+}
+footer > h1 {
+  font-size: 60px;
+}
+.iframe-footer {
+  border-radius: 10px;
+}
+.text-footer {
+  font-family: "Rowdies", cursive;
+}
+
+/* redes sociales footer */
+
+.card {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
+  background-color: rgb(116, 63, 146) !important;
+  border: 0px !important;
+}
+
+/* for all social containers*/
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: rgb(51, 29, 65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+}
+/* instagram*/
+.containerOne:hover {
+  background-color: #aca900;
+  transition-duration: 0.3s;
+}
+/* twitter*/
+.containerTwo:hover {
+  background-color: #aca900;
+  transition-duration: 0.3s;
+}
+/* Whatsapp*/
+.containerFour:hover {
+  background-color: #aca900;
+  transition-duration: 0.3s;
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.socialSvg {
+  width: 17px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.ilustraciones{
+  height: 27rem;
+  width: 100vh;
+}
+.ilustraciones > img {
+  width: 475px;
+  height: 100%;
+  object-fit: cover;
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 }

@@ -34,7 +34,7 @@ public class ClienteControlador {
     }
     @GetMapping("/clientes/{id}")
     public  ClienteDTO traerClientePorId(@PathVariable Long id){
-          return servicioCliente.traerClientePorId(id);
+        return servicioCliente.traerClientePorId(id);
     }
 
     @PostMapping("/clientes")
@@ -52,7 +52,9 @@ public class ClienteControlador {
         if (clienteRegistroDTO.getEdad() < 18){
             return new ResponseEntity<>( "Tenes que ser mayor para ingresar", HttpStatus.FORBIDDEN);
         }
+
         Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(), clienteRegistroDTO.getEmail(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getDireccion(), clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
+
         servicioCliente.save(cliente);
 
         return new ResponseEntity<>("El usuario fue registrado exitosamente", HttpStatus.CREATED);

@@ -25,6 +25,7 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
+<<<<<<< HEAD
       productos: [],
       cultivo: [],
       cultivoFiltrado: [],
@@ -47,6 +48,27 @@ createApp({
 
       })
       .catch(err => console.log(err))
+=======
+        productos: [],
+        cultivo: [],
+
+        cultivoFiltrado: [],
+        
+        filtroCultivo: [],
+        
+        checkedCheckbox: [],
+
+        seleccionadas: [],
+
+        categoriasCultivo: [],
+
+        productoSeleccionado:{}
+    };
+  },
+  created(){
+    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+     this.traerProductosCultivo();
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
   },
   methods: {
     logout() {
@@ -63,9 +85,15 @@ createApp({
     },
     traerProductosCultivo() {
       axios
+<<<<<<< HEAD
         .get('/api/productos')
         .then(response => {
           this.productos = response.data
+=======
+      .get('/api/productos')
+      .then(response =>{
+        this.productos = response.data.filter(productos => productos.activo == true)
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 
           this.format = new Intl.NumberFormat('en-US', {
             style: 'currency',

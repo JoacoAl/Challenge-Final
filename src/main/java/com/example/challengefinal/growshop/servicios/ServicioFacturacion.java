@@ -3,13 +3,14 @@ package com.example.challengefinal.growshop.servicios;
 import com.example.challengefinal.growshop.dto.OrdenDTO;
 import com.example.challengefinal.growshop.dto.OrdenProductoDTO;
 import com.example.challengefinal.growshop.models.Cliente;
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.PdfWriter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Set;
+/*
 @Service
 public class ServicioFacturacion {
 
@@ -62,3 +63,4 @@ public class ServicioFacturacion {
         return total;
     }
 }
+*/

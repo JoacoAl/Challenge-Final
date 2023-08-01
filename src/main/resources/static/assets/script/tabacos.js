@@ -32,6 +32,7 @@ createApp({
     return {
       productos: [],
 
+<<<<<<< HEAD:src/main/resources/static/assets/script/productos.js
       tabacos: [],
       accesorios: [],
       cultivo: [],
@@ -43,6 +44,17 @@ createApp({
       filtroTabacos: [],
       filtroCultivo: [],
       filtroAccesorios: [],
+=======
+        tabacos: [],
+
+        tabacosFiltrados: [],
+        
+        filtroTabacos: [],
+
+        checkedCheckbox: [],
+        seleccionadas: [],
+        tabacosFiltrados: [],
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c:src/main/resources/static/assets/script/tabacos.js
 
       checkedCheckbox: [],
       seleccionadas: [],
@@ -55,6 +67,7 @@ createApp({
       cliente: []
     };
   },
+<<<<<<< HEAD:src/main/resources/static/assets/script/productos.js
   created() {
     axios.get("/api/cliente/actual")
       .then(response => {
@@ -66,6 +79,11 @@ createApp({
     this.traerProductosTabacos();
     this.traerProductosCultivo();
     this.traerProductosAccesorios();
+=======
+  created(){
+    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+     this.traerProductosTabacos();
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c:src/main/resources/static/assets/script/tabacos.js
   },
   methods: {
     logout() {
@@ -77,9 +95,15 @@ createApp({
     },
     traerProductosTabacos() {
       axios
+<<<<<<< HEAD:src/main/resources/static/assets/script/productos.js
         .get('/api/productos')
         .then(response => {
           this.productos = response.data
+=======
+      .get('/api/productos')
+      .then(response =>{
+        this.productos = response.data.filter(productos => productos.activo == true)
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c:src/main/resources/static/assets/script/tabacos.js
 
           this.format = new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -98,6 +122,7 @@ createApp({
         })
     },
 
+<<<<<<< HEAD:src/main/resources/static/assets/script/productos.js
     traerProductosCultivo() {
       axios
         .get('/api/productos')
@@ -144,6 +169,8 @@ createApp({
         })
     },
     // localstorage
+=======
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c:src/main/resources/static/assets/script/tabacos.js
     toggleSeleccion(id) {
       console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
@@ -192,6 +219,7 @@ createApp({
 
   },
   computed: {
+<<<<<<< HEAD:src/main/resources/static/assets/script/productos.js
     filtroBusquedaCultivo() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroCultivo = this.cultivo.filter(producto => this.checkedCheckbox.includes(producto.subCategoria))
@@ -200,6 +228,9 @@ createApp({
         this.filtroCultivo = this.cultivo;
       }
     },
+=======
+
+>>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c:src/main/resources/static/assets/script/tabacos.js
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));
