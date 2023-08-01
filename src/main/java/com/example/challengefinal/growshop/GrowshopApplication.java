@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
@@ -574,8 +575,8 @@ public class GrowshopApplication {
             productoRepositorio.save(producto3);
 
 
-            Orden orden = new Orden("acz123456789", LocalDateTime.now());
-            Orden orden2 = new Orden("bca3333311", LocalDateTime.now());
+            Orden orden = new Orden("acz123456789", LocalDateTime.now(), 1305D);
+            Orden orden2 = new Orden("bca3333311", LocalDateTime.now(), 1395D);
 
             ordenRepositorio.save(orden);
             ordenRepositorio.save(orden2);
@@ -608,7 +609,7 @@ public class GrowshopApplication {
             orden.añadirOrdenProducto(ordenProducto);
 
             producto2.añadirOrdenProducto(ordenProducto2);
-            orden2.añadirOrdenProducto(ordenProducto2);
+            orden.añadirOrdenProducto(ordenProducto2);
 
             productoRepositorio.save(producto1);
             productoRepositorio.save(producto2);

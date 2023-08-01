@@ -14,8 +14,12 @@ window.addEventListener("scroll", function() {
       }
     navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
   });
+  const myModal = document.getElementById('exampleModal');
+const myInput = myModal.querySelector('.modal-body input');
 
-
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus();
+});
 const {createApp} = Vue
 
 createApp({
@@ -39,7 +43,9 @@ createApp({
         seleccionadas: [],
         tabacosFiltrados: [],
         categoriasCultivo: [],
-        categoriasAccesorios: []
+        categoriasAccesorios: [],
+
+        productoSeleccionado: {},
     };
   },
   created(){
@@ -118,6 +124,7 @@ createApp({
     },
     // localstorage
     toggleSeleccion(id) {
+      console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
       swal({
         title: "Agregar al carrito",
@@ -156,7 +163,11 @@ createApp({
         }
       });
     },
-
+    mostrarModal(producto) {
+      if (producto) {
+        this.productoSeleccionado = producto;
+      }
+    },
     
   },
   computed: {
@@ -186,8 +197,3 @@ createApp({
     },
 }
 }).mount("#app")
-
-
-
-
-

@@ -39,6 +39,8 @@ public class AutorizaciónWeb {
                 .antMatchers("/assets/pages/carrito.html", "/assets/style/carrito.css", "/assets/script/carrito.js").hasAuthority("CLIENTE")
                 .antMatchers("/assets/pages/cultivo.html", "/assets/script/cultivo.js").hasAuthority("CLIENTE")
                 .antMatchers("/assets/pages/tabacos.html").hasAuthority("CLIENTE")
+                .antMatchers(HttpMethod.PUT, "/cliente/actual/editar").hasAuthority("CLIENTE")
+                .antMatchers(HttpMethod.POST, "/api/ordenes/crear-orden").hasAuthority("CLIENTE")
                 .antMatchers(HttpMethod.GET,"/api/cliente/actual").hasAuthority("CLIENTE");
 
 

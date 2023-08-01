@@ -48,7 +48,9 @@ public class ClienteControlador {
 
             return new ResponseEntity<>("El email esta en uso", HttpStatus.FORBIDDEN);
         }
-
+        if (clienteRegistroDTO.getEdad() < 18){
+            return new ResponseEntity<>( "Tenes que ser mayor para ingresar", HttpStatus.FORBIDDEN);
+        }
         Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(), clienteRegistroDTO.getEmail(), clienteRegistroDTO.getDireccion(), clienteRegistroDTO.getTelefono(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getEdad());
         servicioCliente.save(cliente);
 
@@ -68,5 +70,41 @@ public class ClienteControlador {
         }else {
             return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
         }
+    }
+
+    @PutMapping("/cliente/actual/editar")
+    public ResponseEntity<Object> editarPerfil(@RequestBody ClienteDTO clienteDTO, Authentication authentication){
+        Cliente clienteActual = servicioCliente.traerClientePorEmail(authentication.getName());
+
+        if (clienteActual == null) {
+            return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+        }
+        if(clienteDTO.getNombre().isBlank()){
+            return new ResponseEntity<>("Ingrese un nombre válido", HttpStatus.BAD_REQUEST);
+        }
+        if(clienteDTO.getApellido().isBlank()){
+            return new ResponseEntity<>("Ingrese un apellido válido", HttpStatus.BAD_REQUEST);
+        }
+        if(clienteDTO.getEmail().isBlank()){
+            return new ResponseEntity<>("Ingrese un email válido", HttpStatus.BAD_REQUEST);
+        }
+        if(clienteDTO.getEdad() < 18){
+            return new ResponseEntity<>("Ingresa tu edad real", HttpStatus.BAD_REQUEST);
+        }
+        if(clienteDTO.getTelefono().isBlank()){
+            return new ResponseEntity<>("Ingrese un telefono válido", HttpStatus.BAD_REQUEST);
+        }
+        if(clienteDTO.getDireccion().isBlank()){
+            return new ResponseEntity<>("Ingrese una direccion válida", HttpStatus.BAD_REQUEST);
+        }
+        clienteActual.setNombre(clienteDTO.getNombre());
+        clienteActual.setApellido(clienteDTO.getApellido());
+        clienteActual.setEmail(clienteDTO.getEmail());
+        clienteActual.setEdad(clienteDTO.getEdad());
+        clienteActual.setTelefono(clienteDTO.getTelefono());
+        clienteActual.setDireccion(clienteDTO.getDireccion());
+
+        servicioCliente.save(clienteActual);
+        return new ResponseEntity<>("Has actualizado tu perfil", HttpStatus.ACCEPTED);
     }
 }

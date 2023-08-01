@@ -5,11 +5,12 @@ import com.example.challengefinal.growshop.dto.OrdenProductoDTO;
 import com.example.challengefinal.growshop.models.Cliente;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
+import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Set;
-
+@Service
 public class ServicioFacturacion {
 
     public ByteArrayOutputStream generarFacturaPDF(OrdenDTO orden, Set<OrdenProductoDTO> ordenProductos, Cliente cliente) throws DocumentException, IOException {

@@ -33,12 +33,18 @@ createApp({
         seleccionadas: [],
         tabacosFiltrados: [],
         categoriasCultivo: [],
+        productoSeleccionado:{}
     };
   },
   created(){
      this.traerProductosCultivo();
   },
   methods: {
+    mostrarModal(producto) {
+      if (producto) {
+        this.productoSeleccionado = producto;
+      }
+    },
     traerProductosCultivo(){
       axios
       .get('/api/productos')
