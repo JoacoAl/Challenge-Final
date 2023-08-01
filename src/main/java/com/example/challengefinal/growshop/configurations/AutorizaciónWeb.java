@@ -27,7 +27,7 @@ public class AutorizaciónWeb {
                 .antMatchers("/api/login", "/api/productos").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/login","/api/clientes").permitAll()
                 //ADMIN
-        .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN")
+        .antMatchers("/rest/**","/api/clientes", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN")
                .antMatchers(HttpMethod.POST, "/api/productos/agregar").hasAuthority("ADMIN")
                 .antMatchers( HttpMethod.PATCH, "/api/productos/{id}/deactivate").hasAuthority("ADMIN")
                 .antMatchers( HttpMethod.POST, "/api/productos/modificar").hasAuthority("ADMIN")

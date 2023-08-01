@@ -20,6 +20,7 @@ const app = createApp ({
               if (window.location.search.includes('payment_id')) {
                 // El usuario ha sido redirigido desde la página de pago
                 // Muestra un mensaje de éxito y borra el carrito
+                this.generarOrdenPago();
                 alert('¡Tu compra ha sido exitosa!');
                 this.deleteCompras();
             }
@@ -34,7 +35,7 @@ const app = createApp ({
             currency_id: 'ARS',
             unit_price: producto.precio
         }));
-
+    
         // Crea la preferencia de pago con los items dinámicos
         fetch('https://api.mercadopago.com/checkout/preferences', {
             method: 'POST',
@@ -54,11 +55,37 @@ const app = createApp ({
             // Aquí puedes obtener el ID y la URL de la preferencia de pago
             const preferenceId = data.id;
             const preferenceUrl = data.init_point;
-
+    
             // Redirige al usuario a la página de pago
             window.location.href = preferenceUrl;
+        })
+        .then(() => {
+            // Aquí puedes llamar al método generarOrdenPago para crear la orden de compra
+            
         });
     },
+    
+    generarOrdenPago() {
+      const items = this.seleccionadas.map(producto => ({
+        id: producto.id,
+        totalProductos: producto.cantidad,
+        total: producto.precio,
+        nombre: producto.nombre
+      }));
+      axios.post('/api/crear/orden', items, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        })
+        .then(response => {
+          console.log(items)
+        })
+        .catch(error => {
+          alert("no")
+        });
+    }
+    ,
+
     deleteCompras() {
         localStorage.removeItem("seleccionadas");
         this.seleccionadas = [];

@@ -3,6 +3,8 @@ package com.example.challengefinal.growshop.servicios;
 import com.example.challengefinal.growshop.dto.OrdenDTO;
 import com.example.challengefinal.growshop.dto.OrdenProductoDTO;
 import com.example.challengefinal.growshop.models.Cliente;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;

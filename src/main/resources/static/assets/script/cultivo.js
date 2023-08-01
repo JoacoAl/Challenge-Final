@@ -38,6 +38,7 @@ createApp({
     };
   },
   created(){
+    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
      this.traerProductosCultivo();
   },
   methods: {
