@@ -52,7 +52,7 @@ public class ClienteControlador {
         if (clienteRegistroDTO.getEdad() < 18){
             return new ResponseEntity<>( "Tenes que ser mayor para ingresar", HttpStatus.FORBIDDEN);
         }
-        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(), clienteRegistroDTO.getEmail(), clienteRegistroDTO.getDireccion(), clienteRegistroDTO.getTelefono(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getEdad());
+        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(), clienteRegistroDTO.getEmail(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getDireccion(), clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
         servicioCliente.save(cliente);
 
         return new ResponseEntity<>("El usuario fue registrado exitosamente", HttpStatus.CREATED);
