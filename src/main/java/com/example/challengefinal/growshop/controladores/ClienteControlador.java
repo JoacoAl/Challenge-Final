@@ -55,4 +55,5 @@ public class ClienteControlador {
         return new ResponseEntity<>("El usuario fue registrado exitosamente", HttpStatus.CREATED);
 
     }
+
 }

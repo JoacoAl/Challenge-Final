@@ -41,7 +41,6 @@ createApp({
   },
   created(){
      this.traerProductosTabacos();
-     this.traerProductosCultivo();
     //  this.traerProductosAccesorio();
   },
   methods: {
@@ -49,7 +48,7 @@ createApp({
       axios
       .get('/api/productos')
       .then(response =>{
-        this.productos = response.data
+        this.productos = response.data.filter(productos => productos.activo == true)
 
         this.format = new Intl.NumberFormat('en-US', {
           style: 'currency',
@@ -68,30 +67,6 @@ createApp({
       })
     },
 
-    traerProductosCultivo(){
-      axios
-      .get('/api/productos')
-      .then(response =>{
-        this.productos = response.data
-
-        this.format = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-      });
-        //CULTIVO
-        this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
-        console.log(this.cultivo);
-        let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
-            const catCultivos = [...new Set(categoriasDeCultivo)]
-            this.categoriasCultivo = catCultivos;
-            console.log(this.categoriasCultivo)
-      })
-      .catch(exception => {
-        console.log(exception);
-      })
-    },
-
-    // localstorage
     toggleSeleccion(id) {
       const producto = this.productos.find((e) => e.id == id);
       swal({
@@ -135,14 +110,7 @@ createApp({
     
   },
   computed: {
-    filtroBusquedaCultivo(){
-      if(this.checkedCheckbox.length != 0){
-        this.filtroCultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
-        console.log(this.filtroCultivo)
-      }else{
-        this.filtroCultivo = this.cultivo;
-      }
-  },  
+
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));

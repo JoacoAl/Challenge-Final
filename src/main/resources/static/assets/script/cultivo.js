@@ -43,7 +43,7 @@ createApp({
       axios
       .get('/api/productos')
       .then(response =>{
-        this.productos = response.data
+        this.productos = response.data.filter(productos => productos.activo == true)
 
         this.format = new Intl.NumberFormat('en-US', {
           style: 'currency',
