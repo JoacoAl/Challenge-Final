@@ -26,7 +26,7 @@ public class ClienteControlador {
     private ServicioCliente servicioCliente;
 
     @Autowired
-    PasswordEncoder codificadorDeContraseña;
+    private PasswordEncoder codificadorDeContraseña;
 
     @GetMapping("/clientes")
     public List<ClienteDTO> traerClientesDTO(){
