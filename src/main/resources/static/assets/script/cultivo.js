@@ -15,6 +15,10 @@ window.addEventListener("scroll", function () {
   navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
 });
 
+window.addEventListener("load", function () {
+  this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
+
 
 const { createApp } = Vue
 
@@ -31,6 +35,7 @@ createApp({
       categoriasCultivo: [],
       productoSeleccionado: {},
       logged: false,
+      cliente: []
     };
   },
   created() {
@@ -44,6 +49,13 @@ createApp({
       .catch(err => console.log(err))
   },
   methods: {
+    logout() {
+      axios.post("/api/logout")
+        .then(response => {
+
+          window.location.href = "/index.html";
+        })
+    },
     mostrarModal(producto) {
       if (producto) {
         this.productoSeleccionado = producto;

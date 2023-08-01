@@ -14,6 +14,11 @@ window.addEventListener("scroll", function () {
     }
     navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
 });
+
+window.addEventListener("load", function () {
+    this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
+
 const { createApp } = Vue;
 
 const app = createApp({
@@ -26,6 +31,7 @@ const app = createApp({
             },
             error1: "",
             logged: false,
+            cliente: []
         }
     },
     created() {
@@ -39,6 +45,13 @@ const app = createApp({
 
     },
     methods: {
+        logout() {
+            axios.post("/api/logout")
+                .then(response => {
+
+                    window.location.href = "/index.html";
+                })
+        },
         crearCorreo() {
             if (this.correoDTO.remitente.length === 0 || this.correoDTO.comentario.length === 0 || this.correoDTO.asunto.length === 0) {
                 Swal.fire({

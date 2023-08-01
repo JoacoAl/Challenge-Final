@@ -20,6 +20,11 @@ const myInput = myModal.querySelector('.modal-body input');
 myModal.addEventListener('shown.bs.modal', () => {
   myInput.focus();
 });
+
+window.addEventListener("load", function () {
+  this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
+
 const { createApp } = Vue
 
 createApp({
@@ -47,6 +52,7 @@ createApp({
 
       productoSeleccionado: {},
       logged: false,
+      cliente: []
     };
   },
   created() {
@@ -62,6 +68,13 @@ createApp({
     this.traerProductosAccesorios();
   },
   methods: {
+    logout() {
+      axios.post("/api/logout")
+        .then(response => {
+
+          window.location.href = "/index.html";
+        })
+    },
     traerProductosTabacos() {
       axios
         .get('/api/productos')
