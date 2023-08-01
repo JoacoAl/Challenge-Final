@@ -112,7 +112,7 @@ transform: scale(0.8);
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  max-width: 1140px !important;
+  max-width: 1300px !important;
 }
 
 ul {
@@ -326,12 +326,148 @@ footer > h1 {
     opacity: 1;
   }
 }
-.ilustraciones{
+.ilustraciones {
   min-height: 27rem;
-  width: 100vh;
+  width: 100%;
 }
 .ilustraciones > img {
   /* width: 25%; */
   height: 30rem;
   object-fit: cover;
+}
+
+main {
+  transition: 2s;
+}
+
+/* media queries */
+
+@media only screen and (min-width: 320px) and (max-width: 578px) {
+  .div-marcas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .items-marcas {
+    width: 100%;
+  }
+
+  .ilustraciones {
+    width: 100%;
+  }
+  .ilustraciones > img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  nav,
+  .container {
+    width: 100% !important;
+  }
+  .img-carrousel {
+    height: 400px !important;
+  }
+  .span-carousel > h1 {
+    font-size: 20px;
+  }
+
+  .text-mamacultiva {
+    font-size: 15px;
+  }
+
+  .p-mamacultiva {
+    font-size: 12px;
+  }
+
+  .iframe-footer {
+    width: 300px;
+  }
+  footer > h1 {
+    font-size: 30px !important;
+  }
+}
+
+@media only screen and (min-width: 578px) and (max-width: 768px) {
+  .div-marcas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .items-marcas {
+    width: 100%;
+  }
+
+  .ilustraciones {
+    width: 100%;
+  }
+
+  nav,
+  .container {
+    width: 100% !important;
+  }
+  .img-carrousel {
+    height: 400px !important;
+  }
+  .span-carousel > h1 {
+    font-size: 40px;
+  }
+
+  .text-mamacultiva {
+    font-size: 18px;
+  }
+
+  .p-mamacultiva {
+    font-size: 18px;
+  }
+
+  .iframe-footer {
+    width: 500px;
+  }
+  footer > h1 {
+    font-size: 30px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .div-marcas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .items-marcas {
+    width: 100%;
+  }
+
+  .ilustraciones {
+    width: 100%;
+    height: 200px !important;
+    flex-direction: row;
+    display: flex;
+  }
+
+  nav,
+  .container {
+    width: 100% !important;
+  }
+  .img-carrousel {
+    height: 600px !important;
+  }
+  .span-carousel > h1 {
+    font-size: 40px;
+  }
+
+  .text-mamacultiva {
+    font-size: 18px;
+  }
+
+  .p-mamacultiva {
+    font-size: 18px;
+  }
+
+  .iframe-footer {
+    width: 500px;
+  }
+  footer > h1 {
+    font-size: 50px !important;
+  }
 }

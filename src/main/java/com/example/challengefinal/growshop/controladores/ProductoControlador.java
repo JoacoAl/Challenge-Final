@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -44,28 +45,18 @@ public class ProductoControlador {
         return servicioProducto.traerProductoDTO(id);
     }
 
-    @PostMapping("/productos/borrar")
-    public ResponseEntity<Object> borrarProductos(@RequestParam Long id, Authentication authentication) {
+    @PatchMapping("/productos/{id}/deactivate")
+    public ResponseEntity<Object> borrarProducto(@PathVariable Long id) {
+        Optional<Producto> productoOptional = Optional.ofNullable(servicioProducto.traerProductoPorId(id));
 
-        if (authentication.getName() == null) {
-            return new ResponseEntity<>("No estas autenticado", HttpStatus.FORBIDDEN);
+        if (productoOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
+        Producto producto = productoOptional.get();
 
-        if (id == null) {
-            return new ResponseEntity<>("Los data es invalida", HttpStatus.FORBIDDEN);
-
-        }
-
-        Producto producto = servicioProducto.traerProductoPorId(id);
-
-        if (producto == null) {
-            return new ResponseEntity<>("No se encontro ningun producto con ese nombre", HttpStatus.FORBIDDEN);
-        }
         producto.setActivo(false);
         servicioProducto.save(producto);
-
-        return new ResponseEntity<>("El producto fue borrado exitosamente", HttpStatus.ACCEPTED);
-
+        return new ResponseEntity<>("La cuenta fue borrada con exito", HttpStatus.OK);
     }
 
     @PostMapping("/productos/agregar")
@@ -89,7 +80,9 @@ public class ProductoControlador {
         if (productos.stream().anyMatch(productoDTO1 -> productoDTO1.getNombre().equals(productoDTO.getNombre()))) {
             return new ResponseEntity<>("No puedes tener dos productos distintos con el mismo nombre", HttpStatus.FORBIDDEN);
         } else {
+
             Producto nuevoProducto = new Producto(productoDTO.getNombre(),productoDTO.getMarca(), productoDTO.getDescripcion(), productoDTO.getPrecio(), productoDTO.getCategoria(), productoDTO.getSubCategoria(), productoDTO.getImagen(), productoDTO.getCantidad(), true, "ARS");
+
             servicioProducto.save(nuevoProducto);
             return new ResponseEntity<>("Producto añadido", HttpStatus.CREATED);
         }

@@ -8,6 +8,7 @@ createApp({
             nombre: "",
             apellido: "",
             telefono: "",
+            edad: "",
             direccion: "",
         }
         }

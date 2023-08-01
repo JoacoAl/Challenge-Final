@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
@@ -26,10 +27,10 @@ public class GrowshopApplication {
         return (args) -> {
 
 
-            Cliente clientePrueba = new Cliente("Joaquin", "Altamonte", "joaquin.altamonte@gmail.com", "ABC 123", "123456789", codificadorDeContraseña.encode("1234"), 18);
-            Cliente clientePrueba2 = new Cliente("Eduardo", "Oriolani", "eduoriolani@gmail.com", "CBA 123", "111111111", codificadorDeContraseña.encode("1234"), 26);
-            Cliente clientePrueba3 = new Cliente("Nicolas", "Gonzales", "nicogonzales@gmail.com", "BBB 111", "222222222", codificadorDeContraseña.encode("1234"), 19);
-            Cliente clienteAdmin = new Cliente("Admin", "Admin", "admin-gozogrowshop@gmail.com", "CCC 333", "333333333", codificadorDeContraseña.encode("1234"), 19);
+            Cliente clientePrueba = new Cliente("Joaquin", "Altamonte", "joaquin.altamonte@gmail.com", codificadorDeContraseña.encode("1234"), "BBB 111", "111111111"  , 18);
+            Cliente clientePrueba2 = new Cliente("Eduardo", "Oriolani", "eduoriolani@gmail.com", codificadorDeContraseña.encode("1234"), "BBB 111","22222222222" , 26);
+            Cliente clientePrueba3 = new Cliente("Nicolas", "Gonzales", "nicogonzales@gmail.com", codificadorDeContraseña.encode("1234"), "AAA 222", "3333333333333", 19);
+            Cliente clienteAdmin = new Cliente("Admin", "Admin", "admin-gozogrowshop@gmail.com", codificadorDeContraseña.encode("1234"), "AAA 222", "44444444444", 19);
 
 
             Producto producto1 = new Producto("Encendedor","Bic", "Encendedor de plastico BIC", 250, Categoria.ACCESORIOS,"Encendedores","https://mayoristasoto.com/4503-medium_default/encendedor-bic-maxi-1u.jpg", 40, true ,"ARS");
@@ -574,8 +575,8 @@ public class GrowshopApplication {
             productoRepositorio.save(producto3);
 
 
-            Orden orden = new Orden("acz123456789", LocalDateTime.now());
-            Orden orden2 = new Orden("bca3333311", LocalDateTime.now());
+            Orden orden = new Orden("acz123456789", LocalDateTime.now(), 1305D);
+            Orden orden2 = new Orden("bca3333311", LocalDateTime.now(), 1395D);
 
             ordenRepositorio.save(orden);
             ordenRepositorio.save(orden2);
@@ -608,7 +609,7 @@ public class GrowshopApplication {
             orden.añadirOrdenProducto(ordenProducto);
 
             producto2.añadirOrdenProducto(ordenProducto2);
-            orden2.añadirOrdenProducto(ordenProducto2);
+            orden.añadirOrdenProducto(ordenProducto2);
 
             productoRepositorio.save(producto1);
             productoRepositorio.save(producto2);

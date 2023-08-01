@@ -14,8 +14,12 @@ window.addEventListener("scroll", function() {
       }
     navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
   });
+  const myModal = document.getElementById('exampleModal');
+const myInput = myModal.querySelector('.modal-body input');
 
-
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus();
+});
 const {createApp} = Vue
 
 createApp({
@@ -29,20 +33,25 @@ createApp({
 
         tabacosFiltrados: [],
         cultivoFiltrado: [],
+        accesoriosFiltrados: [],
         
         filtroTabacos: [],
         filtroCultivo: [],
+        filtroAccesorios: [],
 
         checkedCheckbox: [],
         seleccionadas: [],
         tabacosFiltrados: [],
         categoriasCultivo: [],
+        categoriasAccesorios: [],
+
+        productoSeleccionado: {},
     };
   },
   created(){
      this.traerProductosTabacos();
      this.traerProductosCultivo();
-    //  this.traerProductosAccesorio();
+     this.traerProductosAccesorios();
   },
   methods: {
     traerProductosTabacos(){
@@ -91,8 +100,31 @@ createApp({
       })
     },
 
+    traerProductosAccesorios(){
+      axios
+      .get('/api/productos')
+      .then(response =>{
+        this.productos = response.data
+
+        this.format = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+      });
+        //ACCESORIOS
+        this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS")
+        console.log(this.accesorios);
+        let categoriasDeAccesorios = this.accesorios.map(el => el.subCategoria)
+            const catAccesorios = [...new Set(categoriasDeAccesorios)]
+            this.categoriasAccesorios = catAccesorios;
+            console.log(this.categoriasAccesorios)
+      })
+      .catch(exception => {
+        console.log(exception);
+      })
+    },
     // localstorage
     toggleSeleccion(id) {
+      console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
       swal({
         title: "Agregar al carrito",
@@ -131,7 +163,11 @@ createApp({
         }
       });
     },
-
+    mostrarModal(producto) {
+      if (producto) {
+        this.productoSeleccionado = producto;
+      }
+    },
     
   },
   computed: {
@@ -151,10 +187,13 @@ createApp({
         this.filtroTabacos = this.tabacos;
       }
     },
+    filtroBusquedaAccesorios() {
+      if (this.checkedCheckbox.length != 0) {
+        this.filtroAccesorios = this.accesorios.filter(accesorio => this.checkedCheckbox.includes(accesorio.subCategoria));
+        console.log(this.filtroAccesorios)
+      } else {
+        this.filtroAccesorios = this.accesorios;
+      }
+    },
 }
 }).mount("#app")
-
-
-
-
-

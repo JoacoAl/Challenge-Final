@@ -13,7 +13,7 @@ public class OrdenProductoDTO {
 
     private long id;
 
-    private double montoTotal;
+    private double precioUnitario;
 
     private int cantidadDeProductos;
 
@@ -23,7 +23,7 @@ public class OrdenProductoDTO {
 
     public OrdenProductoDTO(OrdenProducto ordenProducto){
         this.id = ordenProducto.getId();
-        this.montoTotal = ordenProducto.getMontoTotal();
+        this.precioUnitario = ordenProducto.getPrecioUnitario();
         this.cantidadDeProductos = ordenProducto.getCantidadDeProductos();
         this.nombre = ordenProducto.getNombre();
     }
@@ -32,8 +32,8 @@ public class OrdenProductoDTO {
         return id;
     }
 
-    public double getMontoTotal() {
-        return montoTotal;
+    public double getPrecioUnitario() {
+        return precioUnitario;
     }
 
     public int getCantidadDeProductos() {

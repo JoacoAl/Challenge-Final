@@ -10,6 +10,7 @@ createApp({
             apellido: "",
             telefono: "",
             direccion: "",
+            edad: ""
         }
     },
     computed(){
@@ -39,8 +40,17 @@ createApp({
                   this.password = "";
                 });
         },
-        registro(){
-            axios.post('/api/clientes','nombre='+ this.nombre +'&apellido='+ this.apellido +'&email=' + this.email +'&contraseña='+ this.contraseña + '&telefono=' + this.telefono + '&direccion=' + this.direccion,{headers:{'content-type':'application/x-www-form-urlencoded'}})
+        registrar(){
+            let registroDTO = {
+                nombre : this.nombre,
+                apellido : this.apellido,
+                email : this.email,
+                contraseña : this.contraseña,
+                edad : this.edad,
+                telefono : this.telefono,
+                direccion : this.direccion
+            }
+            axios.post('/api/clientes', registroDTO, {headers:{'content-type':'application/json'}})
                 .then(response => {
                   console.log(response);
                   Swal.fire({
@@ -67,6 +77,7 @@ createApp({
                     this.apellido = "";
                     this.email = "";
                     this.contraseña = "";
+                    this.edad = "";
                     this.telefono = "";
                     this.direccion = "";
                 })

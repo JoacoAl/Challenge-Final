@@ -6,6 +6,7 @@ const app = createApp ({
             seleccionadas: [],
             totalCompra: 0,
             totalProductos: 0,
+            ordenProducto: [],
         }
     },
     created(){
@@ -20,8 +21,6 @@ const app = createApp ({
         unit_price: producto.precio
     }));
     
-    
-    
     // Crea la preferencia de pago con los items dinámicos
     fetch('https://api.mercadopago.com/checkout/preferences', {
         method: 'POST',
@@ -34,7 +33,8 @@ const app = createApp ({
       })
       
     })
-    .then(response => response.json())
+    .then(response => 
+    response.json())
     .then(data => {
         // Aquí puedes obtener el ID de la preferencia de pago
         const preferenceId = data.id;
@@ -44,7 +44,7 @@ const app = createApp ({
           locale: 'es-AR'
         });
   
-        // Agrega el botón de pago a tu página
+        //  Agrega el botón de pago a tu página
         const checkout = mp.checkout({
           preference: {
               id: preferenceId
@@ -52,8 +52,11 @@ const app = createApp ({
           render: {
               container: '.mercadopago', // Indica dónde se mostrará el botón de pago
               label: 'Pagar', // Cambia el texto del botón de pago (opcional)
+              
           }
+          
         });
+        this.crearOrden();
     });
   },
   
@@ -67,6 +70,22 @@ const app = createApp ({
           },
           redirectionPay(){
             return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
+          },
+          crearOrden(){
+            this.ordenProducto = this.seleccionadas.map(producto => ({
+                nombre: producto.nombre,
+                cantidadDeProductos: producto.cantidad,
+                precioUnitario: producto.precio
+            }))
+            axios
+            .post('/api/ordenes/crear-orden', this.ordenProducto, {headers:{'content-type':'application/json'}})
+            .then(response => {
+              console.log(response.data);
+              this.fetch();
+            })
+            .catch(error => {
+              console.log(error.response);
+            })
           },
           async descartarProducto(id) {
             const result = await Swal.fire({

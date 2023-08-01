@@ -25,4 +25,14 @@ public class ServicioOrdenImplement implements ServicioOrden {
         OrdenDTO ordenDTO = new OrdenDTO(orden);
         return ordenDTO;
     }
+
+    @Override
+    public Orden traerOrdenPorNumero(String numeroDeOrden) {
+        return ordenRepositorio.findByNumeroDeOrden(numeroDeOrden);
+    }
+
+    @Override
+    public void save(Orden orden) {
+        ordenRepositorio.save(orden);
+    }
 }

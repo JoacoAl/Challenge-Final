@@ -10,13 +10,11 @@ version = '0.0.1-SNAPSHOT'
 java {
 	sourceCompatibility = '11'
 }
-
 bootRun {
 
 	sourceResources sourceSets.main
 
 }
-
 repositories {
 	mavenCentral()
 }
@@ -28,8 +26,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'com.lowagie:itext:2.1.7'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.simplejavamail:simple-java-mail:7.5.0'
 }
 
 tasks.named('test') {

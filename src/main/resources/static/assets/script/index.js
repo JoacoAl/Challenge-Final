@@ -21,10 +21,14 @@ const { createApp } = Vue;
 const app = createApp({
     data() {
         return {
+            logged: false,
         };
     },
 
     created() {
+        axios.get("/api/cliente/actual")
+            .then(response => console.log(response))
+            .catch(err => console.log(err))
     },
 
     methods: {
