@@ -17,8 +17,8 @@ public class Orden {
     private long id;
 
     private String numeroDeOrden;
-
     private LocalDateTime fecha;
+    private Double montoTotal;
 
 
     @JsonIgnore
@@ -36,9 +36,10 @@ public class Orden {
     public Orden() {
     }
 
-    public Orden(String numeroDeOrden, LocalDateTime fecha) {
+    public Orden(String numeroDeOrden, LocalDateTime fecha, Double montoTotal) {
         this.numeroDeOrden = numeroDeOrden;
         this.fecha = fecha;
+        this.montoTotal = montoTotal;
     }
 
     public String getNumeroDeOrden() {
@@ -76,6 +77,10 @@ public class Orden {
     public void setPago(Pago pago) {
         this.pago = pago;
     }
+
+    public Double getMontoTotal() {return montoTotal;}
+
+    public void setMontoTotal(Double montoTotal) {this.montoTotal = montoTotal;}
 
     public Set<OrdenProducto> getOrdenProductos() {
         return ordenProductos;

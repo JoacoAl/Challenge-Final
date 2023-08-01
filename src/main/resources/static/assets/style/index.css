@@ -328,7 +328,7 @@ footer > h1 {
 }
 .ilustraciones {
   min-height: 27rem;
-  width: 100vh;
+  width: 100%;
 }
 .ilustraciones > img {
   /* width: 25%; */
