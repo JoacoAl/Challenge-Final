@@ -39,10 +39,13 @@ createApp({
         categoriasAccesorios: [],
 
         productoSeleccionado: {},
+
+        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
     };
   },
   created(){
      this.traerProductosAccesorios();
+     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
   methods: {
     traerProductosAccesorios(){
@@ -100,6 +103,10 @@ createApp({
                 cantidad,
               });
             }
+            this.cantidadProductosCarrito += cantidad;
+            const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
+            localStorage.setItem("cantidadProductosCarrito", jsonProductos);
+
             const json = JSON.stringify(this.seleccionadas);
             localStorage.setItem("seleccionadas", json);
             swal("Success", "Producto agregado al carrito", "success");
@@ -108,6 +115,14 @@ createApp({
           }
         }
       });
+    },
+    // Verificar si hay productos en el carrito
+    getCantidadProductosCarrito() {
+      const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
+      if (storedCantidadProductosCarrito) {
+        return parseInt(storedCantidadProductosCarrito);
+      }
+      return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
     mostrarModal(producto) {
       if (producto) {

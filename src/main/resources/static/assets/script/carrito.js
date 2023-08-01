@@ -6,6 +6,7 @@ const app = createApp ({
             seleccionadas: [],
             totalCompra: 0,
             totalProductos: 0,
+            cantidadProductosCarrito: this.getCantidadProductosCarrito() || 0
         }
     },
     created(){
@@ -83,6 +84,10 @@ const app = createApp ({
           this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
           this.json = JSON.stringify(this.elementosFiltrados);
           localStorage.setItem('seleccionadas', this.json);
+
+          // Actualiza la cantidad actual de productos seleccionados en el LocalStorage
+          const nuevaCantidadProductos = this.elementosFiltrados.reduce((total, elemento) => total + elemento.cantidad, 0);
+          localStorage.setItem('cantidadProductosCarrito', nuevaCantidadProductos.toString());
   
           await Swal.fire({
               title: '¡Producto descartado!',
@@ -91,6 +96,14 @@ const app = createApp ({
   
           window.location.href = "/assets/pages/carrito.html";
       }
+      
+  },
+  getCantidadProductosCarrito() {
+    const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
+    if (storedCantidadProductosCarrito) {
+      return parseInt(storedCantidadProductosCarrito);
+    }
+    return 0; // Valor predeterminado si no se encuentra en el LocalStorage
   },
 },
 

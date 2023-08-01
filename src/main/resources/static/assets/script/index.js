@@ -22,18 +22,33 @@ const app = createApp({
     data() {
         return {
             logged: false,
+            cliente: {}
         };
     },
 
     created() {
         axios.get("/api/cliente/actual")
-            .then(response => console.log(response))
+            .then(response => {
+                this.cliente = response.data
+                console.log(this.cliente);
+            }
+            )
             .catch(err => console.log(err))
     },
 
     methods: {
-
-    }
+        agregarAlCarrito(producto) {
+            const productoExistente = this.productosEnCarrito.find(
+              (p) => p.id === producto.id);
+            if (productoExistente) {
+              productoExistente.cantidad += 1;
+            } else {
+              this.productosEnCarrito.push({ ...producto, cantidad: 1 });
+            }
+      
+            this.cantidadProductosCarrito += 1;
+          },
+        },
 });
 
 app.mount("#app");
