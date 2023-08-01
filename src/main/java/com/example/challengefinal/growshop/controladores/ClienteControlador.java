@@ -9,6 +9,7 @@ import com.example.challengefinal.growshop.servicios.ServicioCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,5 +55,19 @@ public class ClienteControlador {
 
         return new ResponseEntity<>("El usuario fue registrado exitosamente", HttpStatus.CREATED);
 
+    }
+
+    @GetMapping("/cliente/actual")
+    public ResponseEntity<Object> getClientCurrent(Authentication authentication) {
+        if (authentication.getName() == null){
+            return new ResponseEntity<>("Cliente no autenticado", HttpStatus.BAD_REQUEST);
+        }
+        Cliente cliente = servicioCliente.traerClientePorEmail(authentication.getName());
+        if (cliente != null) {
+            ClienteDTO clientDTO = new ClienteDTO(cliente);
+            return new ResponseEntity<>(clientDTO, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
+        }
     }
 }

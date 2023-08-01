@@ -112,7 +112,7 @@ transform: scale(0.8);
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  max-width: 1140px !important;
+  max-width: 1300px !important;
 }
 
 ul {
@@ -334,6 +334,10 @@ footer > h1 {
   /* width: 25%; */
   height: 30rem;
   object-fit: cover;
+}
+
+main {
+  transition: 2s;
 }
 
 /* media queries */
