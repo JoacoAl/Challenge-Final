@@ -26,7 +26,7 @@ createApp({
                     'Ahora podés realizar compras.',
                     'success'
                   ).then(() => {
-                    window.location.href = "/index.html";
+                      window.location.href = "/index.html";
                   });
                 })
                 .catch(error => {
@@ -77,6 +77,7 @@ createApp({
                     this.apellido = "";
                     this.email = "";
                     this.contraseña = "";
+                    this.edad = "";
                     this.telefono = "";
                     this.direccion = "";
                 })

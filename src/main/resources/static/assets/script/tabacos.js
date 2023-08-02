@@ -28,34 +28,29 @@ createApp({
         productos: [],
 
         tabacos: [],
-        accesorios: [],
-        cultivo: [],
 
         tabacosFiltrados: [],
-        cultivoFiltrado: [],
         
         filtroTabacos: [],
-        filtroCultivo: [],
 
         checkedCheckbox: [],
         seleccionadas: [],
         tabacosFiltrados: [],
-        categoriasCultivo: [],
 
         productoSeleccionado: {},
+        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
     };
   },
   created(){
      this.traerProductosTabacos();
-     this.traerProductosCultivo();
-    //  this.traerProductosAccesorio();
+     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
   methods: {
     traerProductosTabacos(){
       axios
       .get('/api/productos')
       .then(response =>{
-        this.productos = response.data
+        this.productos = response.data.filter(productos => productos.activo == true)
 
         this.format = new Intl.NumberFormat('en-US', {
           style: 'currency',
@@ -74,30 +69,6 @@ createApp({
       })
     },
 
-    traerProductosCultivo(){
-      axios
-      .get('/api/productos')
-      .then(response =>{
-        this.productos = response.data
-
-        this.format = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-      });
-        //CULTIVO
-        this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
-        console.log(this.cultivo);
-        let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
-            const catCultivos = [...new Set(categoriasDeCultivo)]
-            this.categoriasCultivo = catCultivos;
-            console.log(this.categoriasCultivo)
-      })
-      .catch(exception => {
-        console.log(exception);
-      })
-    },
-
-    // localstorage
     toggleSeleccion(id) {
       console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
@@ -129,6 +100,9 @@ createApp({
                 cantidad,
               });
             }
+            this.cantidadProductosCarrito += cantidad;
+            const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
+            localStorage.setItem("cantidadProductosCarrito", jsonProductos);
             const json = JSON.stringify(this.seleccionadas);
             localStorage.setItem("seleccionadas", json);
             swal("Success", "Producto agregado al carrito", "success");
@@ -138,6 +112,14 @@ createApp({
         }
       });
     },
+    // Verificar si hay productos en el carrito
+    getCantidadProductosCarrito() {
+      const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
+      if (storedCantidadProductosCarrito) {
+        return parseInt(storedCantidadProductosCarrito);
+      }
+      return 0; // Valor predeterminado si no se encuentra en el LocalStorage
+    },
     mostrarModal(producto) {
       if (producto) {
         this.productoSeleccionado = producto;
@@ -146,20 +128,21 @@ createApp({
     
   },
   computed: {
-    filtroBusquedaCultivo(){
-      if(this.checkedCheckbox.length != 0){
-        this.filtroCultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
-        console.log(this.filtroCultivo)
-      }else{
-        this.filtroCultivo = this.cultivo;
-      }
-  },  
+
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));
         console.log(this.filtroTabacos)
       } else {
         this.filtroTabacos = this.tabacos;
+      }
+    },
+    filtroBusquedaAccesorios() {
+      if (this.checkedCheckbox.length != 0) {
+        this.filtroAccesorios = this.accesorios.filter(accesorio => this.checkedCheckbox.includes(accesorio.subCategoria));
+        console.log(this.filtroAccesorios)
+      } else {
+        this.filtroAccesorios = this.accesorios;
       }
     },
 }

@@ -4,14 +4,18 @@ const {createApp} = Vue;
 const app = createApp({
     data(){
         return{
+            productos: [],
+            desactivados: [],
+            clientes: [],
+            //formulario productos
             nombre:"",
+            marca: "",
             descripcion: "",
             precio:"",
             categoria: "",
+            subCategoria: "",
             cantidad: null,
-            productos: [],
-            clientes: [],
-            // formulario
+            // formulario clientes
             nombreCliente: "",
             apellido: "",
             email: "",
@@ -20,6 +24,14 @@ const app = createApp({
             contraseña: "",
             direccion: "",
             searchInput: "",
+            //modificar productos
+            Pnombre: "",
+            Pmarca: "",
+            Pdescripcion: "",
+            Pcantidad: null,
+            Pprecio: null,
+            //id
+            selectedProductId: null,
         }
     },
     created(){
@@ -42,13 +54,15 @@ const app = createApp({
         getProductos(){
             axios.get("/api/productos")
             .then(res => {
-                this.productos = res.data
+                this.productos = res.data.filter(productos => productos.activo == true)
+                this.desactivados = res.data.filter(productos => productos.activo == false)
                 console.log(this.productos)
             })
             .catch(error => {
                 alert("no se agrego")
             });
         },
+        
         createdProduct() {
             const fileInput = document.querySelector('input[type="file"]');
             const file = fileInput.files[0];
@@ -74,11 +88,13 @@ const app = createApp({
                 // Save the file URL to your database
                 const data = {
                     nombre: this.nombre,
+                    marca: this.marca,
                     descripcion: this.descripcion,
                     precio: this.precio,
                     categoria: this.categoria,
+                    subCategoria: this.subCategoria,
                     cantidad: this.cantidad,
-                    img: fileURL
+                    imagen: fileURL
                 };
 
                 axios.post('/api/productos/agregar', data, {
@@ -96,16 +112,25 @@ const app = createApp({
             .catch(err => {
                 console.error(err);
             });
-        }
-
-        ,
-        deleteProduct(id){
-            axios.delete(`api/borrar/${id}`)
+        },
+        borrarProducto(id){
+            axios.patch(`http://localhost:8080/api/productos/${id}/deactivate`)
             .then(res=> {
                 alert("se borro")
+                window.location.href = "http://localhost:8080/assets/pages/manager.html"
             })
             .catch(error => {
                 alert("no se borro")
+            });
+        },
+        reactivar(id){
+            axios.patch(`http://localhost:8080/api/productos/${id}/activate`)
+            .then(res=> {
+                alert("se agrego")
+                window.location.href = "http://localhost:8080/assets/pages/manager.html"
+            })
+            .catch(error => {
+                alert("se agrego")
             });
         },
         getClientes(){
@@ -138,8 +163,57 @@ const app = createApp({
                 window.location.href = "/assets/pages/manager.html"
             })
             .catch(err => alert(err))
+        },  
+        
+        redirectionModal(id) {
+            this.selectedProductId = id;
+            window.location.href = "#openModal";
+        },
+        modificar() {
+            const data = {
+                nombre: this.Pnombre,
+                marca: this.Pmarca,
+                descripcion: this.Pdescripcion,
+                cantidad: this.Pcantidad,
+                precio: this.Pprecio,
+            }
+            axios.patch(`http://localhost:8080/api/productos/${this.selectedProductId}/modificar`, data, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(() => {
+                window.location.href = "#close";
+                Swal.fire('¡Éxito!', 'El producto fue modificado correctamente', 'success')
+                .then(() => {
+                    window.location.href = "http://localhost:8080/assets/pages/manager.html";
+                });
+            })
+            .catch(err => {
+                Swal.fire('Error', err.message, 'error');
+                window.location.href = "#close";
+            });
         },
 
+        LogOut() {
+            axios.post('/api/logout')
+                .then(() => {
+                    // Successful logout
+                    // Redirect to accounts.html
+                    window.location.href = '/index.html';
+                })
+                .catch(error => {
+                    // Failed logout
+                    // Show error message to user
+                    swal({
+                        title: 'Error',
+                        text: 'Error logging out',
+                        icon: 'error',
+                        button: 'OK'
+                    });
+                });
+        },
+        
     },
 })
 app.mount("#app")
