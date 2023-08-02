@@ -59,7 +59,7 @@
                         <div class="d-flex justify-content-center gap-2">
                             <span v-if="logged" class="d-flex justify-content-center gap-2">
                                 <i class="bi bi-person-circle text-white icons-navbar"></i>
-                                <button class="btn btn-success">{{cliente.nombre}}</button>
+                                <a class="text-white text-danger btn btn-success" href="./perfil.html">{{cliente.nombre}}</a>
                                 <button class="btn btn-success" @click="logout()"><i
                                         class="bi bi-box-arrow-left text-white"></i></button>
                             </span>
