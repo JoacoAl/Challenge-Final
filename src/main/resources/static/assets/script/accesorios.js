@@ -113,7 +113,7 @@ createApp({
 
             const json = JSON.stringify(this.seleccionadas);
             localStorage.setItem("seleccionadas", json);
-            swal("Success", "Producto agregado al carrito", "success");
+            swal( "Producto agregado al carrito", "success");
           } else {
             swal("Error", "Cantidad inválida", "error");
           }
