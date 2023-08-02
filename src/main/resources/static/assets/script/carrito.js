@@ -1,27 +1,42 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 window.addEventListener("scroll", function() {
+=======
+window.addEventListener("scroll", function () {
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
   const navbar = document.getElementById("navbar");
   const scrollPosition = window.scrollY;
   const navbarHeight = navbar.offsetHeight;
-  const headerHeight = 200; 
+  const headerHeight = 300;
 
   const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
   if (scrollPosition > headerHeight) {
-      navbar.classList.add("top-nav");
-      navbar.classList.remove("navbar-interno_home")
-    } else {
-      navbar.classList.remove("top-nav");
-      navbar.classList.add("navbar-interno_home")
-    }
+    navbar.classList.add("top-nav");
+    navbar.classList.remove("navbar-interno_home")
+  } else {
+    navbar.classList.remove("top-nav");
+    navbar.classList.add("navbar-interno_home")
+  }
   navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
 });
 
+<<<<<<< HEAD
 const {createApp} = Vue;
 =======
 window.addEventListener("load", function () {
   this.document.getElementById("container-loader").classList.toggle("container-loader2")
 })
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+window.addEventListener("load", function () {
+  this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
+
+
+
+
+const { createApp } = Vue;
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
 const app = createApp({
   data() {
@@ -29,15 +44,17 @@ const app = createApp({
       seleccionadas: [],
       totalCompra: 0,
       totalProductos: 0,
+      logged: false,
+      cliente: []
     }
   },
   created() {
-
     this.format = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
     });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
               // Detecta si el usuario ha sido redirigido desde la página de pago
@@ -74,13 +91,18 @@ const app = createApp({
                 }
             })
 =======
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
     // Detecta si el usuario ha sido redirigido desde la página de pago
     if (window.location.search.includes('payment_id')) {
       // El usuario ha sido redirigido desde la página de pago
       // Muestra un mensaje de éxito y borra el carrito
       this.generarOrdenPago();
-      alert('¡Tu compra ha sido exitosa!');
+      Swal.fire({
+        title: '¡Pago exitoso!',
+        icon: 'success'
+      });
       this.deleteCompras();
     }
   },
@@ -107,11 +129,15 @@ const app = createApp({
           back_urls: {
             success: `http://localhost:8080/assets/pages/carrito.html`
           }
+<<<<<<< HEAD
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
         })
       })
         .then(response => response.json())
         .then(data => {
+<<<<<<< HEAD
 <<<<<<< HEAD
             // Aquí puedes obtener el ID y la URL de la preferencia de pago
             const preferenceId = data.id;
@@ -127,6 +153,8 @@ const app = createApp({
     },
     
 =======
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
           // Aquí puedes obtener el ID y la URL de la preferencia de pago
           const preferenceId = data.id;
           const preferenceUrl = data.init_point;
@@ -140,7 +168,11 @@ const app = createApp({
         });
     },
 
+<<<<<<< HEAD
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     generarOrdenPago() {
       const items = this.seleccionadas.map(producto => ({
         id: producto.id,
@@ -151,14 +183,19 @@ const app = createApp({
       axios.post('/api/crear/orden', items, {
         headers: {
 <<<<<<< HEAD
+<<<<<<< HEAD
             'Content-Type': 'application/json'
+=======
+          'Content-Type': 'application/json'
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
         }
-        })
+      })
         .then(response => {
           console.log(response)
         })
         .catch(error => {
           console.log(error.response)
+<<<<<<< HEAD
 =======
           'Content-Type': 'application/json'
         }
@@ -169,9 +206,10 @@ const app = createApp({
         .catch(error => {
           alert("no")
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
         });
-    }
-    ,
+    },
 
     deleteCompras() {
       localStorage.removeItem("seleccionadas");
@@ -207,7 +245,6 @@ const app = createApp({
       }
     },
   },
-
   computed: {
     resultado() {
       this.totalCompra = this.seleccionadas.reduce(
@@ -225,52 +262,60 @@ const app = createApp({
       const json = JSON.stringify(this.totalProductos);
       localStorage.setItem("cantidad", json);
     },
-  },
-  redirection() {
-    return window.location.href = "/assets/pages/accesorios.html"
-  },
-  redirectionPay() {
-    return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
-  },
-  crearOrden() {
-    this.ordenProducto = this.seleccionadas.map(producto => ({
-      nombre: producto.nombre,
-      cantidadDeProductos: producto.cantidad,
-      precioUnitario: producto.precio
-    }))
-    axios
-      .post('/api/ordenes/crear-orden', this.ordenProducto, { headers: { 'content-type': 'application/json' } })
-      .then(response => {
-        console.log(response.data);
-        this.fetch();
-      })
-      .catch(error => {
-        console.log(error.response);
-      })
-  },
-  async descartarProducto(id) {
-    const result = await Swal.fire({
-      title: '¿Estás seguro de que quieres descartar este producto?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí',
-      cancelButtonText: 'No'
-    });
-
-    if (result.isConfirmed) {
-      this.elementos = JSON.parse(localStorage.getItem('seleccionadas'));
-      this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
-      this.json = JSON.stringify(this.elementosFiltrados);
-      localStorage.setItem('seleccionadas', this.json);
-
-      await Swal.fire({
-        title: '¡Producto descartado!',
-        icon: 'success'
+    redirection() {
+      return window.location.href = "/assets/pages/accesorios.html"
+    },
+    redirectionPay() {
+      return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
+    },
+    crearOrden() {
+      this.ordenProducto = this.seleccionadas.map(producto => ({
+        nombre: producto.nombre,
+        cantidadDeProductos: producto.cantidad,
+        precioUnitario: producto.precio
+      }))
+      axios
+        .post('/api/ordenes/crear-orden', this.ordenProducto, { headers: { 'content-type': 'application/json' } })
+        .then(response => {
+          console.log(response.data);
+          this.fetch();
+        })
+        .catch(error => {
+          console.log(error.response);
+        })
+    },
+    async descartarProducto(id) {
+      const result = await Swal.fire({
+        title: '¿Estás seguro de que quieres descartar este producto?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
       });
 
-      window.location.href = "/assets/pages/carrito.html";
+      if (result.isConfirmed) {
+        this.elementos = JSON.parse(localStorage.getItem('seleccionadas'));
+        this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
+        this.json = JSON.stringify(this.elementosFiltrados);
+        localStorage.setItem('seleccionadas', this.json);
+
+        await Swal.fire({
+          title: '¡Producto descartado!',
+          icon: 'success'
+        });
+
+        window.location.href = "/assets/pages/carrito.html";
+      }
+    },
+
+    modificarCantidad(id) {
+      let producto = this.seleccionadas.filter(producto => {
+        producto.id = id
+      })
+
     }
   }
+});
 
-})
+
 app.mount("#app")

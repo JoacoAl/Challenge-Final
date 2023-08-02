@@ -1,30 +1,31 @@
-window.addEventListener("scroll", function() {
-    const navbar = document.getElementById("navbar");
-    const scrollPosition = window.scrollY;
-    const navbarHeight = navbar.offsetHeight;
-    const headerHeight = 200; 
+window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("navbar");
+  const scrollPosition = window.scrollY;
+  const navbarHeight = navbar.offsetHeight;
+  const headerHeight = 200;
 
-    const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
-    if (scrollPosition > headerHeight) {
-        navbar.classList.add("top-nav");
-        navbar.classList.remove("navbar-interno_home")
-      } else {
-        navbar.classList.remove("top-nav");
-        navbar.classList.add("navbar-interno_home")
-      }
-    navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-  });
+  const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
+  if (scrollPosition > headerHeight) {
+    navbar.classList.add("top-nav");
+    navbar.classList.remove("navbar-interno_home")
+  } else {
+    navbar.classList.remove("top-nav");
+    navbar.classList.add("navbar-interno_home")
+  }
+  navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+});
 
 window.addEventListener("load", function () {
   this.document.getElementById("container-loader").classList.toggle("container-loader2")
 })
 
 
-const {createApp} = Vue
+const { createApp } = Vue
 
 createApp({
   data() {
     return {
+<<<<<<< HEAD
 <<<<<<< HEAD
         productos: [],
         cultivo: [],
@@ -46,6 +47,8 @@ createApp({
         descripcionMaxLength : 50,
         descripcionCompleta: false
 =======
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
       productos: [],
       cultivo: [],
       cultivoFiltrado: [],
@@ -56,13 +59,25 @@ createApp({
       categoriasCultivo: [],
       productoSeleccionado: {},
       logged: false,
+<<<<<<< HEAD
       cliente: []
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+      cliente: [],
+      cantidadProductosCarrito: this.getCantidadProductosCarrito()
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     };
   },
-  created(){
-     this.traerProductosCultivo();
-     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+  created() {
+    axios.get("/api/cliente/actual")
+      .then(response => {
+        this.logged = true;
+        this.cliente = response.data
+
+      })
+      .catch(err => console.log(err))
+    this.traerProductosCultivo();
+    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
   methods: {
     logout() {
@@ -77,8 +92,9 @@ createApp({
         this.productoSeleccionado = producto;
       }
     },
-    traerProductosCultivo(){
+    traerProductosCultivo() {
       axios
+<<<<<<< HEAD
 <<<<<<< HEAD
       .get('/api/productos')
       .then(response =>{
@@ -88,22 +104,27 @@ createApp({
         .then(response => {
           this.productos = response.data
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+        .get('/api/productos')
+        .then(response => {
+          this.productos = response.data
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
-        this.format = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-      });
-        //CULTIVO
-        this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
-        console.log(this.cultivo);
-        let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
-            const catCultivos = [...new Set(categoriasDeCultivo)]
-            this.categoriasCultivo = catCultivos;
-            console.log(this.categoriasCultivo)
-      })
-      .catch(exception => {
-        console.log(exception);
-      })
+          this.format = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          });
+          //CULTIVO
+          this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
+          console.log(this.cultivo);
+          let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
+          const catCultivos = [...new Set(categoriasDeCultivo)]
+          this.categoriasCultivo = catCultivos;
+          console.log(this.categoriasCultivo)
+        })
+        .catch(exception => {
+          console.log(exception);
+        })
     },
 
     // localstorage
@@ -140,7 +161,7 @@ createApp({
             this.cantidadProductosCarrito += cantidad;
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
-            
+
             const json = JSON.stringify(this.seleccionadas);
             localStorage.setItem("seleccionadas", json);
             swal("Success", "Producto agregado al carrito", "success");
@@ -185,6 +206,7 @@ createApp({
       }
       return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
+<<<<<<< HEAD
     toggleDescripcion() {
       if (this.descripcionMaxLength === 50) {
         this.descripcionMaxLength = this.productoSeleccionado.descripcion.length;
@@ -197,15 +219,20 @@ createApp({
     },
     
     
+=======
+
+
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
   },
   computed: {
-    filtroBusquedaCultivo(){
-      if(this.checkedCheckbox.length != 0){
-        this.filtroCultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
+    filtroBusquedaCultivo() {
+      if (this.checkedCheckbox.length != 0) {
+        this.filtroCultivo = this.cultivo.filter(producto => this.checkedCheckbox.includes(producto.subCategoria))
         console.log(this.filtroCultivo)
-      }else{
+      } else {
         this.filtroCultivo = this.cultivo;
       }
+<<<<<<< HEAD
   },  
   descripcionReducida() {
     if (this.productoSeleccionado && this.productoSeleccionado.descripcion) {
@@ -223,6 +250,10 @@ createApp({
     return '';
   },
 }
+=======
+    },
+  }
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 }).mount("#app")
 
 

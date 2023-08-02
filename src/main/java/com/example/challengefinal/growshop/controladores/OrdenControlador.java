@@ -12,6 +12,7 @@ import com.example.challengefinal.growshop.models.OrdenProducto;
 import com.example.challengefinal.growshop.models.Producto;
 import com.example.challengefinal.growshop.servicios.*;
 import com.example.challengefinal.growshop.utils.NumeroOrden;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.itextpdf.text.DocumentException;
 import com.mercadopago.MercadoPagoConfig;
@@ -20,6 +21,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.annotation.PostConstruct;
@@ -48,6 +51,10 @@ public class OrdenControlador {
     public void init() {
         MercadoPagoConfig.setAccessToken(accessToken);
     }
+    @Autowired
+    private ServicioFacturacion servicioFacturacion;
+    @Autowired
+    private EmailSend emailSend;
 
     @GetMapping("/ordenes")
     public Set<OrdenDTO> traerOrdenesDTO(){
@@ -93,8 +100,30 @@ public class OrdenControlador {
             // Guardar el objeto OrdenProducto en la base de datos
             servicioOrdenProducto.save(ordenProducto);
         }
+        OrdenDTO ordenDTO = new OrdenDTO(orden);
+        // Enviar el correo con la factura adjunta
+        try {
+            // Generar el Correo
+            Correo correo = new Correo();
+            correo.setRemitente("growshopgozo@gmail.com");
+            correo.setDestinatario(cliente.getEmail());
+            correo.setAsunto("Factura de compra - Orden #" + orden.getNumeroDeOrden());
+            correo.setComentario("Adjuntamos la factura de su compra realizada en nuestro Growshop.");
 
-        return new ResponseEntity<>("Orden generada con éxito", HttpStatus.OK);
+            // Generar el PDF
+            ByteArrayOutputStream pdfData = servicioFacturacion.generarFacturaPDF(ordenDTO, productosCarrito, cliente);
+
+            // Enviar el correo electrónico con la factura adjunta
+            ResponseEntity<Object> response = emailSend.sendFactura(correo, pdfData.toByteArray());
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return new ResponseEntity<>("Orden generada y correo enviado con éxito", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Orden generada, pero hubo un problema al enviar el correo", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            // Si ocurre alguna excepción al generar la factura o enviar el correo, manejarla aquí
+            e.printStackTrace();
+            return new ResponseEntity<>("Error al generar la factura o enviar el correo", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-
 }

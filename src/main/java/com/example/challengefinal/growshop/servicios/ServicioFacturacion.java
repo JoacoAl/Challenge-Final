@@ -3,19 +3,27 @@ package com.example.challengefinal.growshop.servicios;
 import com.example.challengefinal.growshop.dto.OrdenDTO;
 import com.example.challengefinal.growshop.dto.OrdenInfoDTO;
 import com.example.challengefinal.growshop.models.Cliente;
+
+
 import com.lowagie.text.*;
+import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.PageSize;
+
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.Table;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Set;
-/*
+
 @Service
 public class ServicioFacturacion {
 
@@ -23,7 +31,7 @@ public class ServicioFacturacion {
     private EmailSend emailSend;
 
 
-    public ByteArrayOutputStream generarFacturaPDF(OrdenDTO orden, Set<OrdenInfoDTO> ordenProductos, Cliente cliente) throws DocumentException, IOException {
+    public ByteArrayOutputStream generarFacturaPDF(OrdenDTO orden, Set<OrdenInfoDTO> ordenProductos, Cliente cliente) throws  IOException, DocumentException {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Document document = new Document(PageSize.A4);
@@ -48,7 +56,6 @@ public class ServicioFacturacion {
             document.add(montoTotal);
 
             // Agregar tabla con los productos y sus detalles
-
             PdfPTable table = new PdfPTable(4);
             table.setWidthPercentage(100);
             table.setSpacingBefore(10f);
@@ -122,4 +129,4 @@ public class ServicioFacturacion {
         return total;
     }
 }
-*/
+

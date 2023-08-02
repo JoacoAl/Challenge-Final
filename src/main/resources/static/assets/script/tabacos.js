@@ -1,41 +1,48 @@
-window.addEventListener("scroll", function() {
-    const navbar = document.getElementById("navbar");
-    const scrollPosition = window.scrollY;
-    const navbarHeight = navbar.offsetHeight;
-    const headerHeight = 200; 
+window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("navbar");
+  const scrollPosition = window.scrollY;
+  const navbarHeight = navbar.offsetHeight;
+  const headerHeight = 200;
 
-    const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
-    if (scrollPosition > headerHeight) {
-        navbar.classList.add("top-nav");
-        navbar.classList.remove("navbar-interno_home")
-      } else {
-        navbar.classList.remove("top-nav");
-        navbar.classList.add("navbar-interno_home")
-      }
-    navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-  });
-  const myModal = document.getElementById('exampleModal');
+  const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
+  if (scrollPosition > headerHeight) {
+    navbar.classList.add("top-nav");
+    navbar.classList.remove("navbar-interno_home")
+  } else {
+    navbar.classList.remove("top-nav");
+    navbar.classList.add("navbar-interno_home")
+  }
+  navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+});
+const myModal = document.getElementById('exampleModal');
 const myInput = myModal.querySelector('.modal-body input');
 
 myModal.addEventListener('shown.bs.modal', () => {
   myInput.focus();
 });
 <<<<<<< HEAD
+<<<<<<< HEAD
 const {createApp} = Vue
 =======
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
 window.addEventListener("load", function () {
   this.document.getElementById("container-loader").classList.toggle("container-loader2")
 })
 
 const { createApp } = Vue
+<<<<<<< HEAD
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
 createApp({
   data() {
     return {
-        productos: [],
+      productos: [],
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         tabacos: [],
 
@@ -58,6 +65,8 @@ createApp({
      this.traerProductosTabacos();
      this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
 =======
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
       tabacos: [],
       accesorios: [],
       cultivo: [],
@@ -94,6 +103,7 @@ createApp({
     this.traerProductosAccesorios();
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
     this.traerProductosTabacos();
+<<<<<<< HEAD
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
   },
 
@@ -105,6 +115,11 @@ createApp({
       .then(response =>{
         this.productos = response.data.filter(productos => productos.activo == true)
 =======
+=======
+  },
+
+  methods: {
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     logout() {
       axios.post("/api/logout")
         .then(response => {
@@ -117,27 +132,33 @@ createApp({
         .get('/api/productos')
         .then(response => {
           this.productos = response.data.filter(productos => productos.activo == true)
+<<<<<<< HEAD
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
-        this.format = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-      });
+          this.format = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          });
 
-        //TABACOS
-        this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
-        let marcas = this.tabacos.map( tabaco => tabaco.marca)
-            const categorias = [...new Set(marcas)]
-            this.tabacosFiltrados = categorias
-            console.log(this.tabacos);
-      })
-      .catch(exception => {
-        console.log(exception);
-      })
+          //TABACOS
+          this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
+          let marcas = this.tabacos.map(tabaco => tabaco.marca)
+          const categorias = [...new Set(marcas)]
+          this.tabacosFiltrados = categorias
+          console.log(this.tabacos);
+        })
+        .catch(exception => {
+          console.log(exception);
+        })
     },
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     traerProductosCultivo() {
       axios
         .get('/api/productos')
@@ -184,7 +205,10 @@ createApp({
         })
     },
     // localstorage
+<<<<<<< HEAD
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     toggleSeleccion(id) {
       console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
@@ -269,10 +293,13 @@ createApp({
       }
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     toggleDescripcion() {
       if (this.descripcionMaxLength === 50) {
         this.descripcionMaxLength = this.productoSeleccionado.descripcion.length;
 =======
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
   },
   computed: {
@@ -286,6 +313,7 @@ createApp({
       }
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     toggleDescripcionCompleta() {
       this.descripcionCompleta = !this.descripcionCompleta;
     },
@@ -295,6 +323,8 @@ createApp({
 
 =======
 >>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+=======
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));
@@ -311,6 +341,7 @@ createApp({
         this.filtroAccesorios = this.accesorios;
       }
     },
+<<<<<<< HEAD
     descripcionReducida() {
       if (this.productoSeleccionado && this.productoSeleccionado.descripcion) {
         if (this.descripcionCompleta) {
@@ -327,4 +358,7 @@ createApp({
       return '';
     },
 }
+=======
+  }
+>>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 }).mount("#app")
