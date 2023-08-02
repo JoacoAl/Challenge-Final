@@ -41,6 +41,10 @@ createApp({
         productoSeleccionado: {},
 
         cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+        cantidadEscogida: 1,
+        descripcionMaxLength : 50,
+        descripcionCompleta: false
+      
     };
   },
   created(){
@@ -116,6 +120,33 @@ createApp({
         }
       });
     },
+    comprarEnElModal(id) {
+      const producto = this.productos.find((e) => e.id == id);
+      const cantidad = parseInt(this.cantidadEscogida);
+
+      if (cantidad > 0 && cantidad <= producto.cantidad) {
+        const item = this.seleccionadas.find((e) => e.id == id);
+        if (item) {
+          item.cantidad += cantidad;
+        } else {
+          this.seleccionadas.push({
+            ...producto,
+            cantidad,
+          });
+        }
+
+        this.cantidadProductosCarrito += cantidad;
+        const jsonProductos = JSON.stringify(this.cantidadProductosCarrito);
+        localStorage.setItem("cantidadProductosCarrito", jsonProductos);
+
+        const json = JSON.stringify(this.seleccionadas);
+        localStorage.setItem("seleccionadas", json);
+
+        swal("Success", "Producto agregado al carrito", "success");
+      } else {
+        swal("Error", "Cantidad inválida", "error");
+      }
+    },
     // Verificar si hay productos en el carrito
     getCantidadProductosCarrito() {
       const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
@@ -129,7 +160,16 @@ createApp({
         this.productoSeleccionado = producto;
       }
     },
-    
+    toggleDescripcion() {
+      if (this.descripcionMaxLength === 50) {
+        this.descripcionMaxLength = this.productoSeleccionado.descripcion.length;
+      } else {
+        this.descripcionMaxLength = 50;
+      }
+    },
+    toggleDescripcionCompleta() {
+      this.descripcionCompleta = !this.descripcionCompleta;
+    },
   },
   computed: {
     filtroBusquedaAccesorios() {
@@ -139,6 +179,21 @@ createApp({
       } else {
         this.filtroAccesorios = this.accesorios;
       }
+    },
+    descripcionReducida() {
+      if (this.productoSeleccionado && this.productoSeleccionado.descripcion) {
+        if (this.descripcionCompleta) {
+          return this.productoSeleccionado.descripcion;
+        } else {
+          if (this.productoSeleccionado.descripcion.length > this.descripcionMaxLength) {
+            let producto = this.productoSeleccionado.descripcion.slice(0, this.descripcionMaxLength) + "...";
+            return producto;
+          } else {
+            return this.productoSeleccionado.descripcion;
+          }
+        }
+      }
+      return '';
     },
 }
 }).mount("#app")

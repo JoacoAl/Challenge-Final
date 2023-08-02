@@ -147,6 +147,13 @@ ul {
   border-radius: 5px !important;
   border: 1px solid black;
 }
+.categoria {
+  height: 85vh;
+  
+  background-image: url("../img-contacto-detalle/gozocampera.JPEG");
+  background-size: cover;
+  background-position-y: 60% !important;
+}
 form {
   border: #000 1px solid !important;
   border-radius: 10px !important;
