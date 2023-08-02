@@ -28,7 +28,7 @@ public class GrowshopApplication {
 
 
             Cliente clientePrueba = new Cliente("Joaquin", "Altamonte", "joaquin.altamonte@gmail.com", codificadorDeContraseña.encode("1234"), "BBB 111", "111111111"  , 18);
-            Cliente clientePrueba2 = new Cliente("Eduardo", "Oriolani", "eduoriolani@gmail.com", codificadorDeContraseña.encode("1234"), "BBB 111","22222222222" , 26);
+            Cliente clientePrueba2 = new Cliente("Eduardo", "Oriolani", "edu.oriolani@gmail.com", codificadorDeContraseña.encode("1234"), "BBB 111","22222222222" , 26);
             Cliente clientePrueba3 = new Cliente("Nicolas", "Gonzales", "nicogonzales@gmail.com", codificadorDeContraseña.encode("1234"), "AAA 222", "3333333333333", 19);
             Cliente clienteAdmin = new Cliente("Admin", "Admin", "admin-gozogrowshop@gmail.com", codificadorDeContraseña.encode("1234"), "AAA 222", "44444444444", 19);
 

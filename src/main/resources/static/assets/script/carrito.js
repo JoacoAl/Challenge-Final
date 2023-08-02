@@ -1,6 +1,28 @@
+window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("navbar");
+  const scrollPosition = window.scrollY;
+  const navbarHeight = navbar.offsetHeight;
+  const headerHeight = 300;
+
+  const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
+  if (scrollPosition > headerHeight) {
+    navbar.classList.add("top-nav");
+    navbar.classList.remove("navbar-interno_home")
+  } else {
+    navbar.classList.remove("top-nav");
+    navbar.classList.add("navbar-interno_home")
+  }
+  navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+});
+
 window.addEventListener("load", function () {
   this.document.getElementById("container-loader").classList.toggle("container-loader2")
 })
+
+
+
+
+const { createApp } = Vue;
 
 const app = createApp({
   data() {
@@ -8,10 +30,11 @@ const app = createApp({
       seleccionadas: [],
       totalCompra: 0,
       totalProductos: 0,
+      logged: false,
+      cliente: []
     }
   },
   created() {
-
     this.format = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -23,7 +46,10 @@ const app = createApp({
       // El usuario ha sido redirigido desde la página de pago
       // Muestra un mensaje de éxito y borra el carrito
       this.generarOrdenPago();
-      alert('¡Tu compra ha sido exitosa!');
+      Swal.fire({
+        title: '¡Pago exitoso!',
+        icon: 'success'
+      });
       this.deleteCompras();
     }
   },
@@ -67,6 +93,7 @@ const app = createApp({
         });
     },
 
+
     generarOrdenPago() {
       const items = this.seleccionadas.map(producto => ({
         id: producto.id,
@@ -80,13 +107,12 @@ const app = createApp({
         }
       })
         .then(response => {
-          console.log(items)
+          console.log(response)
         })
         .catch(error => {
-          alert("no")
+          console.log(error.response)
         });
-    }
-    ,
+    },
 
     deleteCompras() {
       localStorage.removeItem("seleccionadas");
@@ -122,7 +148,6 @@ const app = createApp({
       }
     },
   },
-
   computed: {
     resultado() {
       this.totalCompra = this.seleccionadas.reduce(
@@ -140,53 +165,60 @@ const app = createApp({
       const json = JSON.stringify(this.totalProductos);
       localStorage.setItem("cantidad", json);
     },
-  },
-  redirection() {
-    return window.location.href = "/assets/pages/accesorios.html"
-  },
-  redirectionPay() {
-    return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
-  },
-  crearOrden() {
-    this.ordenProducto = this.seleccionadas.map(producto => ({
-      nombre: producto.nombre,
-      cantidadDeProductos: producto.cantidad,
-      precioUnitario: producto.precio
-    }))
-    axios
-      .post('/api/ordenes/crear-orden', this.ordenProducto, { headers: { 'content-type': 'application/json' } })
-      .then(response => {
-        console.log(response.data);
-        this.fetch();
-      })
-      .catch(error => {
-        console.log(error.response);
-      })
-  },
-  async descartarProducto(id) {
-    const result = await Swal.fire({
-      title: '¿Estás seguro de que quieres descartar este producto?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí',
-      cancelButtonText: 'No'
-    });
-
-    if (result.isConfirmed) {
-      this.elementos = JSON.parse(localStorage.getItem('seleccionadas'));
-      this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
-      this.json = JSON.stringify(this.elementosFiltrados);
-      localStorage.setItem('seleccionadas', this.json);
-
-      await Swal.fire({
-        title: '¡Producto descartado!',
-        icon: 'success'
+    redirection() {
+      return window.location.href = "/assets/pages/accesorios.html"
+    },
+    redirectionPay() {
+      return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
+    },
+    crearOrden() {
+      this.ordenProducto = this.seleccionadas.map(producto => ({
+        nombre: producto.nombre,
+        cantidadDeProductos: producto.cantidad,
+        precioUnitario: producto.precio
+      }))
+      axios
+        .post('/api/ordenes/crear-orden', this.ordenProducto, { headers: { 'content-type': 'application/json' } })
+        .then(response => {
+          console.log(response.data);
+          this.fetch();
+        })
+        .catch(error => {
+          console.log(error.response);
+        })
+    },
+    async descartarProducto(id) {
+      const result = await Swal.fire({
+        title: '¿Estás seguro de que quieres descartar este producto?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
       });
 
-      window.location.href = "/assets/pages/carrito.html";
+      if (result.isConfirmed) {
+        this.elementos = JSON.parse(localStorage.getItem('seleccionadas'));
+        this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
+        this.json = JSON.stringify(this.elementosFiltrados);
+        localStorage.setItem('seleccionadas', this.json);
+
+        await Swal.fire({
+          title: '¡Producto descartado!',
+          icon: 'success'
+        });
+
+        window.location.href = "/assets/pages/carrito.html";
+      }
+    },
+
+    modificarCantidad(id) {
+      let producto = this.seleccionadas.filter(producto => {
+        producto.id = id
+      })
+
     }
   }
+});
 
-})
+
 app.mount("#app")
-

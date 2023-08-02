@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="../img-contacto-detalle/logoGOZO.png" type="image/x-icon">
     <link rel="stylesheet" href="../style/productos.css">
-    <title>Gozo | Tabacos</title>
+    <title>Gozo | Accesorios</title>
     <script src="https://kit.fontawesome.com/ac7a6b20e0.js" crossorigin="anonymous"></script>
 </head>
 
@@ -67,13 +67,17 @@
                                 <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
                             </span>
 
-                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i>
+                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i><span
+                                    class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
+
+
                             </a>
                         </div>
                     </div>
                 </div>
             </nav>
         </header>
+        {{filtroBusquedaAccesorios}}
         <main class="col-12 d-flex flex-column align-items-center">
             <div class="col-12 categoria-accesorios">
             </div>
@@ -86,7 +90,7 @@
             <div class="p-5 col-12 d-flex flex-column flex-wrap">
                 <h4 class="fs-2">Filtrar por categoría</h4>
                 <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
-                    <div v-for="categoria of categoriasAccesorios" style="height: 1rem;" class="form-check form-switch">
+                    <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check form-switch">
                         <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox"
                             v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"
                             @change="filtroBusquedaAccesorios">
@@ -139,7 +143,7 @@
                             <div class="text-center">
                                 <img :src="productoSeleccionado.imagen" class="w-50" alt="Imagen del producto">
                             </div>
-                            <p>Precio: {{format.format(productoSeleccionado.precio) }}</p>
+                            <p>Precio: {{productoSeleccionado.precio }}</p>
                             <p>Marca: {{ productoSeleccionado.marca }}</p>
                             <p>Cantidad disponible: {{ productoSeleccionado.cantidad }}</p>
                             <p>Categoria: {{productoSeleccionado.categoria}}</p>
@@ -248,9 +252,11 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="../script/productos.js"></script>
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+    <script src="../script/accesorios.js"></script>
+    <script src="../script/carrito.js"></script>
+
 
 </body>
 

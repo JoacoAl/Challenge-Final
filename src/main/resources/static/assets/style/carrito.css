@@ -1,18 +1,10 @@
-<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&family=Ysabeau+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&family=Red+Hat+Display&family=Rowdies&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-=======
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&family=Ysabeau+SC&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Pangolin&family=Red+Hat+Display&family=Rowdies&display=swap");
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
->>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 }
 /* LOADER */
 .loader {
@@ -62,10 +54,10 @@
 }
 /* NAVBAR */
 .logo-navbar {
-  width: 160px;
+  width: 180px;
 }
 nav {
-  min-height: 6rem;
+  min-height: 8rem;
   flex-grow: 1 !important;
 }
 .navbar-default {
@@ -75,7 +67,21 @@ nav {
   z-index: 999;
   position: fixed;
   width: 100%;
+  -webkit-transition: all ease-in-out 0.7s;
+  -moz-transition: all ease-in-out 0.7s;
+  -o-transition: all ease-in-out 0.7s;
+  -ms-transition: all ease-in-out 0.7s;
   transition: all ease-in-out 0.7s;
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.65) 0%,
@@ -93,6 +99,10 @@ nav {
 .top-nav {
   background: #000;
   padding: 5px 0px;
+  -webkit-transition: all ease-in-out 0.7s;
+  -moz-transition: all ease-in-out 0.7s;
+  -o-transition: all ease-in-out 0.7s;
+  -ms-transition: all ease-in-out 0.7s;
   transition: all ease-in-out 0.7s;
 }
 
@@ -103,9 +113,17 @@ nav {
   padding: 10px 0 0 0;
   background: #184168;
   border-radius: 0 0 0 0;
+  -webkit-box-shadow: 0 0 0 #000000;
+  -moz-box-shadow: 0 0 0 #000000;
+  -ms-box-shadow: 0 0 0 #000000;
+  -o-box-shadow: 0 0 0 #000000;
   box-shadow: 0 0 0 #000000;
   border-width: 0;
   min-width: 200px;
+  -webkit-transition: all ease-in-out 0.7s;
+  -moz-transition: all ease-in-out 0.7s;
+  -o-transition: all ease-in-out 0.7s;
+  -ms-transition: all ease-in-out 0.7s;
   transition: all ease-in-out 0.7s;
 }
 .top-nav .navbar-nav > li > a:hover {
@@ -118,24 +136,47 @@ nav {
 .nav-interno,
 .nav-interno .navbar-nav > li > .dropdown-menu {
   background: white;
+  -webkit-transition: all ease-in-out 0.7s;
+  -moz-transition: all ease-in-out 0.7s;
+  -o-transition: all ease-in-out 0.7s;
+  -ms-transition: all ease-in-out 0.7s;
   transition: all ease-in-out 0.7s;
 }
 
 .nav-interno_home,
 .nav-interno_home .navbar-nav > li > .dropdown-menu {
   background: transparent;
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.65) 0%,
     rgba(0, 0, 0, 0) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+
+  -webkit-transition: all ease-in-out 0.7s;
+  -moz-transition: all ease-in-out 0.7s;
+  -o-transition: all ease-in-out 0.7s;
+  -ms-transition: all ease-in-out 0.7s;
   transition: all ease-in-out 0.7s;
 }
 
 .nav-interno .navbar-nav > li a {
   border-right: #3b3b3b 1px solid;
   color: #3b3b3b !important;
+  -webkit-transition: all ease-in-out 0.7s;
+  -moz-transition: all ease-in-out 0.7s;
+  -o-transition: all ease-in-out 0.7s;
+  -ms-transition: all ease-in-out 0.7s;
   transition: all ease-in-out 0.7s;
 }
 
@@ -145,7 +186,7 @@ nav {
 }
 /* .scrolled > .navContent{
   transform: scale(0.8);
-  } */
+} */
 .navbar-brand {
   font-family: "Bebas Neue", sans-serif;
   font-size: 32px !important;
@@ -154,18 +195,18 @@ nav {
 }
 
 .navbar-brand:hover {
-  color: rgb(26, 182, 26) !important;
+  color: green !important;
   text-decoration: underline;
 }
 
 .container {
   width: 100%;
-  min-height: 5rem !important;
+  min-height: 6rem !important;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  max-width: 1300px !important;
+  max-width: 1140px !important;
 }
 
 ul {
@@ -183,9 +224,6 @@ ul {
 .emoji-arg {
   width: 45px;
 }
-.icons-navbar {
-  font-size: 28px;
-}
 .shopping-cart {
   height: 2rem;
   background-color: white;
@@ -194,12 +232,10 @@ main {
   min-height: 85vh !important;
   background-color: rgb(241, 254, 255);
 }
-main > h6,
-p {
+main > h6 {
   font-family: "Ubuntu", sans-serif;
   font-size: 24px;
 }
-<<<<<<< HEAD
 main > h1,
 h2,
 h3,
@@ -208,12 +244,6 @@ h5 {
   font-family: "Ysabeau SC", serif;
   font-weight: bolder;
   font-size: 60px;
-=======
-main > h1, h2, h3, h4, h5{
-    font-family: "Rowdies", cursive;
-    font-weight: bolder;
-    font-size: 40px;
->>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 }
 .categoria-tabaco {
   height: 85vh;
@@ -468,10 +498,6 @@ main > h1, h2, h3, h4, h5{
   box-shadow: 4px 4px var(--main-color);
   border: 1px solid black;
 }
-footer {
-  min-height: 15vh !important;
-  background-color: rgb(200, 163, 235);
-}
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .recomendados {
@@ -479,7 +505,6 @@ footer {
     flex-direction: column;
   }
 }
-
 
 .ancor-shop {
   background-color: #6a5991;
@@ -509,16 +534,17 @@ footer {
   font-size: 30px;
 }
 
-<<<<<<< HEAD
 .div-listas {
   border-bottom: 3px rgb(2, 61, 2) solid;
   border-top: 3px rgb(2, 61, 2) solid;
 }
 
 .div-carrito-totales {
-  border: 5px solid rgba(0, 0, 0, 0.068);
-  border-top: 3px rgb(2, 61, 2) solid;
-  height: 43rem;
+  color: rgb(0, 0, 0);
+  height: 45rem;
+  background-color: rgb(226, 226, 226);
+  font-family: "Ubuntu", sans-serif;
+  border-radius: 10px;
 }
 
 .separador-total {
@@ -529,7 +555,7 @@ footer {
 .mercadopago-button {
   width: 30rem;
   height: 50px;
-  background-image: linear-gradient(rgb(34, 12, 133), rgb(34, 12, 133));
+  background-color: orange !important;
   border: none;
   border-radius: 10px;
   color: rgb(255, 255, 255);
@@ -539,7 +565,6 @@ footer {
   justify-content: center;
   gap: 5px;
   cursor: pointer;
-  box-shadow: 1px 3px 0px rgb(34, 12, 133);
   transition-duration: 0.3s;
   font-size: 50px;
 }
@@ -548,122 +573,20 @@ footer {
   width: 30px;
   height: fit-content;
 }
-=======
-.div-listas{
+.div-listas {
   border-bottom: 3px rgb(0, 0, 0) solid;
   border-top: 3px rgb(0, 0, 0) solid;
 }
 
-.div-carrito-totales{
-    border: 5px solid rgba(0, 0, 0, 0.068);
-    border-top: 3px rgb(0, 0, 0) solid;
-    height: 43rem;
+.separador-total {
+  border-top: 3px rgb(0, 0, 0) solid;
+  border-bottom: 3px rgb(0, 0, 0) solid;
 }
 
-.separador-total{
-    border-top: 3px rgb(0, 0, 0) solid;
-    border-bottom: 3px rgb(0, 0, 0) solid;
+.cartIcon-pagar {
+  width: 30px;
+  height: fit-content;
 }
-
-.mercadopago-button {
-    width: 30rem;
-    height: 40px;
-    background-image: linear-gradient(rgb(34, 12, 133), rgb(34, 12, 133));
-    border: none;
-    border-radius: 10px;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    cursor: pointer;
-    box-shadow: 1px 3px 0px rgb(34, 12, 133);
-    transition-duration: .3s;
-    font-size: 30px;
-  }
-  
-  .cartIcon-pagar {
-    width: 30px;
-    height: fit-content;
-  }
-  
-  .cartIcon-pagar path {
-    fill: white;
-  }
-  
-  .mercadopago-button:active {
-    transform: translate(2px ,0px);
-    box-shadow: 0px 1px 0px rgb(79, 56, 180);
-    padding-bottom: 1px;
-  }
-
-  .button-borrar {
-    width: 300px;
-    height: 50px;
-    background-image: linear-gradient(rgb(133, 12, 12), rgb(133, 12, 12));
-    border: none;
-    border-radius: 10px;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    cursor: pointer;
-    box-shadow: 1px 3px 0px rgb(133, 12, 12);
-    transition-duration: .3s;
-    font-size: 30px;
-  }
-  
-  .cartIcon-borrar {
-    width: 30px;
-    height: fit-content;
-  }
-  
-  .cartIcon-borrar path {
-    fill: white;
-  }
-  
-  .button-borrar:active {
-    transform: translate(2px ,0px);
-    box-shadow: 0px 1px 0px rgb(180, 75, 56);
-    padding-bottom: 1px;
-  }
-  
-  .button-comprar {
-    width: 330px;
-    height: 50px;
-    background-image: linear-gradient(rgb(12, 133, 12), rgb(36, 133, 12));
-    border: none;
-    border-radius: 10px;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    cursor: pointer;
-    box-shadow: 1px 3px 0px rgb(36, 133, 12);
-    transition-duration: .3s;
-    font-size: 30px;
-  }
-  
-  .cartIcon-comprar {
-    width: 30px;
-    height: fit-content;
-  }
-  
-  .cartIcon-comprar path {
-    fill: white;
-  }
-  
-  .button-comprar:active {
-    transform: translate(2px ,0px);
-    box-shadow: 0px 1px 0px rgb(81, 180, 56);
-    padding-bottom: 1px;
-  }
->>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
 
 .cartIcon-pagar path {
   fill: white;
@@ -675,7 +598,82 @@ footer {
   padding-bottom: 1px;
 }
 
-<<<<<<< HEAD
+.button-borrar {
+  width: 300px;
+  height: 50px;
+  background-image: linear-gradient(rgb(133, 12, 12), rgb(133, 12, 12));
+  border: none;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  box-shadow: 1px 3px 0px rgb(133, 12, 12);
+  transition-duration: 0.3s;
+  font-size: 30px;
+}
+
+.cartIcon-borrar {
+  width: 30px;
+  height: fit-content;
+}
+
+.cartIcon-borrar path {
+  fill: white;
+}
+
+.button-borrar:active {
+  transform: translate(2px, 0px);
+  box-shadow: 0px 1px 0px rgb(180, 75, 56);
+  padding-bottom: 1px;
+}
+
+.button-comprar {
+  width: 330px;
+  height: 50px;
+  background-image: linear-gradient(rgb(12, 133, 12), rgb(36, 133, 12));
+  border: none;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  box-shadow: 1px 3px 0px rgb(36, 133, 12);
+  transition-duration: 0.3s;
+  font-size: 30px;
+}
+
+.cartIcon-comprar {
+  width: 30px;
+  height: fit-content;
+}
+
+.cartIcon-comprar path {
+  fill: white;
+}
+
+.button-comprar:active {
+  transform: translate(2px, 0px);
+  box-shadow: 0px 1px 0px rgb(81, 180, 56);
+  padding-bottom: 1px;
+}
+
+.cartIcon-pagar path {
+  fill: white;
+}
+
+.mercadopago-button:active {
+  transform: translate(2px, 0px);
+  box-shadow: 0px 1px 0px rgb(79, 56, 180);
+  padding-bottom: 1px;
+}
+
 .button-borrar {
   width: 300px;
   height: 50px;
@@ -744,23 +742,24 @@ footer {
 
 .font-p-tabla-pago {
   font-size: 30px;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .img-relleno-carrito {
   width: 30rem;
   height: 23rem;
-=======
-  .imagenes-carrito{
-    width: 30rem;
-    border-radius: 5px;
-  }
+}
+.imagenes-carrito {
+  width: 30rem;
+  border-radius: 5px;
+}
 
-  /* footer */
+/* footer */
 
 footer {
   background-color: rgb(116, 63, 146);
   object-fit: cover;
-  min-height: 40rem;
+  min-height: 40rem !important;
 }
 footer > h1 {
   font-size: 60px;
@@ -770,11 +769,12 @@ footer > h1 {
 }
 .text-footer {
   font-family: "Rowdies", cursive;
+  font-size: 28px !important;
 }
 
 /* redes sociales footer */
 
-.card {
+.card3 {
   width: fit-content;
   height: fit-content;
   display: flex;
@@ -841,13 +841,51 @@ footer > h1 {
     opacity: 1;
   }
 }
-.ilustraciones{
-  height: 27rem;
-  width: 100vh;
+.text-mamacultiva {
+  font-family: "Rowdies", cursive;
+  text-shadow: 1px 1px 1px black;
 }
-.ilustraciones > img {
-  width: 475px;
-  height: 100%;
-  object-fit: cover;
->>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
+
+/* TABLA */
+table {
+  margin-top: 1rem;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 23px;
+  border: 1px solid black !important;
+}
+td,
+th {
+  height: 100px !important;
+  width: 300px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  vertical-align: middle;
+}
+
+.encabezados {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.imagen-tabla {
+  width: 200px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.precio-total {
+  color: #228b22;
+  font-weight: 600;
+}
+
+.btn-borrar:hover {
+  background-color: rgb(92, 7, 7);
+}
+
+.imagen-mercadopago {
+  width: 600px;
+}
+
+.btn-mercadopago {
+  font-weight: 600;
 }
