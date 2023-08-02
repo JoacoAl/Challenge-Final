@@ -17,44 +17,44 @@
                 <h2 class="text-center">Perfil del Usuario</h2>
                 <form class="form-horizontal">
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Nombre</label>
+                    <label for="nombre" class=" control-label">Nombre</label>
     
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Nombre">
+                    <div class="mt-2">
+                      <input v-model="datos.nombre"  type="text" class="form-control" id="nombre" placeholder="Nombre">
                     </div>
                     <div class="form-group">
-                        <label  class="col-sm-2 control-label">Apellido</label>
+                        <label for="apellido" class=" control-label">Apellido</label>
             
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" placeholder="Apellido">
+                        <div class="mt-2 ">
+                          <input v-model="datos.apellido"  type="text" class="form-control" id="apellido" placeholder="Apellido">
                         </div>
-                        <div class="form-group">
-                            <label  class="col-sm-2 control-label">Fecha de nascimiento</label>
-                <div class="col-sm-10">
-                              <input type="date" class="form-control" id="inputName" placeholder="22/10/1989">
-                            </div>
-                  </div>
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    <label for="email" class=" control-label">Email</label>
+                    <div class="mb-2 mt-2">
+                      <input v-model="datos.email" type="email" class="form-control" id="email" placeholder="Email">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label">Telefono</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="telefono" placeholder="3425877543">
+                    <label for="telefono"  class="control-label">Telefono</label>
+                    <div >
+                      <input v-model="datos.telefono" type="text" class="form-control" id="telefono" placeholder="3425877543">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label">Direcion de Envio</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputEmail" placeholder="Pellegrini 3587">
+                    <label for="edad"  class="control-label">Edad</label>
+                    <div >
+                      <input v-model="datos.edad" type="text" class="form-control" id="edad" placeholder="25">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="direcion" class=" control-label">Direcion de Envio</label>
+                    <div >
+                      <input v-model="datos.direcion" type="text" class="form-control" id="direcion" placeholder="Pellegrini 3587">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="m-auto">
-                      <button type="submit" class="btn buton ">Guardar Alteraciones</button>
+                      <button type="submit" class="btn buton" @click="editarPerfil()">Guardar Cambios</button>
                     </div>
                   </div>
                 </form>
@@ -62,7 +62,10 @@
             </div>
           </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../script/perfil.js"></script>
 </body>
 </html>
