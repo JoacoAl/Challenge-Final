@@ -75,7 +75,7 @@ public class ServicioFacturacion {
 
 
         for (OrdenInfoDTO ordenProducto : ordenProductos) {
-            float paddingCell = 12f;
+            float paddingCell = 9f;
             PdfPCell cellNombre = new PdfPCell(new Phrase(ordenProducto.getNombre()));
             cellNombre.setHorizontalAlignment(Element.ALIGN_LEFT);
             cellNombre.setVerticalAlignment(Element.ALIGN_CENTER);
