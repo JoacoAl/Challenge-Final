@@ -6,12 +6,16 @@ import com.example.challengefinal.growshop.dto.ClienteDTO;
 import com.example.challengefinal.growshop.dto.ClienteRegistroDTO;
 import com.example.challengefinal.growshop.models.Cliente;
 import com.example.challengefinal.growshop.servicios.ServicioCliente;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
@@ -38,14 +42,28 @@ public class ClienteControlador {
     }
 
     @PostMapping("/clientes")
-    public ResponseEntity<Object> registrarCliente(@RequestBody ClienteRegistroDTO clienteRegistroDTO){
+    public ResponseEntity<Object> registrarCliente(@RequestBody ClienteRegistroDTO clienteRegistroDTO) throws JsonProcessingException {
 
         if (clienteRegistroDTO.getNombre().isBlank() || clienteRegistroDTO.getApellido().isBlank() || clienteRegistroDTO.getEmail().isBlank() || clienteRegistroDTO.getContraseña().isBlank()|| clienteRegistroDTO.getDireccion().isBlank() || clienteRegistroDTO.getEdad() <= 0 || clienteRegistroDTO.getTelefono().isBlank() ){
             return new ResponseEntity<>("Falta informacion", HttpStatus.FORBIDDEN);
         }
 
-        if (servicioCliente.traerClientePorEmail(clienteRegistroDTO.getEmail()) != null){
+        // Verificar la existencia del correo electrónico utilizando la API de hunter.io
+        RestTemplate restTemplate = new RestTemplate();
+        String apiKey = "bdae3f20223e73cd0dde752e61fb68c12d8873c1";
+        String url = "https://api.hunter.io/v2/email-verifier?email=" + clienteRegistroDTO.getEmail() + "&api_key=" + apiKey;
+        String response = restTemplate.getForObject(url, String.class);
 
+        // Analizar la respuesta JSON para obtener el resultado de la verificación
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(response);
+        boolean emailExists = rootNode.path("data").path("result").asText().equals("deliverable");
+
+        if (!emailExists) {
+            return new ResponseEntity<>("Email does not exist", HttpStatus.FORBIDDEN);
+        }
+
+        if (servicioCliente.traerClientePorEmail(clienteRegistroDTO.getEmail()) != null){
             return new ResponseEntity<>("El email esta en uso", HttpStatus.FORBIDDEN);
         }
         if (clienteRegistroDTO.getEdad() < 18){

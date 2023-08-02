@@ -8,22 +8,18 @@ import com.example.challengefinal.growshop.models.Orden;
 import com.example.challengefinal.growshop.models.OrdenProducto;
 import com.example.challengefinal.growshop.models.Producto;
 import com.example.challengefinal.growshop.servicios.*;
-import com.example.challengefinal.growshop.servicios.email.EmailServicio;
 import com.example.challengefinal.growshop.utils.NumeroOrden;
 import com.itextpdf.text.DocumentException;
 import com.mercadopago.MercadoPagoConfig;
-import com.sanctionco.jmail.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import com.example.challengefinal.growshop.pdfs.PdfGenerador;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -39,11 +35,8 @@ public class OrdenControlador {
     @Autowired
     private ServicioCliente servicioCliente;
     @Autowired
-    private ServicioFacturacion servicioFacturacion;
-    @Autowired
     private ServicioOrdenProducto servicioOrdenProducto;
-    @Autowired
-    private EmailServicio emailServicio;
+
     @Value("${mercadoPago.accessToken}")
     private String accessToken;
 
