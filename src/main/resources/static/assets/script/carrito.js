@@ -2,149 +2,71 @@ window.addEventListener("load", function () {
   this.document.getElementById("container-loader").classList.toggle("container-loader2")
 })
 
-<<<<<<< HEAD
-
-
-const { createApp } = Vue;
-
 const app = createApp({
   data() {
     return {
       seleccionadas: [],
       totalCompra: 0,
       totalProductos: 0,
-      ordenProducto: [],
-      cliente: []
     }
   },
   created() {
+
+    this.format = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
+
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
-    console.log(this.seleccionadas)
-
-    const items = this.seleccionadas.map(producto => ({
-      title: producto.nombre,
-      description: producto.descripcion,
-      quantity: producto.cantidad,
-      currency_id: 'ARS',
-      unit_price: producto.precio
-    }));
-
-    // Crea la preferencia de pago con los items dinámicos
-    fetch('https://api.mercadopago.com/checkout/preferences', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer APP_USR-3626152189977637-073022-e75fb2a65955a5c01e55f56a337d3081-1436732273'
-      },
-      body: JSON.stringify({
-        items
-      })
-
-    })
-      .then(response =>
-        response.json())
-      .then(data => {
-        // Aquí puedes obtener el ID de la preferencia de pago
-        const preferenceId = data.id;
-
-        // Inicia el proceso de pago con el ID de la preferencia de pago
-        const mp = new MercadoPago('APP_USR-fbe4eb89-8e2f-405f-8c92-cfd93b2a4fc2', {
-          locale: 'es-AR'
-        });
-
-        //  Agrega el botón de pago a tu página
-        const checkout = mp.checkout({
-          preference: {
-            id: preferenceId
-          },
-          render: {
-            container: '.mercadopago', // Indica dónde se mostrará el botón de pago
-            label: 'Pagar', // Cambia el texto del botón de pago (opcional)
-
-          }
-
-        });
-        this.crearOrden();
-      });
+    // Detecta si el usuario ha sido redirigido desde la página de pago
+    if (window.location.search.includes('payment_id')) {
+      // El usuario ha sido redirigido desde la página de pago
+      // Muestra un mensaje de éxito y borra el carrito
+      this.generarOrdenPago();
+      alert('¡Tu compra ha sido exitosa!');
+      this.deleteCompras();
+    }
   },
 
   methods: {
-    logout() {
-      axios.post("/api/logout")
-        .then(response => {
+    redirectToPayment() {
+      const items = this.seleccionadas.map(producto => ({
+        title: producto.nombre,
+        description: producto.descripcion,
+        quantity: producto.cantidad,
+        currency_id: 'ARS',
+        unit_price: producto.precio
+      }));
 
-          window.location.href = "/index.html";
+      // Crea la preferencia de pago con los items dinámicos
+      fetch('https://api.mercadopago.com/checkout/preferences', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer TEST-1559251038431848-073110-e6100fab33c28279e8189aa2c02b7bbf-63764321'
+        },
+        body: JSON.stringify({
+          items,
+          back_urls: {
+            success: `http://localhost:8080/assets/pages/carrito.html`
+          }
         })
-    },
-    deleteCompras() {
-      localStorage.removeItem("seleccionadas");
-      this.seleccionadas = [];
-=======
-const app = createApp ({
-    data(){
-        return{
-            seleccionadas: [],
-            totalCompra: 0,
-            totalProductos: 0,
-        }
-    },
-    created(){
-
-      this.format = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
-
-      this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
-              // Detecta si el usuario ha sido redirigido desde la página de pago
-              if (window.location.search.includes('payment_id')) {
-                // El usuario ha sido redirigido desde la página de pago
-                // Muestra un mensaje de éxito y borra el carrito
-                this.generarOrdenPago();
-                alert('¡Tu compra ha sido exitosa!');
-                this.deleteCompras();
-            }
-  },
-  
-    methods:{
-      redirectToPayment() {
-        const items = this.seleccionadas.map(producto => ({
-            title: producto.nombre,
-            description: producto.descripcion,
-            quantity: producto.cantidad,
-            currency_id: 'ARS',
-            unit_price: producto.precio
-        }));
-    
-        // Crea la preferencia de pago con los items dinámicos
-        fetch('https://api.mercadopago.com/checkout/preferences', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer TEST-1559251038431848-073110-e6100fab33c28279e8189aa2c02b7bbf-63764321'
-            },
-            body: JSON.stringify({
-                items,
-                back_urls: {
-                    success: `http://localhost:8080/assets/pages/carrito.html`
-                }
-            })
-        })
+      })
         .then(response => response.json())
         .then(data => {
-            // Aquí puedes obtener el ID y la URL de la preferencia de pago
-            const preferenceId = data.id;
-            const preferenceUrl = data.init_point;
-    
-            // Redirige al usuario a la página de pago
-            window.location.href = preferenceUrl;
+          // Aquí puedes obtener el ID y la URL de la preferencia de pago
+          const preferenceId = data.id;
+          const preferenceUrl = data.init_point;
+
+          // Redirige al usuario a la página de pago
+          window.location.href = preferenceUrl;
         })
         .then(() => {
-            // Aquí puedes llamar al método generarOrdenPago para crear la orden de compra
-            
+          // Aquí puedes llamar al método generarOrdenPago para crear la orden de compra
+
         });
     },
-    
+
     generarOrdenPago() {
       const items = this.seleccionadas.map(producto => ({
         id: producto.id,
@@ -154,9 +76,9 @@ const app = createApp ({
       }));
       axios.post('/api/crear/orden', items, {
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         }
-        })
+      })
         .then(response => {
           console.log(items)
         })
@@ -167,80 +89,14 @@ const app = createApp ({
     ,
 
     deleteCompras() {
-        localStorage.removeItem("seleccionadas");
-        this.seleccionadas = [];
-    },
-    redirection(){
-      return window.location.href = "/assets/pages/accesorios.html"
-    },
-    redirectionPay(){
-      return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
-    },
-    async descartarProducto(id) {
-      const result = await Swal.fire({
-          title: '¿Estás seguro de que quieres descartar este producto?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Sí',
-          cancelButtonText: 'No'
-      });
-  
-      if (result.isConfirmed) {
-          this.elementos = JSON.parse(localStorage.getItem('seleccionadas'));
-          this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
-          this.json = JSON.stringify(this.elementosFiltrados);
-          localStorage.setItem('seleccionadas', this.json);
-  
-          await Swal.fire({
-              title: '¡Producto descartado!',
-              icon: 'success'
-          });
-  
-          window.location.href = "/assets/pages/carrito.html";
-      }
-  },
-},
-
-    computed:{
-        resultado() {
-            this.totalCompra = this.seleccionadas.reduce(
-              (total, articulo) => total + articulo.precio * articulo.cantidad,
-              0
-            );
-            const json = JSON.stringify(this.totalCompra);
-            localStorage.setItem("resultado", json);
-          },
-          cantidad() {
-            this.totalProductos = this.seleccionadas.reduce(
-              (total, articulo) => total + articulo.cantidad,
-              0
-            );
-            const json = JSON.stringify(this.totalProductos);
-            localStorage.setItem("cantidad", json);
-          },
->>>>>>> 7e525a178c526afdd3523941dab79d75e1b5112c
+      localStorage.removeItem("seleccionadas");
+      this.seleccionadas = [];
     },
     redirection() {
       return window.location.href = "/assets/pages/accesorios.html"
     },
     redirectionPay() {
       return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
-    },
-    crearOrden() {
-      this.ordenProducto = this.seleccionadas.map(producto => ({
-        nombre: producto.nombre,
-        cantidadDeProductos: producto.cantidad,
-        precioUnitario: producto.precio
-      }))
-      axios
-        .post('/api/ordenes/crear-orden', this.ordenProducto, { headers: { 'content-type': 'application/json' } })
-        .then(response => {
-          console.log(response.data);
-          this.fetch();
-        })
-        .catch(error => {
-          console.log(error.response);
-        })
     },
     async descartarProducto(id) {
       const result = await Swal.fire({
@@ -264,9 +120,9 @@ const app = createApp ({
 
         window.location.href = "/assets/pages/carrito.html";
       }
-    }
-
+    },
   },
+
   computed: {
     resultado() {
       this.totalCompra = this.seleccionadas.reduce(
@@ -285,6 +141,52 @@ const app = createApp ({
       localStorage.setItem("cantidad", json);
     },
   },
+  redirection() {
+    return window.location.href = "/assets/pages/accesorios.html"
+  },
+  redirectionPay() {
+    return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
+  },
+  crearOrden() {
+    this.ordenProducto = this.seleccionadas.map(producto => ({
+      nombre: producto.nombre,
+      cantidadDeProductos: producto.cantidad,
+      precioUnitario: producto.precio
+    }))
+    axios
+      .post('/api/ordenes/crear-orden', this.ordenProducto, { headers: { 'content-type': 'application/json' } })
+      .then(response => {
+        console.log(response.data);
+        this.fetch();
+      })
+      .catch(error => {
+        console.log(error.response);
+      })
+  },
+  async descartarProducto(id) {
+    const result = await Swal.fire({
+      title: '¿Estás seguro de que quieres descartar este producto?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    });
+
+    if (result.isConfirmed) {
+      this.elementos = JSON.parse(localStorage.getItem('seleccionadas'));
+      this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
+      this.json = JSON.stringify(this.elementosFiltrados);
+      localStorage.setItem('seleccionadas', this.json);
+
+      await Swal.fire({
+        title: '¡Producto descartado!',
+        icon: 'success'
+      });
+
+      window.location.href = "/assets/pages/carrito.html";
+    }
+  }
+
 })
 app.mount("#app")
 
