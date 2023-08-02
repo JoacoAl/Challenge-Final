@@ -12,6 +12,14 @@
 </head>
 <body>
     <div id="app" class="layout">
+        <div class="container-loader" id="container-loader">
+            <img src="../images/logo.png" alt="" class="w-25">
+            <div class="loader">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
         <header>
             <nav id="navbar" class="navbar navbar-default navbar-light flex-grow fixed-top navbar-expand-lg nav-interno_home">  
                 <div class="container-fluid d-flex navContent navbar-expand-lg justify-content-between container">
@@ -38,10 +46,11 @@
                             <li class="nav-item">
                                 <a class="navbar-brand text-white" href="./contacto.html" class="a-nav">Contacto</a>
                             </li>
-                            <li class="nav-item">
-                                <img src="../images/banderitaArg.png" alt="" class="emoji-arg">
+                            <li v-show="cliente.email === 'admin-gozogrowshop@gmail.com'" class="nav-item">
+                                <a class="navbar-brand text-white" href="../../manager.html" class="a-nav">Manager</a>
                             </li>
                         </ul>
+<<<<<<< HEAD
                     </div>
                     <div class="d-flex justify-content-center gap-2">
                         <a href="#"><i class="bi bi-person-circle text-white icons-navbar"></i></a>
@@ -49,6 +58,22 @@
                             <i class="bi bi-cart-fill text-white icons-navbar"></i>
                             <span class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
                           </a>
+=======
+                        <div class="d-flex justify-content-center gap-2">
+                            <span v-if="logged" class="d-flex justify-content-center gap-2">
+                                <i class="bi bi-person-circle text-white icons-navbar"></i>
+                                <button class="btn btn-success">{{cliente.nombre}}</button>
+                                <button class="btn btn-success" @click="logout()"><i
+                                        class="bi bi-box-arrow-left text-white"></i></button>
+                            </span>
+                            <span v-if="!logged" class="text-center d-flex align-items-center">
+                                <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
+                            </span>
+
+                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i>
+                            </a>
+                        </div>
+>>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
                     </div>
                 </div>
             </nav>

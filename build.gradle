@@ -20,6 +20,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 	implementation 'com.mercadopago:sdk-java:2.1.11'
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -28,6 +30,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'com.lowagie:itext:2.1.7'
+	implementation 'com.itextpdf:itextpdf:5.5.13.3'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.simplejavamail:simple-java-mail:7.5.0'

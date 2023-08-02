@@ -7,12 +7,15 @@ import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Set;
+/*
 @Service
 public class ServicioFacturacion {
 
@@ -119,3 +122,4 @@ public class ServicioFacturacion {
         return total;
     }
 }
+*/

@@ -13,8 +13,17 @@
 </head>
 <body>
     <div id="app" class="layout">
-    <header>
-            <nav id="navbar" class="navbar navbar-default navbar-light flex-grow fixed-top navbar-expand-lg nav-interno_home">  
+        <div class="container-loader" id="container-loader">
+            <img src="../images/logo.png" alt="" class="w-25">
+            <div class="loader">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        <header>
+            <nav id="navbar"
+                class="navbar navbar-default navbar-light flex-grow fixed-top navbar-expand-lg nav-interno_home">
                 <div class="container-fluid d-flex navContent navbar-expand-lg justify-content-between container">
                     <img src="../images/logo.png" alt="logo" class="logo-navbar w-25">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -39,17 +48,24 @@
                             <li class="nav-item">
                                 <a class="navbar-brand text-white" href="./contacto.html" class="a-nav">Contacto</a>
                             </li>
-                            <li class="nav-item">
-                                <img src="../images/banderitaArg.png" alt="" class="emoji-arg">
+                            <li v-show="cliente.email === 'admin-gozogrowshop@gmail.com'" class="nav-item">
+                                <a class="navbar-brand text-white" href="../../manager.html" class="a-nav">Manager</a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="d-flex justify-content-center gap-2">
-                        <a href="#"><i class="bi bi-person-circle text-white icons-navbar"></i></a>
-                        <a href="./carrito.html">
-                            <i class="bi bi-cart-fill text-white icons-navbar"></i>
-                            <span class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
-                          </a>
+                        <div class="d-flex justify-content-center gap-2">
+                            <span v-if="logged" class="d-flex justify-content-center gap-2">
+                                <i class="bi bi-person-circle text-white icons-navbar"></i>
+                                <button class="btn btn-success">{{cliente.nombre}}</button>
+                                <button class="btn btn-success" @click="logout()"><i
+                                        class="bi bi-box-arrow-left text-white"></i></button>
+                            </span>
+                            <span v-if="!logged" class="text-center d-flex align-items-center">
+                                <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
+                            </span>
+
+                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -65,11 +81,15 @@
             </div>
             <div class="p-5 col-12 d-flex flex-column flex-wrap">
                 <h4 class="fs-2">Filtrar por categoría</h4>
-                <div class="d-flex justify-content-center filtros pt-2 gap-5 col-12">
-                    <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check form-switch d-flex flex-wrap">
-                        <input class="form-check-input me-2" style="height: 2rem; width: 3.5rem;" type="checkbox" v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"  @change="filtroBusquedaAccesorios">
-                        <label class="form-check-label" :for="categoria"><p class="fs-4">{{categoria}}</p></label>
-                      </div>
+                <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
+                    <div v-for="categoria of categoriasAccesorios" style="height: 1rem;" class="form-check form-switch">
+                        <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox"
+                            v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"
+                            @change="filtroBusquedaAccesorios">
+                        <label class="form-check-label" :for="categoria">
+                            <p class="fs-4">{{categoria}}</p>
+                        </label>
+                    </div>
                 </div>
             </div>
             <section class="col-10 d-flex gap-5 justify-content-start flex-wrap productos">

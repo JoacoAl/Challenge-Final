@@ -15,12 +15,17 @@ window.addEventListener("scroll", function() {
     navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
   });
 
+window.addEventListener("load", function () {
+  this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
+
 
 const {createApp} = Vue
 
 createApp({
   data() {
     return {
+<<<<<<< HEAD
         productos: [],
         cultivo: [],
 
@@ -40,6 +45,19 @@ createApp({
         cantidadEscogida: 1,
         descripcionMaxLength : 50,
         descripcionCompleta: false
+=======
+      productos: [],
+      cultivo: [],
+      cultivoFiltrado: [],
+      filtroCultivo: [],
+      checkedCheckbox: [],
+      seleccionadas: [],
+      tabacosFiltrados: [],
+      categoriasCultivo: [],
+      productoSeleccionado: {},
+      logged: false,
+      cliente: []
+>>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
     };
   },
   created(){
@@ -47,6 +65,13 @@ createApp({
      this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
   methods: {
+    logout() {
+      axios.post("/api/logout")
+        .then(response => {
+
+          window.location.href = "/index.html";
+        })
+    },
     mostrarModal(producto) {
       if (producto) {
         this.productoSeleccionado = producto;
@@ -54,9 +79,15 @@ createApp({
     },
     traerProductosCultivo(){
       axios
+<<<<<<< HEAD
       .get('/api/productos')
       .then(response =>{
         this.productos = response.data.filter(productos => productos.activo == true)
+=======
+        .get('/api/productos')
+        .then(response => {
+          this.productos = response.data
+>>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
 
         this.format = new Intl.NumberFormat('en-US', {
           style: 'currency',
