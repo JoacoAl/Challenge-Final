@@ -1,20 +1,20 @@
-window.addEventListener("scroll", function () {
-  const navbar = document.getElementById("navbar");
-  const scrollPosition = window.scrollY;
-  const navbarHeight = navbar.offsetHeight;
-  const headerHeight = 200;
+window.addEventListener("scroll", function() {
+    const navbar = document.getElementById("navbar");
+    const scrollPosition = window.scrollY;
+    const navbarHeight = navbar.offsetHeight;
+    const headerHeight = 200; 
 
-  const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
-  if (scrollPosition > headerHeight) {
-    navbar.classList.add("top-nav");
-    navbar.classList.remove("navbar-interno_home")
-  } else {
-    navbar.classList.remove("top-nav");
-    navbar.classList.add("navbar-interno_home")
-  }
-  navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-});
-const myModal = document.getElementById('exampleModal');
+    const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
+    if (scrollPosition > headerHeight) {
+        navbar.classList.add("top-nav");
+        navbar.classList.remove("navbar-interno_home")
+      } else {
+        navbar.classList.remove("top-nav");
+        navbar.classList.add("navbar-interno_home")
+      }
+    navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+  });
+  const myModal = document.getElementById('exampleModal');
 const myInput = myModal.querySelector('.modal-body input');
 
 myModal.addEventListener('shown.bs.modal', () => {
@@ -30,123 +30,51 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      productos: [],
+        productos: [],
 
-      tabacos: [],
-      accesorios: [],
-      cultivo: [],
+        tabacos: [],
 
-      tabacosFiltrados: [],
-      cultivoFiltrado: [],
-      accesoriosFiltrados: [],
+        tabacosFiltrados: [],
+        
+        filtroTabacos: [],
 
-      filtroTabacos: [],
-      filtroCultivo: [],
-      filtroAccesorios: [],
+        checkedCheckbox: [],
+        seleccionadas: [],
+        tabacosFiltrados: [],
 
-      checkedCheckbox: [],
-      seleccionadas: [],
-      tabacosFiltrados: [],
-      categoriasCultivo: [],
-      categoriasAccesorios: [],
-
-      productoSeleccionado: {},
-      logged: false,
-      cliente: []
+        productoSeleccionado: {},
+        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
     };
   },
-  created() {
-    axios.get("/api/cliente/actual")
-      .then(response => {
-        this.logged = true;
-        this.cliente = response.data
-
-      })
-      .catch(err => console.log(err))
-    this.traerProductosTabacos();
-    this.traerProductosCultivo();
-    this.traerProductosAccesorios();
-    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
-    this.traerProductosTabacos();
+  created(){
+     this.traerProductosTabacos();
+     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
 
   methods: {
-    logout() {
-      axios.post("/api/logout")
-        .then(response => {
-
-          window.location.href = "/index.html";
-        })
-    },
-    traerProductosTabacos() {
+    traerProductosTabacos(){
       axios
-        .get('/api/productos')
-        .then(response => {
-          this.productos = response.data.filter(productos => productos.activo == true)
+      .get('/api/productos')
+      .then(response =>{
+        this.productos = response.data.filter(productos => productos.activo == true)
 
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
+        this.format = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+      });
 
-          //TABACOS
-          this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
-          let marcas = this.tabacos.map(tabaco => tabaco.marca)
-          const categorias = [...new Set(marcas)]
-          this.tabacosFiltrados = categorias
-          console.log(this.tabacos);
-        })
-        .catch(exception => {
-          console.log(exception);
-        })
+        //TABACOS
+        this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
+        let marcas = this.tabacos.map( tabaco => tabaco.marca)
+            const categorias = [...new Set(marcas)]
+            this.tabacosFiltrados = categorias
+            console.log(this.tabacos);
+      })
+      .catch(exception => {
+        console.log(exception);
+      })
     },
 
-    traerProductosCultivo() {
-      axios
-        .get('/api/productos')
-        .then(response => {
-          this.productos = response.data
-
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
-          //CULTIVO
-          this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
-          console.log(this.cultivo);
-          let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
-          const catCultivos = [...new Set(categoriasDeCultivo)]
-          this.categoriasCultivo = catCultivos;
-          console.log(this.categoriasCultivo)
-        })
-        .catch(exception => {
-          console.log(exception);
-        })
-    },
-
-    traerProductosAccesorios() {
-      axios
-        .get('/api/productos')
-        .then(response => {
-          this.productos = response.data
-
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
-          //ACCESORIOS
-          this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS")
-          console.log(this.accesorios);
-          let categoriasDeAccesorios = this.accesorios.map(el => el.subCategoria)
-          const catAccesorios = [...new Set(categoriasDeAccesorios)]
-          this.categoriasAccesorios = catAccesorios;
-          console.log(this.categoriasAccesorios)
-        })
-        .catch(exception => {
-          console.log(exception);
-        })
-    },
-    // localstorage
     toggleSeleccion(id) {
       console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
@@ -178,6 +106,9 @@ createApp({
                 cantidad,
               });
             }
+            this.cantidadProductosCarrito += cantidad;
+            const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
+            localStorage.setItem("cantidadProductosCarrito", jsonProductos);
             const json = JSON.stringify(this.seleccionadas);
             localStorage.setItem("seleccionadas", json);
             swal("Success", "Producto agregado al carrito", "success");
@@ -187,22 +118,22 @@ createApp({
         }
       });
     },
+    // Verificar si hay productos en el carrito
+    getCantidadProductosCarrito() {
+      const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
+      if (storedCantidadProductosCarrito) {
+        return parseInt(storedCantidadProductosCarrito);
+      }
+      return 0; // Valor predeterminado si no se encuentra en el LocalStorage
+    },
     mostrarModal(producto) {
       if (producto) {
         this.productoSeleccionado = producto;
       }
     },
-
+    
   },
   computed: {
-    filtroBusquedaCultivo() {
-      if (this.checkedCheckbox.length != 0) {
-        this.filtroCultivo = this.cultivo.filter(producto => this.checkedCheckbox.includes(producto.subCategoria))
-        console.log(this.filtroCultivo)
-      } else {
-        this.filtroCultivo = this.cultivo;
-      }
-    },
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));
@@ -219,5 +150,5 @@ createApp({
         this.filtroAccesorios = this.accesorios;
       }
     },
-  }
+}
 }).mount("#app")

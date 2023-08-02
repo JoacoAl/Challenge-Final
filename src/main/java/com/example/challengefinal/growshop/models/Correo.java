@@ -1,10 +1,13 @@
 package com.example.challengefinal.growshop.models;
 
+import java.io.ByteArrayOutputStream;
+
 public class Correo {
     private String remitente;
     private String destinatario;
     private String asunto;
     private String comentario;
+    private ByteArrayOutputStream pdfData;
 
     public Correo() {
     }
@@ -14,6 +17,13 @@ public class Correo {
         this.destinatario = destinatario;
         this.asunto = asunto;
         this.comentario = comentario;
+    }
+    public Correo(String remitente, String destinatario, String asunto, String comentario, ByteArrayOutputStream pdfData) {
+        this.remitente = remitente;
+        this.destinatario = destinatario;
+        this.asunto = asunto;
+        this.comentario = comentario;
+        this.pdfData = pdfData;
     }
 
     public String getRemitente() {
@@ -47,4 +57,13 @@ public class Correo {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    public ByteArrayOutputStream getPdfData() {
+        return pdfData;
+    }
+
+    public void setPdfData(ByteArrayOutputStream pdfData) {
+        this.pdfData = pdfData;
+    }
 }
+

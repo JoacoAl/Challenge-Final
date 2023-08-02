@@ -20,13 +20,8 @@
 
 <body>
     <div id="app">
-        <div class="container-loader" id="container-loader">
-            <img src="./assets/images/logo.png" alt="" class="w-25">
-            <div class="loader">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
+        <div class="container-loader" id="container-loader"> <img src="./assets/images/logo.png" alt="" class="w-25">
+            <div class="loader"> <span class="dot"></span> <span class="dot"></span> <span class="dot"></span> </div>
         </div>
         <header>
             <nav id="navbar"
@@ -77,8 +72,9 @@
                                 <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
                             </span>
 
-                            <a href="./assets/pages/carrito.html"><i
-                                    class="bi bi-cart-fill text-white icons-navbar"></i>
+                            <a href="./assets/pages/carrito.html">
+                                <i class="bi bi-cart-fill text-white icons-navbar"></i>
+                                <span class="badge bg-secondary">{{ cantidadProductosCarrito }}</span>
                             </a>
                         </div>
                     </div>

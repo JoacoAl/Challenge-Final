@@ -1,37 +1,29 @@
 package com.example.challengefinal.growshop.controladores;
 
 import com.example.challengefinal.growshop.Repositorios.OrdenProductoRepositorio;
-import com.example.challengefinal.growshop.dto.OrdenDTO;
-import com.example.challengefinal.growshop.dto.OrdenInfoDTO;
-import com.example.challengefinal.growshop.models.Cliente;
-import com.example.challengefinal.growshop.models.Orden;
-import com.example.challengefinal.growshop.models.OrdenProducto;
-import com.example.challengefinal.growshop.models.Producto;
+import com.example.challengefinal.growshop.Repositorios.OrdenRepositorio;
+import com.example.challengefinal.growshop.dto.*;
+import com.example.challengefinal.growshop.models.*;
 import com.example.challengefinal.growshop.servicios.*;
 import com.example.challengefinal.growshop.utils.NumeroOrden;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.itextpdf.text.DocumentException;
-import com.mercadopago.MercadoPagoConfig;
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-=======
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-import javax.annotation.PostConstruct;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-=======
-import java.time.LocalDateTime;
-import java.util.Set;
-import javax.annotation.PostConstruct;
-import java.io.IOException;
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -45,23 +37,12 @@ public class OrdenControlador {
     private ServicioProducto servicioProducto;
     @Autowired
     private ServicioCliente servicioCliente;
-<<<<<<< HEAD
+    @Autowired
+    private ServicioFacturacion servicioFacturacion;
     @Autowired
     private ServicioOrdenProducto servicioOrdenProducto;
-
-=======
-    /*@Autowired
-    private ServicioFacturacion servicioFacturacion;*/
     @Autowired
-    private ServicioOrdenProducto servicioOrdenProducto;
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-    @Value("${mercadoPago.accessToken}")
-    private String accessToken;
-
-    @PostConstruct
-    public void init() {
-        MercadoPagoConfig.setAccessToken(accessToken);
-    }
+    private EmailSend emailSend;
 
     @GetMapping("/ordenes")
     public Set<OrdenDTO> traerOrdenesDTO(){
@@ -107,8 +88,34 @@ public class OrdenControlador {
             // Guardar el objeto OrdenProducto en la base de datos
             servicioOrdenProducto.save(ordenProducto);
         }
+        OrdenDTO ordenDTO = new OrdenDTO(orden);
+        // Enviar el correo con la factura adjunta
+        try {
+            // Generar el Correo
+            Correo correo = new Correo();
+            correo.setRemitente("growshopgozo@gmail.com");
+            correo.setDestinatario(cliente.getEmail());
+            correo.setAsunto("Factura de compra - Orden #" + orden.getNumeroDeOrden());
+            correo.setComentario("Adjuntamos la factura de su compra realizada en nuestro Growshop.");
 
-        return new ResponseEntity<>("Orden generada con éxito", HttpStatus.OK);
+            // Generar el PDF
+            ByteArrayOutputStream pdfData = servicioFacturacion.generarFacturaPDF(ordenDTO, productosCarrito, cliente);
+
+            // Enviar el correo electrónico con la factura adjunta
+            ResponseEntity<Object> response = emailSend.sendFactura(correo, pdfData.toByteArray());
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return new ResponseEntity<>("Orden generada y correo enviado con éxito", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Orden generada, pero hubo un problema al enviar el correo", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            // Si ocurre alguna excepción al generar la factura o enviar el correo, manejarla aquí
+            e.printStackTrace();
+            return new ResponseEntity<>("Error al generar la factura o enviar el correo", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
+
+
 
 }

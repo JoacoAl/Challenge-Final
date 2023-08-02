@@ -26,12 +26,7 @@ createApp({
                     'Ahora podés realizar compras.',
                     'success'
                   ).then(() => {
-                    if(this.email == "admin-gozogrowshop@gmail.com" ){
-                      return window.location.href = "/assets/pages/manager.html"
-                    }
-                    else{
                       window.location.href = "/index.html";
-                    }
                   });
                 })
                 .catch(error => {
