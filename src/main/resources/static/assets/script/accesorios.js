@@ -43,13 +43,10 @@ createApp({
 
       categoriasAccesorios: [],
 
-<<<<<<< HEAD
-        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
         cantidadEscogida: 1,
         descripcionMaxLength : 50,
-        descripcionCompleta: false
+        descripcionCompleta: false,
       
-=======
       productoSeleccionado: {},
 
       cantidadProductosCarrito: this.getCantidadProductosCarrito(),
@@ -57,7 +54,6 @@ createApp({
       logged: false,
 
       cliente: []
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     };
   },
   created() {
@@ -180,7 +176,6 @@ createApp({
         this.productoSeleccionado = producto;
       }
     },
-<<<<<<< HEAD
     toggleDescripcion() {
       if (this.descripcionMaxLength === 50) {
         this.descripcionMaxLength = this.productoSeleccionado.descripcion.length;
@@ -191,9 +186,6 @@ createApp({
     toggleDescripcionCompleta() {
       this.descripcionCompleta = !this.descripcionCompleta;
     },
-=======
-
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
   },
   computed: {
     filtroBusquedaAccesorios() {
@@ -204,7 +196,6 @@ createApp({
         this.filtroAccesorios = this.accesorios;
       }
     },
-<<<<<<< HEAD
     descripcionReducida() {
       if (this.productoSeleccionado && this.productoSeleccionado.descripcion) {
         if (this.descripcionCompleta) {
@@ -221,7 +212,4 @@ createApp({
       return '';
     },
 }
-=======
-  }
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 }).mount("#app")

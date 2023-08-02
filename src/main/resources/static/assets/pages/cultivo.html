@@ -64,11 +64,7 @@
                                 <a class="navbar-brand text-white" href="../../manager.html" class="a-nav">Manager</a>
                             </li>
                         </ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
+
                         <div class="d-flex justify-content-center gap-2">
                             <span v-if="logged" class="d-flex justify-content-center gap-2">
                                 <i class="bi bi-person-circle text-white icons-navbar"></i>
@@ -84,8 +80,6 @@
                                 <span class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
                             </a>
                         </div>
-<<<<<<< HEAD
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
                     </div>
                     <div class="d-flex justify-content-center gap-2">
                         <a href="#"><i class="bi bi-person-circle text-white icons-navbar"></i></a>
@@ -93,8 +87,7 @@
                             <i class="bi bi-cart-fill text-white icons-navbar"></i>
                             <span class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
                           </a>
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
+
                     </div>
                 </div>
             </nav>
@@ -156,7 +149,6 @@
                 </div>
             </section>
 
-<<<<<<< HEAD
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" v-if="productoSeleccionado" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
                   <div class="modal-content">
@@ -193,50 +185,6 @@
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                   </div>
-=======
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                v-if="productoSeleccionado" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ productoSeleccionado.nombre }}</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="text-center">
-                                <img :src="productoSeleccionado.imagen" class="w-50" alt="Imagen del producto">
-                            </div>
-                            <p>Precio: {{format.format(productoSeleccionado.precio) }}</p>
-                            <p>Marca: {{ productoSeleccionado.marca }}</p>
-                            <p>Cantidad disponible: {{ productoSeleccionado.cantidad }}</p>
-                            <p>Categoria: {{productoSeleccionado.categoria}}</p>
-                            <p>Subcateogria:{{productoSeleccionado.subcategoria}} </p>
-                            <p>Descripción:</p>
-                            <p class="text-center">{{ productoSeleccionado.descripcion }}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="card-btn" @click="toggleSeleccion(productoSeleccionado.id)">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    :class="seleccionadas.some(e => e.id == productoSeleccionado.id) ? 'bi bi-shop-window text-primary' : 'bi bi-shop-window'"
-                                    viewBox="0 0 512 512">
-                                    <path
-                                        d="m397.78 316h-205.13a15 15 0 0 1 -14.65-11.67l-34.54-150.48a15 15 0 0 1 14.62-18.36h274.27a15 15 0 0 1 14.65 18.36l-34.6 150.48a15 15 0 0 1 -14.62 11.67zm-193.19-30h181.25l27.67-120.48h-236.6z">
-                                    </path>
-                                    <path
-                                        d="m222 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z">
-                                    </path>
-                                    <path
-                                        d="m368.42 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z">
-                                    </path>
-                                    <path
-                                        d="m158.08 165.49a15 15 0 0 1 -14.23-10.26l-25.71-77.23h-47.44a15 15 0 1 1 0-30h58.3a15 15 0 0 1 14.23 10.26l29.13 87.49a15 15 0 0 1 -14.23 19.74z">
-                                    </path>
-                                </svg>
-                            </button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
                 </div>
             </div>
 
@@ -315,6 +263,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../script/cultivo.js"></script>
+    <script src="../script/carrito.js"></script>
 </body>
 
 </html>
