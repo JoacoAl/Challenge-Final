@@ -83,7 +83,7 @@
                 <h4 class="fs-2">Filtrar por categoría</h4>
                 <div class="d-flex filtros justify-content-center pt-4 gap-5 col-8">
                     <div v-for="categoria of categoriasCultivo" style="height: 1rem;" class="form-check form-switch">
-                        <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox"
+                        <input class="form-check-input me-2" style="height: 2rem; width: 3.5rem;" type="checkbox"
                             role="switch" :name="categoria" v-model="checkedCheckbox" :value="categoria" :id="categoria"
                             @change="filtroBusquedaCultivo">
                         <label class="form-check-label" :for="categoria">

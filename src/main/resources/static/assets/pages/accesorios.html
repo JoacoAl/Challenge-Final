@@ -65,9 +65,9 @@
             </div>
             <div class="p-5 col-12 d-flex flex-column flex-wrap">
                 <h4 class="fs-2">Filtrar por categoría</h4>
-                <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
-                    <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check form-switch">
-                        <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox" v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"  @change="filtroBusquedaAccesorios">
+                <div class="d-flex justify-content-center filtros pt-2 gap-5 col-12">
+                    <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check form-switch d-flex flex-wrap">
+                        <input class="form-check-input me-2" style="height: 2rem; width: 3.5rem;" type="checkbox" v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"  @change="filtroBusquedaAccesorios">
                         <label class="form-check-label" :for="categoria"><p class="fs-4">{{categoria}}</p></label>
                       </div>
                 </div>

@@ -67,7 +67,7 @@
                 <h4 class="fs-2">Filtrar por marca</h4>
                 <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
                     <div v-for="marca of tabacosFiltrados" style="height: 1rem;" class="form-check form-switch">
-                        <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox" v-model="checkedCheckbox" :name="marca" :value="marca" role="switch" :id="marca"  @change="filtroBusquedaTabacos">
+                        <input class="form-check-input me-2" style="height: 2rem; width: 3.5rem;" type="checkbox" v-model="checkedCheckbox" :name="marca" :value="marca" role="switch" :id="marca"  @change="filtroBusquedaTabacos">
                         <label class="form-check-label" :for="marca"><p class="fs-4">{{marca}}</p></label>
                       </div>
                 </div>
