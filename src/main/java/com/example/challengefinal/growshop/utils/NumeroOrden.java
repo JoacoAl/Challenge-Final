@@ -9,8 +9,8 @@ public final class NumeroOrden {
     public static Random randomNumber = new Random();
 
     public static String getRandomNum() {
-        int randomNum = randomNumber.nextInt(900000);
-        String formatRandomNum = "GozoGrowShop" + String.format("%04d", randomNum);
+        int randomNum = randomNumber.nextInt(9000000);
+        String formatRandomNum = "Gozo" + String.format("%04d", randomNum);
         return formatRandomNum;
     }
 }

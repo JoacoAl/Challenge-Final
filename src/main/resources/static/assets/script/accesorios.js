@@ -1,75 +1,91 @@
-window.addEventListener("scroll", function() {
-    const navbar = document.getElementById("navbar");
-    const scrollPosition = window.scrollY;
-    const navbarHeight = navbar.offsetHeight;
-    const headerHeight = 200; 
+window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("navbar");
+  const scrollPosition = window.scrollY;
+  const navbarHeight = navbar.offsetHeight;
+  const headerHeight = 200;
 
-    const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
-    if (scrollPosition > headerHeight) {
-        navbar.classList.add("top-nav");
-        navbar.classList.remove("navbar-interno_home")
-      } else {
-        navbar.classList.remove("top-nav");
-        navbar.classList.add("navbar-interno_home")
-      }
-    navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-  });
-  const myModal = document.getElementById('exampleModal');
+  const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
+  if (scrollPosition > headerHeight) {
+    navbar.classList.add("top-nav");
+    navbar.classList.remove("navbar-interno_home")
+  } else {
+    navbar.classList.remove("top-nav");
+    navbar.classList.add("navbar-interno_home")
+  }
+  navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+});
+const myModal = document.getElementById('exampleModal');
 const myInput = myModal.querySelector('.modal-body input');
 
 myModal.addEventListener('shown.bs.modal', () => {
   myInput.focus();
 });
-const {createApp} = Vue
+
+
+window.addEventListener("load", function () {
+  this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
+const { createApp } = Vue
 
 createApp({
   data() {
     return {
-        productos: [],
-        accesorios: [],
+      productos: [],
+      accesorios: [],
 
-        accesoriosFiltrados: [],
-        
-        filtroAccesorios: [],
+      accesoriosFiltrados: [],
 
-        checkedCheckbox: [],
+      filtroAccesorios: [],
 
-        seleccionadas: [],
+      checkedCheckbox: [],
 
-        categoriasAccesorios: [],
+      seleccionadas: [],
 
-        productoSeleccionado: {},
+      categoriasAccesorios: [],
 
-        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+      productoSeleccionado: {},
+
+      cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+
+      logged: false,
+
+      cliente: []
     };
   },
-  created(){
-     this.traerProductosAccesorios();
-     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+  created() {
+    axios.get("/api/cliente/actual")
+      .then(response => {
+        this.logged = true;
+        this.cliente = response.data
+
+      })
+      .catch(err => console.log(err))
+      this.format = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+    this.traerProductosAccesorios();
+    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
   methods: {
-    traerProductosAccesorios(){
+    traerProductosAccesorios() {
       axios
-      .get('/api/productos')
-      .then(response =>{
-        this.productos = response.data.filter(productos => productos.activo == true)
+        .get('/api/productos')
+        .then(response => {
+          this.productos = response.data.filter(productos => productos.activo == true)
 
-        this.format = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-      });
-
-        //ACCESORIOS
-        this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS");
-        let marcas = this.accesorios.map( accesorio => accesorio.subCategoria)
-            const categorias = [...new Set(marcas)]
-            this.accesoriosFiltrados = categorias
-            console.log(this.accesorios);
-            console.log(this.accesoriosFiltrados);
-      })
-      .catch(exception => {
-        console.log(exception);
-      })
+        
+          //ACCESORIOS
+          this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS");
+          let marcas = this.accesorios.map(accesorio => accesorio.subCategoria)
+          const categorias = [...new Set(marcas)]
+          this.accesoriosFiltrados = categorias
+          console.log(this.accesorios);
+          console.log(this.accesoriosFiltrados);
+        })
+        .catch(exception => {
+          console.log(exception);
+        })
     },
 
     toggleSeleccion(id) {
@@ -129,7 +145,7 @@ createApp({
         this.productoSeleccionado = producto;
       }
     },
-    
+
   },
   computed: {
     filtroBusquedaAccesorios() {
@@ -140,5 +156,5 @@ createApp({
         this.filtroAccesorios = this.accesorios;
       }
     },
-}
+  }
 }).mount("#app")

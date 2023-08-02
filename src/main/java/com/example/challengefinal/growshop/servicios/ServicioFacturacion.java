@@ -5,8 +5,11 @@ import com.example.challengefinal.growshop.dto.OrdenInfoDTO;
 import com.example.challengefinal.growshop.models.Cliente;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
+import com.lowagie.text.Image;
 import com.lowagie.text.pdf.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -18,6 +21,8 @@ public class ServicioFacturacion {
 
     @Autowired
     private EmailSend emailSend;
+    @Autowired
+    private ResourceLoader resourceLoader;
 
 
     public ByteArrayOutputStream generarFacturaPDF(OrdenDTO orden, Set<OrdenInfoDTO> ordenProductos, Cliente cliente) throws DocumentException, IOException {
@@ -25,6 +30,7 @@ public class ServicioFacturacion {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Document document = new Document(PageSize.A4);
         PdfWriter writer = PdfWriter.getInstance(document, outputStream);
+
 
             document.open();
             // Agregar encabezado de la factura
@@ -107,7 +113,16 @@ public class ServicioFacturacion {
             Paragraph total = new Paragraph("Total: $" + calcularTotal(ordenProductos));
             document.add(total);
 
+            document.add(new Paragraph("\n"));
+
+            Resource logoResource = resourceLoader.getResource("classpath:static/assets/images/logo.png");
+            Image logo = Image.getInstance(logoResource.getURL());
+            logo.setAlignment(Image.ALIGN_CENTER);
+            logo.scaleToFit(200, 200);
+            document.add(logo);
+
             document.close();
+
         return outputStream;
     }
 

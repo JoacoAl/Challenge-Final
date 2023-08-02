@@ -9,7 +9,7 @@ body {
   background: url(../images/gozoLocal.JPEG) center center no-repeat;
   background-size: cover;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   align-items: center;
   justify-items: center;

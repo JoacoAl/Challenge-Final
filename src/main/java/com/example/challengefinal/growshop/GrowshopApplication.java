@@ -23,7 +23,7 @@ public class GrowshopApplication {
     PasswordEncoder codificadorDeContraseña;
 
     @Bean
-    public CommandLineRunner initData(ClienteRepositorio clienteRepositorio, ProductoRepositorio productoRepositorio, OrdenRepositorio ordenRepositorio, PagoRepositorio pagoRepositorio, OrdenProductoRepositorio ordenProductoRepositorio) {
+    public CommandLineRunner initData(ClienteRepositorio clienteRepositorio, ProductoRepositorio productoRepositorio, OrdenRepositorio ordenRepositorio, OrdenProductoRepositorio ordenProductoRepositorio) {
         return (args) -> {
 
 
@@ -587,15 +587,6 @@ public class GrowshopApplication {
             clienteRepositorio.save(clientePrueba);
             clienteRepositorio.save(clientePrueba2);
 
-
-            Pago pago = new Pago(TipoDePago.CREDITO, 2000, LocalDateTime.now());
-            Pago pago2 = new Pago(TipoDePago.DEBITO, 5000, LocalDateTime.now());
-
-            pagoRepositorio.save(pago);
-            pagoRepositorio.save(pago2);
-
-            orden.setPago(pago);
-            orden2.setPago(pago2);
             ordenRepositorio.save(orden);
             ordenRepositorio.save(orden2);
 
@@ -621,8 +612,6 @@ public class GrowshopApplication {
 
             ordenProductoRepositorio.save(ordenProducto);
             ordenProductoRepositorio.save(ordenProducto2);
-
-
         };
 
     }

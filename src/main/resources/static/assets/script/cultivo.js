@@ -1,75 +1,89 @@
-window.addEventListener("scroll", function() {
-    const navbar = document.getElementById("navbar");
-    const scrollPosition = window.scrollY;
-    const navbarHeight = navbar.offsetHeight;
-    const headerHeight = 200; 
+window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("navbar");
+  const scrollPosition = window.scrollY;
+  const navbarHeight = navbar.offsetHeight;
+  const headerHeight = 200;
 
-    const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
-    if (scrollPosition > headerHeight) {
-        navbar.classList.add("top-nav");
-        navbar.classList.remove("navbar-interno_home")
-      } else {
-        navbar.classList.remove("top-nav");
-        navbar.classList.add("navbar-interno_home")
-      }
-    navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-  });
+  const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
+  if (scrollPosition > headerHeight) {
+    navbar.classList.add("top-nav");
+    navbar.classList.remove("navbar-interno_home")
+  } else {
+    navbar.classList.remove("top-nav");
+    navbar.classList.add("navbar-interno_home")
+  }
+  navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+});
+
+window.addEventListener("load", function () {
+  this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
 
 
-const {createApp} = Vue
+const { createApp } = Vue
 
 createApp({
   data() {
     return {
-        productos: [],
-        cultivo: [],
-
-        cultivoFiltrado: [],
-        
-        filtroCultivo: [],
-        
-        checkedCheckbox: [],
-
-        seleccionadas: [],
-
-        categoriasCultivo: [],
-
-        productoSeleccionado:{},
-
-        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+      productos: [],
+      cultivo: [],
+      cultivoFiltrado: [],
+      filtroCultivo: [],
+      checkedCheckbox: [],
+      seleccionadas: [],
+      tabacosFiltrados: [],
+      categoriasCultivo: [],
+      productoSeleccionado: {},
+      logged: false,
+      cliente: [],
+      cantidadProductosCarrito: this.getCantidadProductosCarrito()
     };
   },
-  created(){
-     this.traerProductosCultivo();
-     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+  created() {
+    axios.get("/api/cliente/actual")
+      .then(response => {
+        this.logged = true;
+        this.cliente = response.data
+
+      })
+      .catch(err => console.log(err))
+      this.format = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+    this.traerProductosCultivo();
+    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
   methods: {
+    logout() {
+      axios.post("/api/logout")
+        .then(response => {
+
+          window.location.href = "/index.html";
+        })
+    },
     mostrarModal(producto) {
       if (producto) {
         this.productoSeleccionado = producto;
       }
     },
-    traerProductosCultivo(){
+    traerProductosCultivo() {
       axios
-      .get('/api/productos')
-      .then(response =>{
-        this.productos = response.data.filter(productos => productos.activo == true)
+        .get('/api/productos')
+        .then(response => {
+          this.productos = response.data
 
-        this.format = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-      });
-        //CULTIVO
-        this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
-        console.log(this.cultivo);
-        let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
-            const catCultivos = [...new Set(categoriasDeCultivo)]
-            this.categoriasCultivo = catCultivos;
-            console.log(this.categoriasCultivo)
-      })
-      .catch(exception => {
-        console.log(exception);
-      })
+          //CULTIVO
+          this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
+          console.log(this.cultivo);
+          let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
+          const catCultivos = [...new Set(categoriasDeCultivo)]
+          this.categoriasCultivo = catCultivos;
+          console.log(this.categoriasCultivo)
+        })
+        .catch(exception => {
+          console.log(exception);
+        })
     },
 
     // localstorage
@@ -106,7 +120,7 @@ createApp({
             this.cantidadProductosCarrito += cantidad;
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
-            
+
             const json = JSON.stringify(this.seleccionadas);
             localStorage.setItem("seleccionadas", json);
             swal("Success", "Producto agregado al carrito", "success");
@@ -125,22 +139,17 @@ createApp({
       }
       return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
-    
-    
+
+
   },
   computed: {
-    filtroBusquedaCultivo(){
-      if(this.checkedCheckbox.length != 0){
-        this.filtroCultivo = this.cultivo.filter( producto => this.checkedCheckbox.includes(producto.subCategoria))
+    filtroBusquedaCultivo() {
+      if (this.checkedCheckbox.length != 0) {
+        this.filtroCultivo = this.cultivo.filter(producto => this.checkedCheckbox.includes(producto.subCategoria))
         console.log(this.filtroCultivo)
-      }else{
+      } else {
         this.filtroCultivo = this.cultivo;
       }
-  },  
-}
+    },
+  }
 }).mount("#app")
-
-
-
-
-
