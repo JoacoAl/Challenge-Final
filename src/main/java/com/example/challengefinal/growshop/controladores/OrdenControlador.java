@@ -9,18 +9,29 @@ import com.example.challengefinal.growshop.models.OrdenProducto;
 import com.example.challengefinal.growshop.models.Producto;
 import com.example.challengefinal.growshop.servicios.*;
 import com.example.challengefinal.growshop.utils.NumeroOrden;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.itextpdf.text.DocumentException;
 import com.mercadopago.MercadoPagoConfig;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+>>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< HEAD
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Set;
+=======
+import java.time.LocalDateTime;
+import java.util.Set;
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+>>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
 
 @RestController
 @RequestMapping("/api")
@@ -34,9 +45,16 @@ public class OrdenControlador {
     private ServicioProducto servicioProducto;
     @Autowired
     private ServicioCliente servicioCliente;
+<<<<<<< HEAD
     @Autowired
     private ServicioOrdenProducto servicioOrdenProducto;
 
+=======
+    /*@Autowired
+    private ServicioFacturacion servicioFacturacion;*/
+    @Autowired
+    private ServicioOrdenProducto servicioOrdenProducto;
+>>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
     @Value("${mercadoPago.accessToken}")
     private String accessToken;
 

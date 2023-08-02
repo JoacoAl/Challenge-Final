@@ -15,6 +15,10 @@ window.addEventListener("scroll", function () {
     navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
 });
 
+window.addEventListener("load", function () {
+    this.document.getElementById("container-loader").classList.toggle("container-loader2")
+})
+
 
 const { createApp } = Vue;
 
@@ -22,17 +26,28 @@ const app = createApp({
     data() {
         return {
             logged: false,
+            cliente: []
         };
     },
 
     created() {
         axios.get("/api/cliente/actual")
-            .then(response => console.log(response))
+            .then(response => {
+                this.logged = true;
+                this.cliente = response.data
+
+            })
             .catch(err => console.log(err))
     },
 
     methods: {
+        logout() {
+            axios.post("/api/logout")
+                .then(response => {
 
+                    window.location.href = "/index.html";
+                })
+        }
     }
 });
 

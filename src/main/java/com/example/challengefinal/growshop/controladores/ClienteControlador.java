@@ -66,10 +66,13 @@ public class ClienteControlador {
         if (servicioCliente.traerClientePorEmail(clienteRegistroDTO.getEmail()) != null){
             return new ResponseEntity<>("El email esta en uso", HttpStatus.FORBIDDEN);
         }
+
         if (clienteRegistroDTO.getEdad() < 18){
             return new ResponseEntity<>( "Tenes que ser mayor para ingresar", HttpStatus.FORBIDDEN);
         }
-        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(), clienteRegistroDTO.getEmail(), clienteRegistroDTO.getDireccion(),  codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()),clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
+
+        Cliente cliente = new Cliente(clienteRegistroDTO.getNombre(),clienteRegistroDTO.getApellido(), clienteRegistroDTO.getEmail(), codificadorDeContraseña.encode(clienteRegistroDTO.getContraseña()), clienteRegistroDTO.getDireccion(), clienteRegistroDTO.getTelefono(), clienteRegistroDTO.getEdad());
+
         servicioCliente.save(cliente);
 
         return new ResponseEntity<>("El usuario fue registrado exitosamente", HttpStatus.CREATED);
