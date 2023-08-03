@@ -230,7 +230,7 @@ ul {
 }
 main {
   min-height: 85vh !important;
-  background-color: rgb(241, 254, 255);
+  background-color: white;
 }
 main > h6 {
   font-family: "Ubuntu", sans-serif;
@@ -974,7 +974,7 @@ th {
     width: 567px !important;
   }
 
-  h2 {
+  h2, h3 {
     font-size: 25px;
   }
 
@@ -988,5 +988,36 @@ th {
   }
   .imagenes-carrito {
     width: 567px !important;
+  }
+}
+@media screen and (max-width: 850px){
+  .contenedorAdaptative{
+    display: flex;
+    flex-direction: column !important ;
+    align-items: center;
+    background-color: rgb(226, 226, 226);
+  }
+  .adaptative{
+    width: 90%;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: white;
+  }
+  .adaptative > ul {
+    width: 90%;
+  }
+  .table{
+    display: none !important;
+  }
+  footer > h1 {
+    font-size: 30px;
+  }
+  .adaptative > h3, h5{
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 850px) {
+  .adaptative{
+    display: none !important;
   }
 }
