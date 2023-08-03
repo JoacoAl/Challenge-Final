@@ -20,74 +20,39 @@ const myInput = myModal.querySelector('.modal-body input');
 myModal.addEventListener('shown.bs.modal', () => {
   myInput.focus();
 });
-<<<<<<< HEAD
-<<<<<<< HEAD
-const {createApp} = Vue
-=======
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
 window.addEventListener("load", function () {
   this.document.getElementById("container-loader").classList.toggle("container-loader2")
 })
 
 const { createApp } = Vue
-<<<<<<< HEAD
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
 createApp({
   data() {
     return {
       productos: [],
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        tabacos: [],
-
-        tabacosFiltrados: [],
-        
-        filtroTabacos: [],
-
-        checkedCheckbox: [],
-        seleccionadas: [],
-        tabacosFiltrados: [],
-
-        productoSeleccionado: {},
-        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
-        cantidadEscogida: 1,
-        descripcionMaxLength : 50,
-        descripcionCompleta: false
-    };
-  },
-  created(){
-     this.traerProductosTabacos();
-     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
-=======
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
       tabacos: [],
       accesorios: [],
       cultivo: [],
 
       tabacosFiltrados: [],
-      cultivoFiltrado: [],
-      accesoriosFiltrados: [],
 
       filtroTabacos: [],
-      filtroCultivo: [],
-      filtroAccesorios: [],
 
       checkedCheckbox: [],
       seleccionadas: [],
       tabacosFiltrados: [],
-      categoriasCultivo: [],
-      categoriasAccesorios: [],
+      cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+      totalPrecioProductos: 0,
 
       productoSeleccionado: {},
       logged: false,
-      cliente: []
+      cliente: [],
+      cantidadEscogida: 1,
+        descripcionMaxLength : 50,
+        descripcionCompleta: false,
+        totalPrecioProductos: 0,
     };
   },
   created() {
@@ -98,28 +63,16 @@ createApp({
 
       })
       .catch(err => console.log(err))
+      this.format = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
     this.traerProductosTabacos();
-    this.traerProductosCultivo();
-    this.traerProductosAccesorios();
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
-    this.traerProductosTabacos();
-<<<<<<< HEAD
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
+    this.totalPrecioProductos = parseFloat(localStorage.getItem("totalPrecioProductos")) || 0;
   },
 
   methods: {
-<<<<<<< HEAD
-    traerProductosTabacos(){
-      axios
-      .get('/api/productos')
-      .then(response =>{
-        this.productos = response.data.filter(productos => productos.activo == true)
-=======
-=======
-  },
-
-  methods: {
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     logout() {
       axios.post("/api/logout")
         .then(response => {
@@ -132,15 +85,8 @@ createApp({
         .get('/api/productos')
         .then(response => {
           this.productos = response.data.filter(productos => productos.activo == true)
-<<<<<<< HEAD
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
+          
 
           //TABACOS
           this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
@@ -154,61 +100,7 @@ createApp({
         })
     },
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
-    traerProductosCultivo() {
-      axios
-        .get('/api/productos')
-        .then(response => {
-          this.productos = response.data
-
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
-          //CULTIVO
-          this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
-          console.log(this.cultivo);
-          let categoriasDeCultivo = this.cultivo.map(el => el.subCategoria)
-          const catCultivos = [...new Set(categoriasDeCultivo)]
-          this.categoriasCultivo = catCultivos;
-          console.log(this.categoriasCultivo)
-        })
-        .catch(exception => {
-          console.log(exception);
-        })
-    },
-
-    traerProductosAccesorios() {
-      axios
-        .get('/api/productos')
-        .then(response => {
-          this.productos = response.data
-
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
-          //ACCESORIOS
-          this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS")
-          console.log(this.accesorios);
-          let categoriasDeAccesorios = this.accesorios.map(el => el.subCategoria)
-          const catAccesorios = [...new Set(categoriasDeAccesorios)]
-          this.categoriasAccesorios = catAccesorios;
-          console.log(this.categoriasAccesorios)
-        })
-        .catch(exception => {
-          console.log(exception);
-        })
-    },
     // localstorage
-<<<<<<< HEAD
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     toggleSeleccion(id) {
       console.log(this.productos);
       const producto = this.productos.find((e) => e.id == id);
@@ -241,13 +133,14 @@ createApp({
               });
             }
             this.cantidadProductosCarrito += cantidad;
+            this.calcularTotalPrecioProductos();
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
             const json = JSON.stringify(this.seleccionadas);
             localStorage.setItem("seleccionadas", json);
             swal("Success", "Producto agregado al carrito", "success");
           } else {
-            swal("Error", "Cantidad inválida", "error");
+            swal("Error", "Cantidad invÃ¡lida", "error");
           }
         }
       });
@@ -268,6 +161,7 @@ createApp({
         }
 
         this.cantidadProductosCarrito += cantidad;
+        this.calcularTotalPrecioProductos();
         const jsonProductos = JSON.stringify(this.cantidadProductosCarrito);
         localStorage.setItem("cantidadProductosCarrito", jsonProductos);
 
@@ -287,44 +181,32 @@ createApp({
       }
       return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
+    calcularTotalPrecioProductos() {
+      this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
+        return total + producto.precio * producto.cantidad;
+      }, 0);
+  
+      // Guardar el precio total en el localStorage
+      localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
+    },
     mostrarModal(producto) {
       if (producto) {
         this.productoSeleccionado = producto;
       }
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
     toggleDescripcion() {
       if (this.descripcionMaxLength === 50) {
         this.descripcionMaxLength = this.productoSeleccionado.descripcion.length;
-=======
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
-
-  },
-  computed: {
-    filtroBusquedaCultivo() {
-      if (this.checkedCheckbox.length != 0) {
-        this.filtroCultivo = this.cultivo.filter(producto => this.checkedCheckbox.includes(producto.subCategoria))
-        console.log(this.filtroCultivo)
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
       } else {
         this.descripcionMaxLength = 50;
       }
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
     toggleDescripcionCompleta() {
       this.descripcionCompleta = !this.descripcionCompleta;
     },
-    
+
   },
   computed: {
-
-=======
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));
@@ -333,15 +215,6 @@ createApp({
         this.filtroTabacos = this.tabacos;
       }
     },
-    filtroBusquedaAccesorios() {
-      if (this.checkedCheckbox.length != 0) {
-        this.filtroAccesorios = this.accesorios.filter(accesorio => this.checkedCheckbox.includes(accesorio.subCategoria));
-        console.log(this.filtroAccesorios)
-      } else {
-        this.filtroAccesorios = this.accesorios;
-      }
-    },
-<<<<<<< HEAD
     descripcionReducida() {
       if (this.productoSeleccionado && this.productoSeleccionado.descripcion) {
         if (this.descripcionCompleta) {
@@ -357,8 +230,5 @@ createApp({
       }
       return '';
     },
-}
-=======
   }
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 }).mount("#app")

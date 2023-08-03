@@ -61,82 +61,6 @@
         <main v-cloak class="d-flex flex-column">
             <div class="col-12 categoria-accesorios">
             </div>
-<<<<<<< HEAD
-            <div class="d-flex justify-content-around">
-                <div class="col-9">
-                    <div class="div-listas col-9 d-flex justify-content-center align-center" v-if="this.seleccionadas.length > 0">
-                        <div class="col-2">
-                            <p></p>
-                        </div>
-                        <div class="col-2 d-flex justify-content-center align-center">
-                            <p><b>Producto:</b></p>
-                        </div>
-                        <div class="col-2 d-flex justify-content-center align-center">
-                            <p><b>Precio unitario:</b></p>
-                        </div>
-                        <div class="col-2 d-flex justify-content-center align-center">
-                            <p><b>cantidad:</b></p>
-                        </div>
-                        <div class="col-3 d-flex justify-content-center align-center">
-                            <p><b>precio final:</b></p>
-                        </div>
-                        <div class="col-1 d-flex justify-content-center align-center">
-                            <p></p>
-                        </div>
-                </div>
-                <div v-for="elemento of seleccionadas" >
-                        <div class="div-productos-seleccionados col-9 d-flex justify-content-center align-center m-1">
-                            <div class="col-2 d-flex justify-content-end align-center">
-                                <img class="img-seleccionada d-flex justify-content-end align-center" :src="elemento.imagen" alt="">
-                            </div>
-                                <div class="col-1 d-flex justify-content-center align-center flex-column">
-                                    <p><b>{{elemento.nombre}}</b></p>
-                                </div>
-                                <div class="col-2 d-flex justify-content-center align-center flex-column">
-                                    <p class="d-flex justify-content-center align-center"> {{format.format(elemento.precio)}}</p>
-                                </div>
-                            <div class="col-1 d-flex justify-content-center align-center flex-column">
-                                <p class="d-flex justify-content-center align-center"></p>
-                                <p class="d-flex justify-content-center align-center"> {{elemento.cantidad}}</p>
-                            </div>
-                            <div class="col-2 d-flex justify-content-center align-center flex-column">
-                                <p class="d-flex justify-content-center align-center"></p>
-                                <p class="d-flex justify-content-center align-center color-precio">{{format.format(elemento.cantidad * elemento.precio)}}</p>
-                            </div>
-                            <div class="col-1 d-flex justify-content-center align-center flex-column">
-                                <i :class="seleccionadas.some(e => e.id == elemento.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'" role="button" @click="descartarProducto(elemento.id)" role="button" ></i>         
-                            </div>
-                        </div>
-                </div>
-                </div>
-                {{cantidad}}
-                {{resultado}}
-                <div class="div-carrito-totales d-flex justify-content-center align-center flex-column col-3" v-if="this.seleccionadas.length > 0">
-                    <div class="d-flex justify-content-around align-center font-p-tabla-pago">
-                        <p class="font-p-tabla-pago">articulos:</p>
-                        <p class="font-p-tabla-pago">{{totalProductos}}</p>
-                    </div>
-                    <div class="d-flex justify-content-around align-center font-p-tabla-pago">
-                        <p class="font-p-tabla-pago">costo envio:</p>
-                        <p class="font-p-tabla-pago">$15</p>
-                    </div>
-                    <div class="separador-total d-flex justify-content-around align-center">
-                        <h5>Total:</h5>
-                        <h5>{{format.format(totalCompra)}}</h5>
-                    </div>
-                    <!-- boton de mercado pago -->
-                    <div class=" d-flex justify-content-around align-center m-4">
-                        <button class="mercadopago-button d-flex justify-content-center"
-                            @click="redirectToPayment()"><span>pagar</span><span><svg
-                                    class="cartIcon-pagar d-flex justify-content-center align-center"
-                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-credit-card" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
-                                    <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
-                                </svg></span></button>
-                    </div>
-=======
             <div class="d-flex justify-content-center flex-column">
                 <div class="col-12 d-flex justify-content-center">
                     <table class="table mx-3 w-75">
@@ -186,7 +110,6 @@
                         <button class="btn btn-primary w-25 btn-mercadopago"
                             @click="redirectToPayment()"><span>Pagar</span></button>
 
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
                     </div>
                 </div>
@@ -198,19 +121,6 @@
                     <img class="imagenes-carrito" src="/assets/img-manager/_23684b76-105d-4e88-9d6a-1d21e8d3d363.jpeg"
                         alt="" />
                 </div>
-<<<<<<< HEAD
-                <div class="m-2">
-                    <button @click="redirection()" class="button-comprar"><span>comprar</span><span><svg
-                                class="cartIcon-comprar" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
-                                <path
-                                    d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z" />
-                            </svg>
-                    </button>
-                </div>
-              </div>
-              <button @click="generarOrdenPago()">generar orden</button>
-=======
                 <!-- 
                 <div class="div-comprar-btn d-flex justify-content-center align-center m-5">
                     <div class="m-2">
@@ -236,7 +146,6 @@
                     </div>
                 </div> -->
                 <!--      <button @click="generarOrdenPago()">generar orden</button>-->
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
         </main>
         <footer class="d-flex justify-content-center align-items-center flex-column">
             <h1 class="text-mamacultiva text-white">GOZO GROWSHOP</h1>

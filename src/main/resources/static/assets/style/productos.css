@@ -168,6 +168,19 @@ nav {
   color: rgb(26, 182, 26) !important;
   text-decoration: underline;
 }
+.montoTotal {
+  position: sticky;
+  width: 10rem;
+  left: 90% !important;
+  top: 80% !important;
+  background-color: #ffffffd2;
+  border: 2px solid black;
+  box-shadow: 4px 4px #32323285;
+  z-index: 1 !important;
+}
+.montoTotal> p{
+  font-size: 16px !important;
+}
 
 .container {
   width: 100%;
@@ -281,7 +294,7 @@ h5 {
   padding: 20px;
   gap: 10px;
 }
-.card:hover{
+.card:hover, .card2:hover{
   transform: scale(1.05);
 }
 

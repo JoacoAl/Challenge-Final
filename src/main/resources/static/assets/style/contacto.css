@@ -197,7 +197,7 @@ ul {
 .categoria {
   height: 85vh;
   
-  background-image: url("../img-contacto-detalle/gozocampera.JPEG");
+  background-image: url("../img-contacto-detalle/gozoCampera.JPEG");
   background-size: cover;
   background-position-y: 60% !important;
 }
@@ -218,13 +218,27 @@ p {
   resize: none;
 }
 .imagenmata {
-  height: 70vh !important;
   object-fit: cover;
 }
 .fondo {
   background-image: url(../img-contacto-detalle/flor.png);
-  /* background-repeat: no-repeat !important; */
+  background-repeat: space !important;
   background-position: right !important;
+}
+.formulario{
+    opacity: 1;
+    background-color: rgb(255, 255, 255)!important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .fondo{
+    background-image: url(../img-contacto-detalle/flor.png);
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+  }
+  .formulario{
+    background-color: transparent;
+  }
 }
 /* ----------------- */
 .card {
@@ -249,17 +263,33 @@ footer {
 }
 footer > h1 {
   font-size: 60px;
+  font-family: "Rowdies", cursive;
 }
 .iframe-footer {
   border-radius: 10px;
 }
-.text-footer {
-  font-family: "Rowdies", cursive;
-}
-
 .text-mamacultiva {
   font-family: "Rowdies", cursive;
   text-shadow: 1px 1px 1px black;
+}
+.card3 {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
+  background-color: rgb(116, 63, 146) !important;
+  border: 0px !important;
+}
+.text-footer {
+  font-family: "Rowdies", cursive;
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  footer > h1 {
+    font-size: 30px;
+  }
 }
 
 /* redes sociales footer */
@@ -319,7 +349,6 @@ footer > h1 {
 .socialContainer:hover .socialSvg {
   animation: slide-in-top 0.3s both;
 }
-
 @keyframes slide-in-top {
   0% {
     transform: translateY(-50px);
@@ -330,4 +359,13 @@ footer > h1 {
     transform: translateY(0);
     opacity: 1;
   }
+}
+@media screen and (min-width: 425px) and (max-width: 1000px) {
+  .col-md-5, .col-md-6 {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+}
+.imagenmata{
+  width: 100%;
+}
 }

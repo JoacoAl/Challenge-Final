@@ -46,8 +46,10 @@ createApp({
         cantidadEscogida: 1,
         descripcionMaxLength : 50,
         descripcionCompleta: false,
+        totalPrecioProductos: 0,
       
       productoSeleccionado: {},
+      totalPrecioProductos: 0,
 
       cantidadProductosCarrito: this.getCantidadProductosCarrito(),
 
@@ -66,6 +68,7 @@ createApp({
       .catch(err => console.log(err))
     this.traerProductosAccesorios();
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+    this.totalPrecioProductos = parseFloat(localStorage.getItem("totalPrecioProductos")) || 0;
   },
   methods: {
     traerProductosAccesorios() {
@@ -124,6 +127,7 @@ createApp({
               });
             }
             this.cantidadProductosCarrito += cantidad;
+            this.calcularTotalPrecioProductos();
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
 
@@ -152,6 +156,7 @@ createApp({
         }
 
         this.cantidadProductosCarrito += cantidad;
+        this.calcularTotalPrecioProductos();
         const jsonProductos = JSON.stringify(this.cantidadProductosCarrito);
         localStorage.setItem("cantidadProductosCarrito", jsonProductos);
 
@@ -170,6 +175,14 @@ createApp({
         return parseInt(storedCantidadProductosCarrito);
       }
       return 0; // Valor predeterminado si no se encuentra en el LocalStorage
+    },
+    calcularTotalPrecioProductos() {
+      this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
+        return total + producto.precio * producto.cantidad;
+      }, 0);
+  
+      // Guardar el precio total en el localStorage
+      localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
     },
     mostrarModal(producto) {
       if (producto) {

@@ -25,30 +25,6 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        productos: [],
-        cultivo: [],
-
-        cultivoFiltrado: [],
-        
-        filtroCultivo: [],
-        
-        checkedCheckbox: [],
-
-        seleccionadas: [],
-
-        categoriasCultivo: [],
-
-        productoSeleccionado:{},
-
-        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
-        cantidadEscogida: 1,
-        descripcionMaxLength : 50,
-        descripcionCompleta: false
-=======
-=======
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
       productos: [],
       cultivo: [],
       cultivoFiltrado: [],
@@ -59,13 +35,12 @@ createApp({
       categoriasCultivo: [],
       productoSeleccionado: {},
       logged: false,
-<<<<<<< HEAD
-      cliente: []
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-=======
       cliente: [],
-      cantidadProductosCarrito: this.getCantidadProductosCarrito()
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
+      cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+      cantidadEscogida: 1,
+        descripcionMaxLength : 50,
+        descripcionCompleta: false,
+        totalPrecioProductos: 0,
     };
   },
   created() {
@@ -76,8 +51,13 @@ createApp({
 
       })
       .catch(err => console.log(err))
+      this.format = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
     this.traerProductosCultivo();
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+  this.totalPrecioProductos = parseFloat(localStorage.getItem("totalPrecioProductos")) || 0;
   },
   methods: {
     logout() {
@@ -87,33 +67,12 @@ createApp({
           window.location.href = "/index.html";
         })
     },
-    mostrarModal(producto) {
-      if (producto) {
-        this.productoSeleccionado = producto;
-      }
-    },
     traerProductosCultivo() {
       axios
-<<<<<<< HEAD
-<<<<<<< HEAD
-      .get('/api/productos')
-      .then(response =>{
-        this.productos = response.data.filter(productos => productos.activo == true)
-=======
         .get('/api/productos')
         .then(response => {
           this.productos = response.data
->>>>>>> 0994ecfdc7736a6fdd434df7a46c01b6795ec452
-=======
-        .get('/api/productos')
-        .then(response => {
-          this.productos = response.data
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
           //CULTIVO
           this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
           console.log(this.cultivo);
@@ -159,6 +118,7 @@ createApp({
               });
             }
             this.cantidadProductosCarrito += cantidad;
+            this.calcularTotalPrecioProductos();
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
 
@@ -166,7 +126,7 @@ createApp({
             localStorage.setItem("seleccionadas", json);
             swal("Success", "Producto agregado al carrito", "success");
           } else {
-            swal("Error", "Cantidad inválida", "error");
+            swal("Error", "Cantidad invÃ¡lida", "error");
           }
         }
       });
@@ -187,6 +147,7 @@ createApp({
         }
 
         this.cantidadProductosCarrito += cantidad;
+        this.calcularTotalPrecioProductos();
         const jsonProductos = JSON.stringify(this.cantidadProductosCarrito);
         localStorage.setItem("cantidadProductosCarrito", jsonProductos);
 
@@ -198,6 +159,7 @@ createApp({
         swal("Error", "Cantidad inválida", "error");
       }
     },
+
     // Verificar si hay productos en el carrito
     getCantidadProductosCarrito() {
       const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
@@ -206,7 +168,19 @@ createApp({
       }
       return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
-<<<<<<< HEAD
+    calcularTotalPrecioProductos() {
+      this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
+        return total + producto.precio * producto.cantidad;
+      }, 0);
+  
+      // Guardar el precio total en el localStorage
+      localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
+    },
+    mostrarModal(producto) {
+      if (producto) {
+        this.productoSeleccionado = producto;
+      }
+    },
     toggleDescripcion() {
       if (this.descripcionMaxLength === 50) {
         this.descripcionMaxLength = this.productoSeleccionado.descripcion.length;
@@ -217,12 +191,7 @@ createApp({
     toggleDescripcionCompleta() {
       this.descripcionCompleta = !this.descripcionCompleta;
     },
-    
-    
-=======
 
-
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
   },
   computed: {
     filtroBusquedaCultivo() {
@@ -232,31 +201,21 @@ createApp({
       } else {
         this.filtroCultivo = this.cultivo;
       }
-<<<<<<< HEAD
-  },  
-  descripcionReducida() {
-    if (this.productoSeleccionado && this.productoSeleccionado.descripcion) {
-      if (this.descripcionCompleta) {
-        return this.productoSeleccionado.descripcion;
-      } else {
-        if (this.productoSeleccionado.descripcion.length > this.descripcionMaxLength) {
-          let producto = this.productoSeleccionado.descripcion.slice(0, this.descripcionMaxLength) + "...";
-          return producto;
-        } else {
+    },
+    descripcionReducida() {
+      if (this.productoSeleccionado && this.productoSeleccionado.descripcion) {
+        if (this.descripcionCompleta) {
           return this.productoSeleccionado.descripcion;
+        } else {
+          if (this.productoSeleccionado.descripcion.length > this.descripcionMaxLength) {
+            let producto = this.productoSeleccionado.descripcion.slice(0, this.descripcionMaxLength) + "...";
+            return producto;
+          } else {
+            return this.productoSeleccionado.descripcion;
+          }
         }
       }
-    }
-    return '';
-  },
-}
-=======
+      return '';
     },
   }
->>>>>>> 620eb18e5a0f47f763ee1362ed7c7f3eb920ef97
 }).mount("#app")
-
-
-
-
-
