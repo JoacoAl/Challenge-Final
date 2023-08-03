@@ -845,7 +845,12 @@ footer > h1 {
   font-family: "Rowdies", cursive;
   text-shadow: 1px 1px 1px black;
 }
-
+h5{
+  font-size: 24px;
+}
+.adaptative{
+  border: 1px solid black;
+}
 /* TABLA */
 table {
   margin-top: 1rem;
@@ -888,4 +893,36 @@ th {
 
 .btn-mercadopago {
   font-weight: 600;
+}
+
+@media screen and (max-width: 800px){
+  .contenedorAdaptative{
+    display: flex;
+    flex-direction: column !important ;
+    align-items: center;
+    background-color: rgb(226, 226, 226);
+  }
+  .adaptative{
+    width: 90%;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: white;
+  }
+  .adaptative > ul {
+    width: 90%;
+  }
+  .table{
+    display: none !important;
+  }
+  footer > h1 {
+    font-size: 30px;
+  }
+  h3{
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .adaptative{
+    display: none !important;
+  }
 }
