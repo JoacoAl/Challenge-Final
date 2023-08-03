@@ -17,8 +17,8 @@ public class Orden {
     private long id;
 
     private String numeroDeOrden;
-
     private LocalDateTime fecha;
+    private Double montoTotal;
 
 
     @JsonIgnore
@@ -26,19 +26,16 @@ public class Orden {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToOne
-    @JoinColumn(name = "pago_id")
-    private Pago pago;
-
     @OneToMany(mappedBy = "orden", fetch = FetchType.EAGER)
     private Set<OrdenProducto> ordenProductos = new HashSet<>();
 
     public Orden() {
     }
 
-    public Orden(String numeroDeOrden, LocalDateTime fecha) {
+    public Orden(String numeroDeOrden, LocalDateTime fecha, Double montoTotal) {
         this.numeroDeOrden = numeroDeOrden;
         this.fecha = fecha;
+        this.montoTotal = montoTotal;
     }
 
     public String getNumeroDeOrden() {
@@ -65,17 +62,9 @@ public class Orden {
         this.cliente = cliente;
     }
 
-    public void añadirPago(Pago pago) {
-        pago.setOrdenDeCompra(this);
-    }
+    public Double getMontoTotal() {return montoTotal;}
 
-    public Pago getPago() {
-        return pago;
-    }
-
-    public void setPago(Pago pago) {
-        this.pago = pago;
-    }
+    public void setMontoTotal(Double montoTotal) {this.montoTotal = montoTotal;}
 
     public Set<OrdenProducto> getOrdenProductos() {
         return ordenProductos;

@@ -1,12 +1,7 @@
 package com.example.challengefinal.growshop.dto;
 
-import com.example.challengefinal.growshop.models.Cliente;
 import com.example.challengefinal.growshop.models.Orden;
-import com.example.challengefinal.growshop.models.OrdenProducto;
-import com.example.challengefinal.growshop.models.Pago;
-import net.bytebuddy.asm.Advice;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,7 +14,7 @@ public class OrdenDTO {
 
     private LocalDateTime fecha;
 
-    private Pago pago;
+    private Double montoTotal;
 
     private Set<OrdenProductoDTO> ordenProductos;
 
@@ -28,7 +23,7 @@ public class OrdenDTO {
         this.id = orden.getId();
         this.numeroDeOrden = orden.getNumeroDeOrden();
         this.fecha = orden.getFecha();
-        this.pago = orden.getPago();
+        this.montoTotal = orden.getMontoTotal();
         this.ordenProductos = orden.getOrdenProductos().stream().map(ordenProducto -> new OrdenProductoDTO(ordenProducto)).collect(Collectors.toSet());
     }
 
@@ -40,9 +35,7 @@ public class OrdenDTO {
         return fecha;
     }
 
-    public Pago getPago() {
-        return pago;
-    }
+    public Double getMontoTotal() {return montoTotal;}
 
     public Set<OrdenProductoDTO> getOrdenProductos() {
         return ordenProductos;

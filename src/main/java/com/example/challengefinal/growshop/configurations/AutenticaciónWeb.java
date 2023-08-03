@@ -26,7 +26,7 @@ public class AutenticaciónWeb extends GlobalAuthenticationConfigurerAdapter {
     ClienteRepositorio clienteRepositorio;
 
     @Bean
-    public PasswordEncoder codificadorDeContraseña(){
+    public PasswordEncoder passwordEncoder(){
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 

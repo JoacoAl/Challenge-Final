@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@EnableWebSecurity
+
 @Configuration
+@EnableWebSecurity
 public class AutorizaciónWeb {
 
 
@@ -23,12 +24,20 @@ public class AutorizaciónWeb {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 
-                .antMatchers("/api/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
-
-
+                .antMatchers("/api/login", "/assets/pages/**", "/assets/script/**", "/assets/images/**","/assets/style/**" , "/api/productos").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/login","/api/clientes").permitAll()
                 //ADMIN
-                .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/api/productos", "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN");
+        .antMatchers("/h2-console/**","/rest/**","/api/clientes", "/manager.html" , "/api/pagos", "/api/ordenes" ).hasAuthority("ADMIN")
+               .antMatchers(HttpMethod.POST, "/api/productos/agregar").hasAuthority("ADMIN")
+                .antMatchers( HttpMethod.PATCH, "/api/productos/{id}/deactivate").hasAuthority("ADMIN")
+                .antMatchers( HttpMethod.POST, "/api/productos/modificar").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.GET,"/api/cliente/actual").hasAnyAuthority("CLIENTE", "ADMIN")
+                //CLIENTES
+
+                .antMatchers(HttpMethod.PUT, "/cliente/actual/editar").hasAuthority("CLIENTE")
+                .antMatchers(HttpMethod.POST, "/api/ordenes/crear-orden").hasAuthority("CLIENTE");
+
 
 
 
@@ -39,7 +48,7 @@ public class AutorizaciónWeb {
 
         http.formLogin()
                 .usernameParameter("email")
-                .passwordParameter("password")
+                .passwordParameter("contraseña")
                 .loginPage("/api/login");
         http.logout().logoutUrl("/api/logout").deleteCookies("JSSESIONID");
 

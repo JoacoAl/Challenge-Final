@@ -1,10 +1,8 @@
 package com.example.challengefinal.growshop.servicios.Implement;
 
 import com.example.challengefinal.growshop.Repositorios.ProductoRepositorio;
-import com.example.challengefinal.growshop.dto.PagoDTO;
 import com.example.challengefinal.growshop.dto.ProductoDTO;
 import com.example.challengefinal.growshop.models.Producto;
-import com.example.challengefinal.growshop.servicios.ServicioPago;
 import com.example.challengefinal.growshop.servicios.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,16 +20,21 @@ public class ServicioProductoImplement implements ServicioProducto {
     }
 
     @Override
+    public List<Producto> traerProductos() {
+        return productoRepositorio.findAll();
+    }
+
+    @Override
     public ProductoDTO traerProductoDTO(Long id) {
         Producto producto = productoRepositorio.findById(id).orElse(null);
         ProductoDTO productoDTO = new ProductoDTO(producto);
         return productoDTO;
     }
 
+
     @Override
-<<<<<<< HEAD
-    public Producto traerProductoPorNombre(String nombre) {
-        return productoRepositorio.traerPorNombre(nombre);
+    public Producto traerProductoPorId(Long id) {
+        return productoRepositorio.findById(id).orElse(null);
     }
 
     @Override
@@ -40,9 +43,4 @@ public class ServicioProductoImplement implements ServicioProducto {
     }
 
 
-=======
-    public Producto guardar(Producto producto) {
-        return productoRepositorio.save(producto);
-    }
->>>>>>> 07591f26994aa072faed3e22384e8857a4e4d5f3
 }
