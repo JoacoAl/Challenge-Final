@@ -82,9 +82,6 @@
                                 <td><span class="precio-total">{{format.format(articulo.cantidad *
                                         articulo.precio)}}</span></td>
                                 <td>
-                                    <button role="button" class="btn btn-primary btn-modificar font"
-                                    @click="abrirSweetAlert(articulo.id)" role="button"><i
-                                        class="bi bi-pencil-square btn-modifcar"></i></button>
                                     <button role="button" class="btn btn-danger btn-borrar"
                                         @click="descartarProducto(articulo.id)" role="button"><i
                                             :class="seleccionadas.some(e => e.id == articulo.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'"></i></button>
