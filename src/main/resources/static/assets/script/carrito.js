@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 window.addEventListener("scroll", function () {
   const navbar = document.getElementById("navbar");
   const scrollPosition = window.scrollY;
@@ -18,8 +19,6 @@ window.addEventListener("scroll", function () {
 window.addEventListener("load", function () {
   this.document.getElementById("container-loader").classList.toggle("container-loader2")
 })
-
-
 
 
 const { createApp } = Vue;
@@ -78,7 +77,7 @@ const app = createApp({
         body: JSON.stringify({
           items,
           back_urls: {
-            success: `gozogrowshop.onrender.com/assets/pages/carrito.html`
+            success: `/assets/pages/carrito.html`
           }
         })
       })
