@@ -31,7 +31,9 @@ const app = createApp({
             },
             error1: "",
             logged: false,
-            cliente: []
+            cliente: [],
+            cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+
         }
     },
     created() {
@@ -80,7 +82,15 @@ const app = createApp({
                         console.log(error);
                     })
             }
-        }
+        },
+        // Verificar si hay productos en el carrito
+        getCantidadProductosCarrito() {
+            const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
+            if (storedCantidadProductosCarrito) {
+                return parseInt(storedCantidadProductosCarrito);
+            }
+            return 0; // Valor predeterminado si no se encuentra en el LocalStorage
+        },
     }
 })
 app.mount('#app')

@@ -62,7 +62,7 @@
             <div class="col-12 categoria-accesorios">
             </div>
             <div class="d-flex justify-content-center flex-column">
-                <div class="col-12 d-flex justify-content-center contenedorAdaptative">
+                <div class="div-tabla col-12 d-flex justify-content-center">
                     <table class="table mx-3 w-75">
                         <thead>
                             <tr class="text-center encabezados">
@@ -81,7 +81,11 @@
                                 <td>{{articulo.cantidad}}</td>
                                 <td><span class="precio-total">{{format.format(articulo.cantidad *
                                         articulo.precio)}}</span></td>
-                                <td><button role="button" class="btn btn-danger btn-borrar"
+                                <td>
+                                    <button role="button" class="btn btn-primary btn-modificar font"
+                                        @click="abrirSweetAlert(articulo.id)" role="button"><i
+                                            class="bi bi-pencil-square btn-modifcar"></i></button>
+                                    <button role="button" class="btn btn-danger btn-borrar mx-2"
                                         @click="descartarProducto(articulo.id)" role="button"><i
                                             :class="seleccionadas.some(e => e.id == articulo.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'"></i></button>
                                 </td>
@@ -98,25 +102,6 @@
                         </tbody>
 
                     </table>
-                    <div class=" d-flex mt-5 mb-5 flex-column align-items-center adaptative">
-                        <h3 class="text-center">Articulos</h3>
-                        <ul v-for="articulo of seleccionadas" class="mt-2 d-flex flex-column">
-                            <h5>Producto</h5>
-                            <li>{{articulo.nombre}}</li>
-                            <h5>Precio</h5>
-                            <li>{{format.format(articulo.precio)}}</li>
-                            <h5>Cantidad</h5>
-                            <li>{{articulo.cantidad}}</li>
-                            <h5>Monto total</h5>
-                            <li>{{format.format(articulo.cantidad *
-                                articulo.precio)}}</li>
-                                <button role="button" class="btn btn-danger btn-borrar align-self-end me-2"
-                                        @click="descartarProducto(articulo.id)" role="button"><i
-                                            :class="seleccionadas.some(e => e.id == articulo.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'"></i></button>
-                                <hr>
-                            </ul>
-                            <p class="text-end me-5">Total a pagar: {{format.format(totalCompra)}}</p>    
-                    </div>
                     {{cantidad}}
                     {{resultado}}
                     <div class="div-carrito-totales d-flex justify-content-center align-items-center flex-column col-4 "
@@ -137,7 +122,7 @@
                     <h2>¡Aun no has seleccionado ningun producto!</h2>
                 </div>
                 <div v-if="seleccionadas == 0" class="d-flex justify-content-center align-center m-5">
-                    <img class="imagenes-carrito" src="/assets/img-manager/_23684b76-105d-4e88-9d6a-1d21e8d3d363.jpeg"
+                    <img class="imagenes-carrito" src="https://lacanastadomicilio.es/static/images/cart/empty_cart.png"
                         alt="" />
                 </div>
                 <!-- 
@@ -208,8 +193,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/assets/script/carrito.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

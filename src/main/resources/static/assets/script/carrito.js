@@ -31,7 +31,9 @@ const app = createApp({
       totalCompra: 0,
       totalProductos: 0,
       logged: false,
-      cliente: []
+      cliente: [],
+      numeroCantidad: null,
+      totalPorProducto: null,
     }
   },
   created() {
@@ -49,12 +51,14 @@ const app = createApp({
       Swal.fire({
         title: '¡Pago exitoso!',
         icon: 'success'
-      })
+      });
       this.deleteCompras();
+      console.log(this.seleccionadas);
     }
   },
 
   methods: {
+
     redirectToPayment() {
       const items = this.seleccionadas.map(producto => ({
         title: producto.nombre,
@@ -92,14 +96,7 @@ const app = createApp({
 
         });
     },
-     // Verificar si hay productos en el carrito
-     getCantidadProductosCarrito() {
-      const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
-      if (storedCantidadProductosCarrito) {
-        return parseInt(storedCantidadProductosCarrito);
-      }
-      return 0; // Valor predeterminado si no se encuentra en el LocalStorage
-    },
+
 
     generarOrdenPago() {
       const items = this.seleccionadas.map(producto => ({
@@ -146,7 +143,6 @@ const app = createApp({
         this.json = JSON.stringify(this.elementosFiltrados);
         localStorage.setItem('seleccionadas', this.json);
 
-          // Actualiza la cantidad actual de productos seleccionados en el LocalStorage
         const nuevaCantidadProductos = this.elementosFiltrados.reduce((total, elemento) => total + elemento.cantidad, 0);
         localStorage.setItem('cantidadProductosCarrito', nuevaCantidadProductos.toString());
 
@@ -158,7 +154,44 @@ const app = createApp({
         window.location.href = "/assets/pages/carrito.html";
       }
     },
+
+    abrirSweetAlert(id) {
+      Swal.fire({
+        title: 'Modificar cantidad',
+        html: `
+          <input type="number" id="inputNumber" min="1" max="10000" value="1" v-model="numeroCantidad">
+        `,
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: 'Modificar',
+        cancelButtonText: 'Cancelar',
+        preConfirm: () => {
+          // Acción a realizar al hacer clic en Aceptar (Confirmar)
+          this.numeroCantidad = document.getElementById('inputNumber').value;
+          console.log(`Valor ingresado: ${this.numeroCantidad}`);
+
+          this.modificarCantidad(id);
+        },
+        cancelButtonColor: '#d33',
+        allowOutsideClick: false
+      });
+    },
+
+    modificarCantidad(id) {
+      const producto = this.seleccionadas.find(producto => producto.id === id);
+      console.log(this.numeroCantidad);
+
+      if (producto) {
+
+        producto.cantidad = this.numeroCantidad
+        console.log('Producto encontrado:', producto);
+      } else {
+        console.log('Producto no encontrado con el ID proporcionado:', id);
+      }
+    }
   },
+
+
   computed: {
     resultado() {
       this.totalCompra = this.seleccionadas.reduce(
@@ -175,6 +208,22 @@ const app = createApp({
       );
       const json = JSON.stringify(this.totalProductos);
       localStorage.setItem("cantidad", json);
+    },
+    crearOrden() {
+      this.ordenProducto = this.seleccionadas.map(producto => ({
+        nombre: producto.nombre,
+        cantidadDeProductos: producto.cantidad,
+        precioUnitario: producto.precio
+      }))
+      axios
+        .post('/api/ordenes/crear-orden', this.ordenProducto, { headers: { 'content-type': 'application/json' } })
+        .then(response => {
+          console.log(response.data);
+          this.fetch();
+        })
+        .catch(error => {
+          console.log(error.response);
+        })
     },
   }
 });

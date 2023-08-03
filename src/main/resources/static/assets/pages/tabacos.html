@@ -58,7 +58,8 @@
                         <div class="d-flex justify-content-center gap-2">
                             <span v-if="logged" class="d-flex justify-content-center gap-2">
                                 <i class="bi bi-person-circle text-white icons-navbar"></i>
-                                <a class="text-white text-danger btn btn-success" href="./perfil.html">{{cliente.nombre}}</a>
+                                <a class="text-white text-danger btn btn-success" href="./perfil.html">
+                                    {{cliente.nombre}}</a>
                                 <button class="btn btn-success" @click="logout()"><i
                                         class="bi bi-box-arrow-left text-white"></i></button>
                             </span>
@@ -66,8 +67,10 @@
                                 <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
                             </span>
 
-                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i>
-                                <span class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
+                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i><span
+                                    class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
+
+
                             </a>
                         </div>
                     </div>
@@ -90,7 +93,7 @@
                 <h4 class="fs-2">Filtrar por marca</h4>
                 <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
                     <div v-for="marca of tabacosFiltrados" style="height: 1rem;" class="form-check form-switch">
-                        <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox"
+                        <input class="form-check-input me-2" style="height: 2rem; width: 3.5rem;" type="checkbox"
                             v-model="checkedCheckbox" :name="marca" :value="marca" role="switch" :id="marca"
                             @change="filtroBusquedaTabacos">
                         <label class="form-check-label" :for="marca">
@@ -183,31 +186,37 @@
                         <h2 class="">También te puede interesar</h2>
                         <hr class="card-divider">
                         <p>Todo lo que buscas, y más</p>
-                        <a class="text-danger text-decoration-none" href="./accesorios.html">
-                            <p>Ir a accesorios</p>
+                        <a class="text-danger text-decoration-none" href="./cultivo.html">
+                            <p>Ir a cultivos</p>
                         </a>
                     </div>
                 </div>
                 <div class="col-xs-10 col-sm-8 col-lg-9 d-flex recomendadosResponsive flex-wrap gap-3 p-5">
                     <div class="card2">
-                        <div class="card-img pb-1"><img class="pb-2"
-                                src="https://parainfernalia.com.ar/wp-content/uploads/2019/04/tabaco-cerrito-original-45gr-growshop.png"
-                                alt=""></div>
-                        <div class="card-title">Product title</div>
+                        <div class="card-img pb-1">
+                            <a href="../pages/cultivo.html"><img class="pb-2"
+                                    src="https://http2.mlstatic.com/D_NQ_NP_843282-MLA44395719319_122020-O.webp"
+                                    alt=""></a>
+                        </div>
+                        <div class="card-title">Carpa Eco 80x80x180</div>
                     </div>
                     <div class="card2">
-                        <div class="card-img pb-1"><img class="pb-2"
-                                src="https://parainfernalia.com.ar/wp-content/uploads/2019/04/tabaco-cerrito-original-45gr-growshop.png"
-                                alt=""></div>
-                        <div class="card-title">Product title</div>
+                        <div class="card-img pb-1">
+                            <a href="../pages/cultivo.html"><img class="pb-2"
+                                    src="https://http2.mlstatic.com/D_NQ_NP_903434-MLA70421174515_072023-O.webp"
+                                    alt=""></a>
+                        </div>
+                        <div class="card-title">Carpa Pro Box 80x80x160</div>
                     </div>
                     <div class="card2">
-                        <div class="card-img pb-1"><img class="pb-2"
-                                src="https://parainfernalia.com.ar/wp-content/uploads/2019/04/tabaco-cerrito-original-45gr-growshop.png"
-                                alt=""></div>
-                        <div class="card-title">Product title</div>
+                        <div class="card-img pb-1">
+                            <a href="../pages/cultivo.html"><img class="pb-2"
+                                    src="https://http2.mlstatic.com/D_NQ_NP_903434-MLA70421174515_072023-O.webp"
+                                    alt=""></a>
+                        </div>
+                        <div class="card-title">Carpa Pro Box 120x120x200</div>
                     </div>
-                    </div>
+                </div>
             </article>
     </div>
     </main>

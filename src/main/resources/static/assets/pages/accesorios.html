@@ -59,7 +59,8 @@
                         <div class="d-flex justify-content-center gap-2">
                             <span v-if="logged" class="d-flex justify-content-center gap-2">
                                 <i class="bi bi-person-circle text-white icons-navbar"></i>
-                                <a class="text-white text-danger btn btn-success" href="./perfil.html">{{cliente.nombre}}</a>
+                                <a class="text-white text-danger btn btn-success" href="./perfil.html">
+                                    {{cliente.nombre}}</a>
                                 <button class="btn btn-success" @click="logout()"><i
                                         class="bi bi-box-arrow-left text-white"></i></button>
                             </span>
@@ -91,7 +92,7 @@
                 <h4 class="fs-2">Filtrar por categoría</h4>
                 <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
                     <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check form-switch">
-                        <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox"
+                        <input class="form-check-input me-2" style="height: 2rem; width: 3.5rem;" type="checkbox"
                             v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"
                             @change="filtroBusquedaAccesorios">
                         <label class="form-check-label" :for="categoria">
@@ -176,38 +177,44 @@
                 </div>
             </div>
 
-
             <article class="col-11 d-flex recomendados justify-content-around flex-wrap">
                 <div class="col-xs-10 col-sm-10 col-lg-3 d-flex justify-content-center align-items-center flex-column">
                     <div class="w-75 d-flex flex-column">
                         <h2 class="">También te puede interesar</h2>
                         <hr class="card-divider">
                         <p>Todo lo que buscas, y más</p>
-                        <a class="text-danger text-decoration-none" href="./accesorios.html">
-                            <p>Ir a accesorios</p>
+                        <a class="text-danger text-decoration-none" href="./tabacos.html">
+                            <p>Ir a tabacos</p>
                         </a>
                     </div>
                 </div>
                 <div class="col-xs-10 col-sm-8 col-lg-9 d-flex recomendadosResponsive flex-wrap gap-3 p-5">
                     <div class="card2">
-                        <div class="card-img pb-1"><img class="pb-2"
-                                src="https://parainfernalia.com.ar/wp-content/uploads/2019/04/tabaco-cerrito-original-45gr-growshop.png"
-                                alt=""></div>
-                        <div class="card-title">Product title</div>
+                        <div class="card-img pb-1">
+                            <a href="../pages/tabacos.html"><img class="pb-2"
+                                    src="https://parainfernalia.com.ar/wp-content/uploads/2019/04/tabaco-cerrito-original-45gr-growshop.png"
+                                    alt=""></a>
+                        </div>
+                        <div class="card-title">Tabaco Cerrito Original 40gr</div>
                     </div>
                     <div class="card2">
-                        <div class="card-img pb-1"><img class="pb-2"
-                                src="https://parainfernalia.com.ar/wp-content/uploads/2019/04/tabaco-cerrito-original-45gr-growshop.png"
-                                alt=""></div>
-                        <div class="card-title">Product title</div>
+                        <div class="card-img pb-1">
+                            <a href="../pages/tabacos.html"><img class="pb-2"
+                                    src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/554/958/products/cerrito-chocolate1-b42ab29d37b991c65616844242553765-480-0.webp"
+                                    alt=""></a>
+                        </div>
+                        <div class="card-title">Tabaco Cerrito Chocolate 40gr</div>
                     </div>
                     <div class="card2">
-                        <div class="card-img pb-1"><img class="pb-2"
-                                src="https://parainfernalia.com.ar/wp-content/uploads/2019/04/tabaco-cerrito-original-45gr-growshop.png"
-                                alt=""></div>
-                        <div class="card-title">Product title</div>
+                        <div class="card-img pb-1">
+                            <a href="../pages/tabacos.html"><img class="pb-2"
+                                    src="https://parainfernalia.com.ar/wp-content/uploads/2020/02/tabaco-cerrito-vainilla-venta.jpg"
+                                    alt=""></a>
+                        </div>
+                        <div class="card-title">Tabaco Cerrito Vainilla 40g</div>
                     </div>
-                    </div>
+
+                </div>
             </article>
         </main>
     </div>
@@ -256,8 +263,6 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
         </script>
     <script src="../script/accesorios.js"></script>
-    <script src="../script/carrito.js"></script>
-
 
 </body>
 

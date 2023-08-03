@@ -56,15 +56,13 @@
                             <li v-show="cliente.email === 'admin-gozogrowshop@gmail.com'" class="nav-item">
                                 <a class="navbar-brand text-white" href="./manager.html" class="a-nav">Manager</a>
                             </li>
-                            <li class="nav-item">
-                                <img src="./assets/images/banderitaArg.png" alt="" class="emoji-arg">
-                            </li>
 
                         </ul>
                         <div class="d-flex justify-content-center gap-2">
                             <span v-if="logged" class="d-flex justify-content-center gap-2">
                                 <i class="bi bi-person-circle text-white icons-navbar"></i>
-                                <a class="text-white text-danger" href="./assets/pages/perfil.html"><button class="btn btn-success">{{cliente.nombre}}</button></a>
+                                <a class="text-white text-danger btn btn-success"
+                                    href="./assets/pages/perfil.html">{{cliente.nombre}}</a>
                                 <button class="btn btn-success" @click="logout()"><i
                                         class="bi bi-box-arrow-left text-white"></i></button>
                             </span>
@@ -74,7 +72,7 @@
 
                             <a href="./assets/pages/carrito.html">
                                 <i class="bi bi-cart-fill text-white icons-navbar"></i>
-                                <span class="badge bg-secondary">{{ cantidadProductosCarrito }}</span>
+                                <span class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
                             </a>
                         </div>
                     </div>
@@ -161,20 +159,28 @@
                     <img src="./assets/images/apurogozo.JPG" class="col-6 mamacultiva" alt="...">
                 </div>
 
-                <div class="d-flex flex-wrap col-12 bg-secondary ilustraciones" data-aos="fade-up"
-                    data-aos-duration="2000">
-                    <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo.JPG" alt="">
-                    <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo2.JPG" alt="">
-                    <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo3.JPG" alt="">
-                    <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo4.JPG" alt="">
+                <div class="div-ilustraciones">
+                    <div class="d-flex flex-wrap col-12 bg-secondary ilustraciones" data-aos="fade-up"
+                        data-aos-duration="2000">
+                        <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo.JPG"
+                            alt="">
+                        <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo2.JPG"
+                            alt="">
+                        <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo3.JPG"
+                            alt="">
+                        <img class="col-xs-10 col-sm-6 col-md-6 col-lg-3" src="./assets/images/ilustracionGozo4.JPG"
+                            alt="">
+                    </div>
+                    <div class="d-flex flex-wrap col-12 bg-secondary ilustraciones" data-aos="fade-up"
+                        data-aos-duration="2000">
+                        <img class=" col-xs-10 col-sm-6 col-lg-3" src="./assets/images/ilustracionGozo5.JPG" alt="">
+                        <img class="col-xs-10 col-sm-6 col-lg-3" src="./assets/images/somosGozo.JPG" alt="">
+                        <img class="col-xs-10 col-sm-6 col-lg-3" src="./assets/images/stanGozo.JPG" alt="">
+                        <img class="col-xs-10 col-sm-6 col-lg-3" src="./assets/images/articuloGozo.JPG" alt="">
+                    </div>
                 </div>
-                <div class="d-flex flex-wrap col-12 bg-secondary ilustraciones" data-aos="fade-up"
-                    data-aos-duration="2000">
-                    <img class=" col-xs-10 col-sm-6 col-lg-3" src="./assets/images/ilustracionGozo5.JPG" alt="">
-                    <img class="col-xs-10 col-sm-6 col-lg-3" src="./assets/images/somosGozo.JPG" alt="">
-                    <img class="col-xs-10 col-sm-6 col-lg-3" src="./assets/images/stanGozo.JPG" alt="">
-                    <img class="col-xs-10 col-sm-6 col-lg-3" src="./assets/images/articuloGozo.JPG" alt="">
-                </div>
+
+
 
 
             </section>
