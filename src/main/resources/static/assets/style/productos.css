@@ -172,8 +172,14 @@ ul {
   border-bottom: transparent 2px solid;
   font-stretch: condensed !important;
 }
-.emoji-arg {
-  width: 45px;
+.a-nombre {
+  vertical-align: middle !important;
+}
+.bi-box-arrow-left {
+  font-size: 22px !important;
+  font-weight: 800;
+  padding: 0;
+  margin: 0;
 }
 
 .icons-navbar {
@@ -188,8 +194,7 @@ main {
   min-height: 85vh !important;
   background-color: rgb(240, 240, 240);
 }
-main > h6,
-p {
+main > h6 {
   font-family: "Ubuntu", sans-serif;
   font-size: 24px;
 }
@@ -230,8 +235,8 @@ h5 {
   --bg-color: #ffffff;
   --main-color: #323232;
   --main-focus: #2d8cf0;
-  width: 21rem;
-  height: 32rem;
+  width: 230px;
+  height: 350px;
   background: var(--bg-color);
   border: 2px solid var(--main-color);
   box-shadow: 4px 4px var(--main-color);
@@ -249,9 +254,9 @@ h5 {
   --bg-color: #fff;
   --main-color: #323232;
   --main-focus: #2d8cf0;
-  width: 20rem;
+  width: 230px;
   position: relative;
-  min-height: 26rem;
+  height: 350px;
   background: var(--bg-color);
   border: 2px solid var(--main-color);
   box-shadow: 4px 4px var(--main-color);
@@ -266,7 +271,7 @@ h5 {
 .card-img {
   transition: all 0.5s;
   background-color: #fff;
-  height: 17rem;
+  height: 10rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -277,7 +282,7 @@ h5 {
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  height: 17rem;
+  height: 100%;
   object-fit: contain;
   /* background-image: linear-gradient(to top,transparent 10px,rgba(0,0,0,0.3) 10px,rgba(0,0,0,0.3) 13px,transparent 13px); */
 }
@@ -300,22 +305,37 @@ h5 {
 .card-footer {
   display: flex;
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
   flex-direction: row;
   align-items: end;
   justify-content: space-between;
 }
 
+.btn-info {
+  width: 30px !important;
+  height: 30px;
+  color: white !important;
+  text-align: center !important;
+  padding: 0;
+}
+
+.btn-info > i {
+  font-size: 20px !important;
+  padding: 0;
+  vertical-align: middle !important;
+  margin-bottom: 2px;
+}
+
 .card-price {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--font-color);
 }
 
 .card-price span {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--font-color-sub);
 }
@@ -325,7 +345,7 @@ h5 {
   background: var(--bg-color);
   border: 2px solid var(--main-color);
   border-radius: 5px;
-  padding: 0 15px;
+  padding: 0 5px;
   transition: all 0.3s;
 }
 
@@ -365,7 +385,7 @@ h5 {
 footer {
   background-color: rgb(116, 63, 146);
   object-fit: cover;
-  min-height: 40rem;
+  min-height: 25rem;
 }
 footer > h1 {
   font-size: 60px;
@@ -453,6 +473,10 @@ footer > h1 {
   }
 }
 
+.form-check-input {
+  border: 1px solid black;
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .categoria-tabaco {
     background-position: center;
@@ -485,6 +509,15 @@ footer > h1 {
   .recomendadosResponsive {
     padding: 1rem !important;
   }
+  footer {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .iframe-footer {
+    width: 250px;
+    height: 150px;
+  }
 }
 @media screen and (min-width: 769px) and (max-width: 1250px) {
   .recomendados {
@@ -492,5 +525,22 @@ footer > h1 {
     flex-direction: column;
     align-items: center;
     padding-top: 2rem;
+  }
+  .recomendadosResponsive {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 880px) {
+  .filtros {
+    flex-direction: column !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1320px) {
+  footer {
+    display: flex !important;
+    flex-direction: column !important;
   }
 }
