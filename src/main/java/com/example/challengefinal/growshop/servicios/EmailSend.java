@@ -7,13 +7,22 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.activation.URLDataSource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.*;
 import java.io.ByteArrayOutputStream;
+import java.net.URL;
 import java.util.Properties;
 @Service
 public class EmailSend {
@@ -40,23 +49,45 @@ public class EmailSend {
         });
 
         try {
-
+            // Creación del mensaje de correo
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(username));
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress( remitente));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(mensajeCorreo.getRemitente()));
+            message.setSubject(mensajeCorreo.getAsunto());
 
-            String mensajeAdicional = "Hola, su correo fue enviado con éxito a Gozo, aquí le dejamos lo que envió:" + comentario;
+            // Construcción del contenido del mensaje con el comentario y la imagen
+            Multipart multipart = new MimeMultipart();
+            BodyPart comentarioPart = new MimeBodyPart();
+            comentarioPart.setText("Su mensaje fue enviado con éxito a Gozo:\n\n" + mensajeCorreo.getComentario());
+
+            // Agrega la imagen al correo (asegúrate de que la ruta sea correcta)
+            BodyPart imagen = new MimeBodyPart();
+            ClassLoader classLoader = getClass().getClassLoader();
+            URL imageUrl = classLoader.getResource("static/assets/images/gozoSmokeShop.JPEG");
+            DataSource dataSource = new URLDataSource(imageUrl);
+            imagen.setDataHandler(new DataHandler(dataSource));
+            imagen.setFileName("imagen.jpg");
 
 
-            message.setSubject(asunto);
-            message.setText(mensajeAdicional);
-            Transport t = session.getTransport("smtp");
-            t.connect(username,password);
-            t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-            t.close();
-            JOptionPane.showMessageDialog(null,"El correo electrónico fue enviado exitosamente.");
+            // Agregar las partes al cuerpo del mensaje
+            multipart.addBodyPart(comentarioPart);
+            multipart.addBodyPart(imagen);
+            message.setContent(multipart);
 
+            // Enviar el correo al remitente
+            Transport.send(message);
+
+            // Enviar un segundo correo al destinatario (username) con el contenido del comentario
+            Message messageToUsername = new MimeMessage(session);
+            messageToUsername.setFrom(new InternetAddress(username));
+            messageToUsername.addRecipient(Message.RecipientType.TO, new InternetAddress(username));
+            messageToUsername.setSubject("Correo enviado por: " + remitente + "sobre el asunto:" + asunto);
+            messageToUsername.setText("El correo (" + remitente + ") envió este comentario: " + comentario);
+            Transport.send(messageToUsername);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(username,password);
+            transport.sendMessage(messageToUsername, messageToUsername.getRecipients(Message.RecipientType.TO));
+            transport.close();
         } catch (MessagingException e) {
             e.printStackTrace();
             throw new RuntimeException("Error al enviar el correo.", e);
