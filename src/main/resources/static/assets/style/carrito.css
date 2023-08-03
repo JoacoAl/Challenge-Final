@@ -952,6 +952,9 @@ th {
   .bi {
     font-size: 20px;
   }
+  .btn-mercadopago{
+    width: 100% !important;
+  }
 }
 
 @media only screen and (min-width: 567px) and (max-width: 768px) {
@@ -1019,5 +1022,12 @@ th {
 @media screen and (min-width: 850px) {
   .adaptative{
     display: none !important;
+  }
+  .imagen-mercadopago{
+    width: 100%;
+    object-fit: contain;
+  }
+  .btn-mercadopago{
+    width: 100% !important;
   }
 }

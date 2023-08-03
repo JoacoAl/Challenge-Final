@@ -81,7 +81,11 @@
                                 <td>{{articulo.cantidad}}</td>
                                 <td><span class="precio-total">{{format.format(articulo.cantidad *
                                         articulo.precio)}}</span></td>
-                                <td><button role="button" class="btn btn-danger btn-borrar"
+                                <td>
+                                    <button role="button" class="btn btn-primary btn-modificar font"
+                                    @click="abrirSweetAlert(articulo.id)" role="button"><i
+                                        class="bi bi-pencil-square btn-modifcar"></i></button>
+                                    <button role="button" class="btn btn-danger btn-borrar"
                                         @click="descartarProducto(articulo.id)" role="button"><i
                                             :class="seleccionadas.some(e => e.id == articulo.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'"></i></button>
                                 </td>
@@ -110,16 +114,22 @@
                             <h5>Monto total</h5>
                             <li>{{format.format(articulo.cantidad *
                                 articulo.precio)}}</li>
-                                <button role="button" class="btn btn-danger btn-borrar align-self-end me-2"
+                                <div class="d-flex justify-content-end">
+                                    <button role="button" class="btn btn-primary btn-modificar me-2 font"
+                                    @click="abrirSweetAlert(articulo.id)" role="button"><i
+                                        class="bi bi-pencil-square btn-modifcar"></i></button>
+                                <button role="button" class="btn btn-danger btn-borrar me-2"
                                         @click="descartarProducto(articulo.id)" role="button"><i
                                             :class="seleccionadas.some(e => e.id == articulo.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'"></i></button>
+                                </div>
+                                
                                 <hr>
                             </ul>
                             <p class="text-end me-5">Total a pagar: {{format.format(totalCompra)}}</p>    
                     </div>
                     {{cantidad}}
                     {{resultado}}
-                    <div class="div-carrito-totales d-flex justify-content-center align-items-center flex-column col-4 "
+                    <div class="div-carrito-totales d-flex justify-content-center align-items-center flex-column w-25 "
                         v-if="this.seleccionadas.length > 0">
 
                         <img src="../images/mercadopago.png" class="imagen-mercadopago" alt="">
