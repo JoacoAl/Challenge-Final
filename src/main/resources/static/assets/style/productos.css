@@ -203,21 +203,21 @@ h5 {
 }
 .categoria-tabaco {
   height: 85vh;
-  background-image: url("https://www.clarin.com/img/2016/06/16/HkbqTP3KVx_1256x620.jpg");
+  background-image: url(../images/tabacos.JPEG);
   background-size: cover;
-  background-position: 20%;
+  background-position-y: 50%;
 }
 .categoria-accesorios {
   height: 85vh;
-  background-image: url("https://www.headcandysmokeshop.com/cdn/shop/files/Head-Candy-Watermarked-1800x1000-2_1800x1000.jpg?v=1628115990");
+  background-image: url(../images/accesorios.JPEG);
   background-size: cover;
-  background-position: 20%;
+  background-position-y: 68%;
 }
 .categoria-cultivo {
   height: 85vh;
-  background-image: url("https://img.interempresas.net/fotos/3930179.jpeg");
+  background-image: url(../images/cultivo.JPEG);
   background-size: cover;
-  background-position: 20%;
+  background-position-y: 40%;
 }
 .productos {
   min-height: 70vh;

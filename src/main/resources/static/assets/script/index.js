@@ -26,7 +26,9 @@ const app = createApp({
     data() {
         return {
             logged: false,
-            cliente: []
+            cliente: [],
+            cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+
         };
     },
 
@@ -35,6 +37,7 @@ const app = createApp({
             .then(response => {
                 this.logged = true;
                 this.cliente = response.data
+                console.log(this.cliente);
 
             })
             .catch(err => console.log(err))
@@ -47,7 +50,14 @@ const app = createApp({
 
                     window.location.href = "/index.html";
                 })
-        }
+        },
+        getCantidadProductosCarrito() {
+            const storedCantidadProductosCarrito = localStorage.getItem("cantidadProductosCarrito");
+            if (storedCantidadProductosCarrito) {
+                return parseInt(storedCantidadProductosCarrito);
+            }
+            return 0; // Valor predeterminado si no se encuentra en el LocalStorage
+        },
     }
 });
 

@@ -49,6 +49,8 @@ createApp({
       tabacosFiltrados: [],
       categoriasCultivo: [],
       categoriasAccesorios: [],
+      cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+
 
       productoSeleccionado: {},
       logged: false,

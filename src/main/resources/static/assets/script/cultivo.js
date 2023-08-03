@@ -36,7 +36,8 @@ createApp({
       productoSeleccionado: {},
       logged: false,
       cliente: [],
-      cantidadProductosCarrito: this.getCantidadProductosCarrito()
+      cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+      format: [],
     };
   },
   created() {
@@ -49,6 +50,10 @@ createApp({
       .catch(err => console.log(err))
     this.traerProductosCultivo();
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+    this.format = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
   },
   methods: {
     logout() {
@@ -69,10 +74,6 @@ createApp({
         .then(response => {
           this.productos = response.data
 
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
           //CULTIVO
           this.cultivo = this.productos.filter(producto => producto.categoria == "CULTIVO")
           console.log(this.cultivo);

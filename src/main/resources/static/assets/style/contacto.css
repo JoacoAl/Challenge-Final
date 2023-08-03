@@ -207,6 +207,13 @@ p {
   font-size: 24px;
 }
 
+.categoria {
+  height: 85vh;
+
+  background-image: url("../img-contacto-detalle/gozocampera.JPEG");
+  background-size: cover;
+  background-position-y: 65% !important;
+}
 .textarea {
   resize: none;
 }

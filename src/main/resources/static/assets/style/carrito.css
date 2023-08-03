@@ -882,10 +882,111 @@ th {
   background-color: rgb(92, 7, 7);
 }
 
+.btn-modificar:hover {
+  background-color: rgb(4, 63, 90);
+}
+
 .imagen-mercadopago {
   width: 600px;
 }
 
 .btn-mercadopago {
   font-weight: 600;
+}
+
+/* media queries */
+
+@media only screen and (min-width: 320px) and (max-width: 567px) {
+  .container-loader,
+  .loader,
+  .container-loader2 {
+    width: 100% !important;
+  }
+  .table {
+    width: 100% !important;
+    margin: 0 !important;
+    border: 0;
+  }
+  td,
+  th {
+    font-size: 10px;
+    max-width: 65px !important;
+    padding: 3px !important;
+  }
+  thead,
+  tbody {
+    width: 300px !important;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  .text-mamacultiva {
+    font-size: 30px;
+  }
+
+  nav,
+  .container,
+  .container-fluid {
+    width: 100% !important;
+  }
+  .imagenes-carrito,
+  .imagen-mercadopago {
+    width: 320px !important;
+  }
+  .div-tabla {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .imagen-tabla {
+    width: 30px;
+  }
+  .btn-borrar,
+  .btn-modificar {
+    width: 35px !important;
+    height: 45px !important;
+    margin-top: 5px;
+  }
+  .bi {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 567px) and (max-width: 768px) {
+  .container-loader,
+  .loader,
+  .container-loader2 {
+    width: 100% !important;
+  }
+  .table {
+    width: 90% !important;
+  }
+  td,
+  th {
+    font-size: 15px;
+    max-width: 70px !important;
+    padding: 3px !important;
+  }
+  thead,
+  tbody {
+    width: 567px !important;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  .text-mamacultiva {
+    font-size: 45px;
+  }
+
+  nav,
+  .container {
+    width: 100% !important;
+  }
+  .imagenes-carrito {
+    width: 567px !important;
+  }
 }

@@ -31,7 +31,9 @@ const app = createApp({
       totalCompra: 0,
       totalProductos: 0,
       logged: false,
-      cliente: []
+      cliente: [],
+      numeroCantidad: null,
+      totalPorProducto: null,
     }
   },
   created() {
@@ -51,10 +53,12 @@ const app = createApp({
         icon: 'success'
       });
       this.deleteCompras();
+      console.log(this.seleccionadas);
     }
   },
 
   methods: {
+
     redirectToPayment() {
       const items = this.seleccionadas.map(producto => ({
         title: producto.nombre,
@@ -139,6 +143,9 @@ const app = createApp({
         this.json = JSON.stringify(this.elementosFiltrados);
         localStorage.setItem('seleccionadas', this.json);
 
+        const nuevaCantidadProductos = this.elementosFiltrados.reduce((total, elemento) => total + elemento.cantidad, 0);
+        localStorage.setItem('cantidadProductosCarrito', nuevaCantidadProductos.toString());
+
         await Swal.fire({
           title: '¡Producto descartado!',
           icon: 'success'
@@ -147,7 +154,44 @@ const app = createApp({
         window.location.href = "/assets/pages/carrito.html";
       }
     },
+
+    abrirSweetAlert(id) {
+      Swal.fire({
+        title: 'Modificar cantidad',
+        html: `
+          <input type="number" id="inputNumber" min="1" max="10000" value="1" v-model="numeroCantidad">
+        `,
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: 'Modificar',
+        cancelButtonText: 'Cancelar',
+        preConfirm: () => {
+          // Acción a realizar al hacer clic en Aceptar (Confirmar)
+          this.numeroCantidad = document.getElementById('inputNumber').value;
+          console.log(`Valor ingresado: ${this.numeroCantidad}`);
+
+          this.modificarCantidad(id);
+        },
+        cancelButtonColor: '#d33',
+        allowOutsideClick: false
+      });
+    },
+
+    modificarCantidad(id) {
+      const producto = this.seleccionadas.find(producto => producto.id === id);
+      console.log(this.numeroCantidad);
+
+      if (producto) {
+
+        producto.cantidad = this.numeroCantidad
+        console.log('Producto encontrado:', producto);
+      } else {
+        console.log('Producto no encontrado con el ID proporcionado:', id);
+      }
+    }
   },
+
+
   computed: {
     resultado() {
       this.totalCompra = this.seleccionadas.reduce(
@@ -165,12 +209,6 @@ const app = createApp({
       const json = JSON.stringify(this.totalProductos);
       localStorage.setItem("cantidad", json);
     },
-    redirection() {
-      return window.location.href = "/assets/pages/accesorios.html"
-    },
-    redirectionPay() {
-      return window.location.href = "/assets/pages/accesorios.html"//especificar ruta de pago
-    },
     crearOrden() {
       this.ordenProducto = this.seleccionadas.map(producto => ({
         nombre: producto.nombre,
@@ -187,36 +225,6 @@ const app = createApp({
           console.log(error.response);
         })
     },
-    async descartarProducto(id) {
-      const result = await Swal.fire({
-        title: '¿Estás seguro de que quieres descartar este producto?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No'
-      });
-
-      if (result.isConfirmed) {
-        this.elementos = JSON.parse(localStorage.getItem('seleccionadas'));
-        this.elementosFiltrados = this.elementos.filter(elemento => elemento.id !== id);
-        this.json = JSON.stringify(this.elementosFiltrados);
-        localStorage.setItem('seleccionadas', this.json);
-
-        await Swal.fire({
-          title: '¡Producto descartado!',
-          icon: 'success'
-        });
-
-        window.location.href = "/assets/pages/carrito.html";
-      }
-    },
-
-    modificarCantidad(id) {
-      let producto = this.seleccionadas.filter(producto => {
-        producto.id = id
-      })
-
-    }
   }
 });
 

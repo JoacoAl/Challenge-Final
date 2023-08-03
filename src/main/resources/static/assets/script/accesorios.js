@@ -49,7 +49,9 @@ createApp({
 
       logged: false,
 
-      cliente: []
+      cliente: [],
+
+      format: []
     };
   },
   created() {
@@ -62,18 +64,26 @@ createApp({
       .catch(err => console.log(err))
     this.traerProductosAccesorios();
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+    this.format = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
   },
   methods: {
+    logout() {
+      axios.post("/api/logout")
+        .then(response => {
+
+          window.location.href = "/index.html";
+        })
+    },
     traerProductosAccesorios() {
       axios
         .get('/api/productos')
         .then(response => {
           this.productos = response.data.filter(productos => productos.activo == true)
 
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
+
 
           //ACCESORIOS
           this.accesorios = this.productos.filter(producto => producto.categoria == "ACCESORIOS");
