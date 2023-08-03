@@ -115,9 +115,6 @@
                             <li>{{format.format(articulo.cantidad *
                                 articulo.precio)}}</li>
                                 <div class="d-flex justify-content-end">
-                                    <button role="button" class="btn btn-primary btn-modificar me-2 font"
-                                    @click="abrirSweetAlert(articulo.id)" role="button"><i
-                                        class="bi bi-pencil-square btn-modifcar"></i></button>
                                 <button role="button" class="btn btn-danger btn-borrar me-2"
                                         @click="descartarProducto(articulo.id)" role="button"><i
                                             :class="seleccionadas.some(e => e.id == articulo.id) ? 'bi bi-trash3 font' : 'bi bi-trash3'"></i></button>

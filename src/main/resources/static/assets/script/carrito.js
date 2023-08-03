@@ -78,7 +78,7 @@ const app = createApp({
         body: JSON.stringify({
           items,
           back_urls: {
-            success: `http://localhost:8080/assets/pages/carrito.html`
+            success: `gozogrowshop.onrender.com/assets/pages/carrito.html`
           }
         })
       })
