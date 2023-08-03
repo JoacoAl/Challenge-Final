@@ -5,53 +5,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-/* LOADER */
-.loader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-}
-.container-loader {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  z-index: 10000000;
-  opacity: 1;
-  transition: opacity 3s ease;
-}
-.container-loader2 {
-  opacity: 0;
-  pointer-events: none;
-}
-.dot {
-  border-radius: 100%;
-  border: 4px solid rgb(12, 119, 17);
-  margin: 10px;
-  background-color: white;
-}
-
-.dot:nth-child(1) {
-  animation: preloader 0.6s ease-in-out alternate infinite;
-}
-.dot:nth-child(2) {
-  animation: preloader 0.6s ease-in-out alternate 0.2s infinite;
-}
-.dot:nth-child(3) {
-  animation: preloader 0.6s ease-in-out alternate 0.4s infinite;
-}
-@keyframes preloader {
-  100% {
-    transform: scale(2);
-  }
-}
 /* NAVBAR */
 .logo-navbar {
   width: 160px;
@@ -202,21 +155,21 @@ h5 {
 }
 .categoria-tabaco {
   height: 85vh;
-  background-image: url("https://www.clarin.com/img/2016/06/16/HkbqTP3KVx_1256x620.jpg");
+  background-image: url(../images/tabacos.JPEG);
   background-size: cover;
-  background-position: 20%;
+  background-position-y: 50%;
 }
 .categoria-accesorios {
   height: 85vh;
-  background-image: url("https://www.headcandysmokeshop.com/cdn/shop/files/Head-Candy-Watermarked-1800x1000-2_1800x1000.jpg?v=1628115990");
+  background-image: url(../images/accesorios.JPEG);
   background-size: cover;
-  background-position: 20%;
+  background-position-y: 68%;
 }
 .categoria-cultivo {
   height: 85vh;
-  background-image: url("https://img.interempresas.net/fotos/3930179.jpeg");
+  background-image: url(../images/cultivo.JPEG);
   background-size: cover;
-  background-position: 20%;
+  background-position-y: 40%;
 }
 .productos {
   min-height: 70vh;
@@ -377,11 +330,6 @@ footer > h1 {
 .iframe-footer {
   border-radius: 10px;
 }
-.text-mamacultiva {
-  font-family: "Rowdies", cursive;
-  text-shadow: 1px 1px 1px black;
-}
-
 .text-footer {
   font-family: "Rowdies", cursive;
 }

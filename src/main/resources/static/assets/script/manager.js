@@ -1,37 +1,17 @@
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
-    const scrollPosition = window.scrollY;
-    const navbarHeight = navbar.offsetHeight;
-    const headerHeight = 300;
 
-    const opacity = Math.min(1, scrollPosition / (headerHeight - navbarHeight));
-    if (scrollPosition > headerHeight) {
-        navbar.classList.add("top-nav");
-        navbar.classList.remove("navbar-interno_home")
-    } else {
-        navbar.classList.remove("top-nav");
-        navbar.classList.add("navbar-interno_home")
-    }
-    navbar.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-});
-
-window.addEventListener("load", function () {
-    this.document.getElementById("container-loader").classList.toggle("container-loader2")
-})
-
-const { createApp } = Vue;
+const {createApp} = Vue;
 
 const app = createApp({
-    data() {
-        return {
+    data(){
+        return{
             productos: [],
             desactivados: [],
             clientes: [],
             //formulario productos
-            nombre: "",
+            nombre:"",
             marca: "",
             descripcion: "",
-            precio: "",
+            precio:"",
             categoria: "",
             subCategoria: "",
             cantidad: null,
@@ -52,45 +32,37 @@ const app = createApp({
             Pprecio: null,
             //id
             selectedProductId: null,
-            cliente: []
         }
     },
-    created() {
-        axios.get("/api/cliente/actual")
-            .then(response => {
-                this.logged = true;
-                this.cliente = response.data
-
-            })
+    created(){
         this.getProductos()
         this.getClientes()
     },
-    computed: {
+    computed:{
         filtrarPorTitulo() {
             this.productosFiltrados = this.productos.filter((e) =>
-                e.nombre.toLowerCase().includes(this.searchInput.toLowerCase())
+              e.nombre.toLowerCase().includes(this.searchInput.toLowerCase())
             );
-        },
+          },
     },
-    methods: {
-
+    methods:{
         filtrarPorTitulo() {
-            return this.productos.filter((e) =>
-                e.nombre.toLowerCase().includes(this.searchInput.toLowerCase())
-            );
-        },
-        getProductos() {
+        return this.productos.filter((e) =>
+          e.nombre.toLowerCase().includes(this.searchInput.toLowerCase())
+        );
+      },
+        getProductos(){
             axios.get("/api/productos")
-                .then(res => {
-                    this.productos = res.data.filter(productos => productos.activo == true)
-                    this.desactivados = res.data.filter(productos => productos.activo == false)
-                    console.log(this.productos)
-                })
-                .catch(error => {
-                    alert("no se agrego")
-                });
+            .then(res => {
+                this.productos = res.data.filter(productos => productos.activo == true)
+                this.desactivados = res.data.filter(productos => productos.activo == false)
+                console.log(this.productos)
+            })
+            .catch(error => {
+                alert("no se agrego")
+            });
         },
-
+        
         createdProduct() {
             const fileInput = document.querySelector('input[type="file"]');
             const file = fileInput.files[0];
@@ -107,92 +79,92 @@ const app = createApp({
                 },
                 data: formData
             })
-                .then(res => {
-                    // The UUID of the uploaded file is in res.data.file
-                    // You can use this UUID to construct the file URL
-                    const fileUUID = res.data.file;
-                    const fileURL = `https://ucarecdn.com/${fileUUID}/`;
+            .then(res => {
+                // The UUID of the uploaded file is in res.data.file
+                // You can use this UUID to construct the file URL
+                const fileUUID = res.data.file;
+                const fileURL = `https://ucarecdn.com/${fileUUID}/`;
 
-                    // Save the file URL to your database
-                    const data = {
-                        nombre: this.nombre,
-                        marca: this.marca,
-                        descripcion: this.descripcion,
-                        precio: this.precio,
-                        categoria: this.categoria,
-                        subCategoria: this.subCategoria,
-                        cantidad: this.cantidad,
-                        imagen: fileURL
-                    };
+                // Save the file URL to your database
+                const data = {
+                    nombre: this.nombre,
+                    marca: this.marca,
+                    descripcion: this.descripcion,
+                    precio: this.precio,
+                    categoria: this.categoria,
+                    subCategoria: this.subCategoria,
+                    cantidad: this.cantidad,
+                    imagen: fileURL
+                };
 
-                    axios.post('/api/productos/agregar', data, {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                        .then(res => {
-                            alert("se agrego")
-                        })
-                        .catch(error => {
-                            alert("no se agrego")
-                        });
+                axios.post('/api/productos/agregar', data, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
-                .catch(err => {
-                    console.error(err);
+                .then(res => {
+                    alert("se agrego")
+                })
+                .catch(error => {
+                    alert("no se agrego")
                 });
+            })
+            .catch(err => {
+                console.error(err);
+            });
         },
-        borrarProducto(id) {
+        borrarProducto(id){
             axios.patch(`http://localhost:8080/api/productos/${id}/deactivate`)
-                .then(res => {
-                    alert("se borro")
-                    window.location.href = "http://localhost:8080/manager.html"
-                })
-                .catch(error => {
-                    alert("no se borro")
-                });
+            .then(res=> {
+                alert("se borro")
+                window.location.href = "http://localhost:8080/assets/pages/manager.html"
+            })
+            .catch(error => {
+                alert("no se borro")
+            });
         },
-        reactivar(id) {
+        reactivar(id){
             axios.patch(`http://localhost:8080/api/productos/${id}/activate`)
-                .then(res => {
-                    alert("se agrego")
-                    window.location.href = "http://localhost:8080/assets/pages/manager.html"
-                })
-                .catch(error => {
-                    alert("se agrego")
-                });
+            .then(res=> {
+                alert("se agrego")
+                window.location.href = "http://localhost:8080/assets/pages/manager.html"
+            })
+            .catch(error => {
+                alert("se agrego")
+            });
         },
-        getClientes() {
+        getClientes(){
             axios.get("http://localhost:8080/api/clientes")
-                .then(res => {
-                    this.clientes = res.data
-                    console.log(this.clientes)
-                })
-                .catch(error => {
-                    alert("no se borro")
-                });
+            .then(res=>{
+                this.clientes = res.data
+                console.log(this.clientes)
+            })
+            .catch(error => {
+                alert("no se borro")
+            });
         },
-        register() {
+        register(){
             const data = {
                 nombre: this.nombreCliente,
                 apellido: this.apellido,
                 email: this.email,
-                direccion: this.direccion,
+                direccion: this.direccion ,
                 contraseña: this.contraseña,
                 telefono: this.telefono,
                 edad: this.edad,
 
             };
-            axios.post("http://localhost:8080/api/clientes", data, {
+            axios.post("http://localhost:8080/api/clientes", data,{
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-                .then(res => {
-                    window.location.href = "/assets/pages/manager.html"
-                })
-                .catch(err => alert(err))
-        },
-
+            .then(res=>{
+                window.location.href = "/assets/pages/manager.html"
+            })
+            .catch(err => alert(err))
+        },  
+        
         redirectionModal(id) {
             this.selectedProductId = id;
             window.location.href = "#openModal";
@@ -210,17 +182,17 @@ const app = createApp({
                     'Content-Type': 'application/json'
                 }
             })
+            .then(() => {
+                window.location.href = "#close";
+                Swal.fire('¡Éxito!', 'El producto fue modificado correctamente', 'success')
                 .then(() => {
-                    window.location.href = "#close";
-                    Swal.fire('¡Éxito!', 'El producto fue modificado correctamente', 'success')
-                        .then(() => {
-                            window.location.href = "http://localhost:8080/assets/pages/manager.html";
-                        });
-                })
-                .catch(err => {
-                    Swal.fire('Error', err.message, 'error');
-                    window.location.href = "#close";
+                    window.location.href = "http://localhost:8080/assets/pages/manager.html";
                 });
+            })
+            .catch(err => {
+                Swal.fire('Error', err.message, 'error');
+                window.location.href = "#close";
+            });
         },
 
         LogOut() {
@@ -241,7 +213,7 @@ const app = createApp({
                     });
                 });
         },
-
+        
     },
 })
 app.mount("#app")

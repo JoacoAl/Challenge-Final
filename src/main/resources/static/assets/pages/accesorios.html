@@ -8,22 +8,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="../img-contacto-detalle/logoGOZO.png" type="image/x-icon">
     <link rel="stylesheet" href="../style/productos.css">
-    <title>Gozo | Tabacos</title>
+    <title>Gozo | Accesorios</title>
     <script src="https://kit.fontawesome.com/ac7a6b20e0.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app" class="layout">
-        <div class="container-loader" id="container-loader">
-            <img src="../images/logo.png" alt="" class="w-25">
-            <div class="loader">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </div>
-        <header>
-            <nav id="navbar"
-                class="navbar navbar-default navbar-light flex-grow fixed-top navbar-expand-lg nav-interno_home">
+        
+    <header>
+            <nav id="navbar" class="navbar navbar-default navbar-light flex-grow fixed-top navbar-expand-lg nav-interno_home">  
                 <div class="container-fluid d-flex navContent navbar-expand-lg justify-content-between container">
                     <img src="../images/logo.png" alt="logo" class="logo-navbar w-25">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -48,24 +40,17 @@
                             <li class="nav-item">
                                 <a class="navbar-brand text-white" href="./contacto.html" class="a-nav">Contacto</a>
                             </li>
-                            <li v-show="cliente.email === 'admin-gozogrowshop@gmail.com'" class="nav-item">
-                                <a class="navbar-brand text-white" href="../../manager.html" class="a-nav">Manager</a>
+                            <li class="nav-item">
+                                <img src="../images/banderitaArg.png" alt="" class="emoji-arg">
                             </li>
                         </ul>
-                        <div class="d-flex justify-content-center gap-2">
-                            <span v-if="logged" class="d-flex justify-content-center gap-2">
-                                <i class="bi bi-person-circle text-white icons-navbar"></i>
-                                <button class="btn btn-success">{{cliente.nombre}}</button>
-                                <button class="btn btn-success" @click="logout()"><i
-                                        class="bi bi-box-arrow-left text-white"></i></button>
-                            </span>
-                            <span v-if="!logged" class="text-center d-flex align-items-center">
-                                <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
-                            </span>
-
-                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i>
-                            </a>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="#"><i class="bi bi-person-circle text-white icons-navbar"></i></a>
+                        <a href="./carrito.html">
+                            <i class="bi bi-cart-fill text-white icons-navbar"></i>
+                            <span class="badge bg-danger">{{ cantidadProductosCarrito }}</span>
+                          </a>
                     </div>
                 </div>
             </nav>
@@ -81,15 +66,11 @@
             </div>
             <div class="p-5 col-12 d-flex flex-column flex-wrap">
                 <h4 class="fs-2">Filtrar por categoría</h4>
-                <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
-                    <div v-for="categoria of categoriasAccesorios" style="height: 1rem;" class="form-check form-switch">
-                        <input class="form-check-input" style="height: 2rem; width: 3.5rem;" type="checkbox"
-                            v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"
-                            @change="filtroBusquedaAccesorios">
-                        <label class="form-check-label" :for="categoria">
-                            <p class="fs-4">{{categoria}}</p>
-                        </label>
-                    </div>
+                <div class="d-flex justify-content-center filtros pt-2 gap-5 col-12">
+                    <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check form-switch d-flex flex-wrap">
+                        <input class="form-check-input me-2" style="height: 2rem; width: 3.5rem;" type="checkbox" v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"  @change="filtroBusquedaAccesorios">
+                        <label class="form-check-label" :for="categoria"><p class="fs-4">{{categoria}}</p></label>
+                      </div>
                 </div>
             </div>
             <section class="col-10 d-flex gap-5 justify-content-start flex-wrap productos">
@@ -114,6 +95,25 @@
                       <h1 class="modal-title fs-5" id="exampleModalLabel">{{ productoSeleccionado.nombre }}</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <div class="modal-body">
+                      <div class="text-center">
+                        <img :src="productoSeleccionado.imagen" class="w-50" alt="Imagen del producto">
+                      </div>
+                      <p>Precio: {{productoSeleccionado.precio }}</p>
+                      <p>Marca: {{ productoSeleccionado.marca }}</p>
+                      <p>Cantidad disponible: {{ productoSeleccionado.cantidad }}</p>
+                      <p>Categoria: {{productoSeleccionado.categoria}}</p>
+                      <p>Subcateogria:{{productoSeleccionado.subcategoria}} </p>
+                      <p>Descripción:</p>
+                      <p class="text-center">{{ productoSeleccionado.descripcion }}</p>
+                    </div>
+                    <div class="modal-footer">  
+                        <button class="card-btn" @click="toggleSeleccion(productoSeleccionado.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" :class="seleccionadas.some(e => e.id == productoSeleccionado.id) ? 'bi bi-shop-window text-primary' : 'bi bi-shop-window'" viewBox="0 0 512 512"><path d="m397.78 316h-205.13a15 15 0 0 1 -14.65-11.67l-34.54-150.48a15 15 0 0 1 14.62-18.36h274.27a15 15 0 0 1 14.65 18.36l-34.6 150.48a15 15 0 0 1 -14.62 11.67zm-193.19-30h181.25l27.67-120.48h-236.6z"></path><path d="m222 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path><path d="m368.42 450a57.48 57.48 0 1 1 57.48-57.48 57.54 57.54 0 0 1 -57.48 57.48zm0-84.95a27.48 27.48 0 1 0 27.48 27.47 27.5 27.5 0 0 0 -27.48-27.47z"></path><path d="m158.08 165.49a15 15 0 0 1 -14.23-10.26l-25.71-77.23h-47.44a15 15 0 1 1 0-30h58.3a15 15 0 0 1 14.23 10.26l29.13 87.49a15 15 0 0 1 -14.23 19.74z"></path></svg>
+                        </button> 
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                  </div>
                 </div>
               </div>
               
@@ -184,11 +184,8 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="../script/productos.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="../script/accesorios.js"></script>
+    
 </body>
-
 </html>

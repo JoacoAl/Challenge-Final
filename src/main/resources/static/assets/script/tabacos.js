@@ -20,12 +20,7 @@ const myInput = myModal.querySelector('.modal-body input');
 myModal.addEventListener('shown.bs.modal', () => {
   myInput.focus();
 });
-
-window.addEventListener("load", function () {
-  this.document.getElementById("container-loader").classList.toggle("container-loader2")
-})
-
-const { createApp } = Vue
+const {createApp} = Vue
 
 createApp({
   data() {
@@ -49,8 +44,8 @@ createApp({
   created(){
      this.traerProductosTabacos();
      this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
+     this.cantidadProductosCarrito = JSON.parse(localStorage.getItem("cantidad")) ?? [];
   },
-
   methods: {
     traerProductosTabacos(){
       axios
@@ -134,6 +129,7 @@ createApp({
     
   },
   computed: {
+
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));

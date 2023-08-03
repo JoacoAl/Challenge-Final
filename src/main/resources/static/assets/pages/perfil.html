@@ -11,23 +11,57 @@
 </head>
 <body>
     <div id="app">
+      <header>
+        <nav id="navbar" class="navbar navbar-default navbar-light flex-grow fixed-top navbar-expand-lg nav-interno_home">  
+            <div class="container-fluid d-flex navContent navbar-expand-lg justify-content-between container">
+                <img src="../images/logo.png" alt="logo" class="logo-navbar w-25">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse ancors-navbar" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="navbar-brand text-white" href="../../index.html" class="a-nav">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand text-white" href="#" class="a-nav">Accessorios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand text-white" href="./cultivo.html" class="a-nav">Cultivo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand text-white" href="/assets/pages/tabacos.html" class="a-nav">Tabacos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-brand text-white" href="./contacto.html" class="a-nav">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <img src="../images/banderitaArg.png" alt="" class="emoji-arg">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
         <main>
-            <div class="container">
-              <div class="right tab-content">
-                <h2 class="text-center">Perfil del Usuario</h2>
-                <form class="form-horizontal">
+            <div class="container2 w-75 d-flex justify-content-center">
+              <div class="right tab-content col-10 d-flex flex-column align-items-center">
+                <h2 class="text-center">Editar informacion del usuario</h2>
+                <form class="form-horizontal col-12">
                   <div class="form-group">
                     <label for="nombre" class=" control-label">Nombre</label>
-    
                     <div class="mt-2">
-                      <input v-model="datos.nombre"  type="text" class="form-control" id="nombre" placeholder="Nombre">
+                      <input v-model="datos.nombre"  type="text" class="form-control w-100" id="nombre" placeholder="Nombre">
                     </div>
+                  </div>
                     <div class="form-group">
                         <label for="apellido" class=" control-label">Apellido</label>
-            
                         <div class="mt-2 ">
                           <input v-model="datos.apellido"  type="text" class="form-control" id="apellido" placeholder="Apellido">
                         </div>
+                      </div>
                   <div class="form-group">
                     <label for="email" class=" control-label">Email</label>
                     <div class="mb-2 mt-2">
@@ -52,9 +86,9 @@
                       <input v-model="datos.direcion" type="text" class="form-control" id="direcion" placeholder="Pellegrini 3587">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="m-auto">
-                      <button type="submit" class="btn buton" @click="editarPerfil()">Guardar Cambios</button>
+                  <div class="form-group align-self-center">
+                    <div class="w-100 d-flex justify-content-center">
+                      <button type="submit" class="btn buton w-100 " @click="editarPerfil()">Guardar Cambios</button>
                     </div>
                   </div>
                 </form>

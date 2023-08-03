@@ -15,14 +15,6 @@
 
 <body>
     <div id="app">
-        <div class="container-loader" id="container-loader">
-            <img src="../images/logo.png" alt="" class="w-25">
-            <div class="loader">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </div>
         <header>
             <nav id="navbar"
                 class="navbar navbar-default navbar-light flex-grow fixed-top navbar-expand-lg nav-interno_home">
@@ -51,8 +43,8 @@
                             <li class="nav-item">
                                 <a class="navbar-brand text-white" href="#" class="a-nav">Contacto</a>
                             </li>
-                            <li v-show="cliente.email === 'admin-gozogrowshop@gmail.com'" class="nav-item">
-                                <a class="navbar-brand text-white" href="../../manager.html" class="a-nav">Manager</a>
+                            <li class="nav-item">
+                                <img src="../images/banderitaArg.png" alt="" class="emoji-arg">
                             </li>
 
                         </ul>
@@ -67,7 +59,8 @@
                                 <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
                             </span>
 
-                            <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i>
+                            <a href="./assets/pages/carrito.html"><i
+                                    class="bi bi-cart-fill text-white icons-navbar"></i>
                             </a>
                         </div>
                     </div>
@@ -156,7 +149,7 @@
         <footer class="d-flex justify-content-center align-items-center flex-column">
             <h1 class="text-mamacultiva text-white">GOZO GROWSHOP</h1>
             <h3 class="text-warning text-footer mt-2">somosgozo@gmail.com</h3>
-            <div class="card1 flex-row">
+            <div class="card1 card flex-row">
                 <a href="https://www.instagram.com/somosgozo/" class="socialContainer containerOne">
                     <svg class="socialSvg instagramSvg" viewBox="0 0 16 16">
                         <path
@@ -181,12 +174,6 @@
                     </svg>
                 </a>
             </div>
-
-
-            <iframe class="iframe-footer"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350541.2441726234!2d-60.9239008000447!3d-34.90612493204253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95cc42e58c8a51bf%3A0xcaabe31bc8c5cd4!2sSan%20Luis%201131%2C%20Villa%20Mar%C3%ADa%2C%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1690666721375!5m2!1ses-419!2sar"
-                width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </footer>
     </div>
 

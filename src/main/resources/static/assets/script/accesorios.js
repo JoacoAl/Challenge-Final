@@ -40,11 +40,12 @@ createApp({
 
         productoSeleccionado: {},
 
-        cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+        // cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+
+        cantidadProductosCarrito: "",
     };
   },
   created(){
-    this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
      this.traerProductosAccesorios();
      this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
   },
@@ -130,7 +131,7 @@ createApp({
         this.productoSeleccionado = producto;
       }
     },
-    
+
   },
   computed: {
     filtroBusquedaAccesorios() {

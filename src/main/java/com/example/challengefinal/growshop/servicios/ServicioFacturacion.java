@@ -26,56 +26,56 @@ public class ServicioFacturacion {
         Document document = new Document(PageSize.A4);
         PdfWriter writer = PdfWriter.getInstance(document, outputStream);
 
-        document.open();
-        // Agregar encabezado de la factura
-        Font tituloFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, Color.DARK_GRAY);
-        Paragraph encabezado = new Paragraph("Factura de compra en Gozo Growshop", tituloFont);
-        encabezado.setAlignment(Element.ALIGN_CENTER);
-        encabezado.setSpacingBefore(20);
-        document.add(encabezado);
+            document.open();
+            // Agregar encabezado de la factura
+            Font tituloFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, Color.DARK_GRAY);
+            Paragraph encabezado = new Paragraph("Factura de compra en Gozo Growshop", tituloFont);
+            encabezado.setAlignment(Element.ALIGN_CENTER);
+            encabezado.setSpacingBefore(20);
+            document.add(encabezado);
 
-        document.add(new Paragraph("\n"));
+            document.add(new Paragraph("\n"));
 
         // Agregar información de la orden (encabezado)
-        Paragraph infoOrden = new Paragraph("Número de orden: " + orden.getNumeroDeOrden());
-        Paragraph clienteCompra = new Paragraph("Nombre del cliente: " + cliente.getNombre() + " " + cliente.getApellido());
-        Paragraph montoTotal = new Paragraph("Monto total de la compra: $" + calcularTotal(ordenProductos));
-        document.add(infoOrden);
-        document.add(clienteCompra);
-        document.add(montoTotal);
+            Paragraph infoOrden = new Paragraph("Número de orden: " + orden.getNumeroDeOrden());
+            Paragraph clienteCompra = new Paragraph("Nombre del cliente: " + cliente.getNombre() + " " + cliente.getApellido());
+            Paragraph montoTotal = new Paragraph("Monto total de la compra: $" + calcularTotal(ordenProductos));
+            document.add(infoOrden);
+            document.add(clienteCompra);
+            document.add(montoTotal);
 
-        // Agregar tabla con los productos y sus detalles
+            // Agregar tabla con los productos y sus detalles
 
-        PdfPTable table = new PdfPTable(4);
-        table.setWidthPercentage(100);
-        table.setSpacingBefore(10f);
-        table.setSpacingAfter(10f);
+            PdfPTable table = new PdfPTable(4);
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+            table.setSpacingAfter(10f);
 
-        float padding = 12f;
-        PdfPCell cell;
-        cell = new PdfPCell(new Phrase("Nombre"));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setPadding(padding);
-        table.addCell(cell);
+            float padding = 12f;
+            PdfPCell cell;
+            cell = new PdfPCell(new Phrase("Nombre"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setPadding(padding);
+            table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase("Cantidad"));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setPadding(padding);
-        table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Cantidad"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setPadding(padding);
+            table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase("Precio unitario"));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setPadding(padding);
-        table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Precio unitario"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setPadding(padding);
+            table.addCell(cell);
 
-        cell = new PdfPCell(new Phrase("Precio por cantidad"));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setPadding(padding);
-        table.addCell(cell);
+            cell = new PdfPCell(new Phrase("Precio por cantidad"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setPadding(padding);
+            table.addCell(cell);
 
 
         for (OrdenInfoDTO ordenProducto : ordenProductos) {
-            float paddingCell = 12f;
+            float paddingCell = 9f;
             PdfPCell cellNombre = new PdfPCell(new Phrase(ordenProducto.getNombre()));
             cellNombre.setHorizontalAlignment(Element.ALIGN_LEFT);
             cellNombre.setVerticalAlignment(Element.ALIGN_CENTER);
@@ -101,13 +101,13 @@ public class ServicioFacturacion {
             table.addCell(cellPrecioTotal);
         }
 
-        document.add(table);
+                document.add(table);
 
-        // Agregar total de la factura
-        Paragraph total = new Paragraph("Total: $" + calcularTotal(ordenProductos));
-        document.add(total);
+            // Agregar total de la factura
+            Paragraph total = new Paragraph("Total: $" + calcularTotal(ordenProductos));
+            document.add(total);
 
-        document.close();
+            document.close();
         return outputStream;
     }
 

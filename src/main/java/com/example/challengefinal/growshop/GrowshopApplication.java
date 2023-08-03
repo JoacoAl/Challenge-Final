@@ -23,7 +23,7 @@ public class GrowshopApplication {
     PasswordEncoder codificadorDeContraseña;
 
     @Bean
-    public CommandLineRunner initData(ClienteRepositorio clienteRepositorio, ProductoRepositorio productoRepositorio, OrdenRepositorio ordenRepositorio, OrdenProductoRepositorio ordenProductoRepositorio) {
+    public CommandLineRunner initData(ClienteRepositorio clienteRepositorio, ProductoRepositorio productoRepositorio, OrdenRepositorio ordenRepositorio, PagoRepositorio pagoRepositorio, OrdenProductoRepositorio ordenProductoRepositorio) {
         return (args) -> {
 
 
@@ -459,18 +459,18 @@ public class GrowshopApplication {
 
 //            encededores
 
-            Producto encededorBoton = new Producto("Encendedor Electrico Recargable Usb Con Boton Touch Tactil","Encendedor", "ENCENDEDOR RECARGABLE POR USB\n" +
+            Producto encededorBoton = new Producto("Encendedor Electrico Recargable","Encendedor", "ENCENDEDOR RECARGABLE POR USB\n" +
                     "\n" +
                     "- Sensor tactil\n" +
                     "- Carga por USB\n" +
                     "- Doble cara de encendido\n" +
                     "- Resiste a cualquier clima, el viento deja de ser molestia\n" +
-                    "- Indicador de carga en el encendedor", 2450, Categoria.ACCESORIOS,"Acessorio","https://http2.mlstatic.com/D_NQ_NP_693234-MLA70540658204_072023-O.webp", 25, true ,"ARS");
-            Producto zippoJack = new Producto("Encendedor Tipo Zippo Jack Daniels Bencina","Bonsai", "", 5499, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_692930-MLA54713042265_032023-O.webp", 12, true  ,"ARS");
-            Producto zippoTorna = new Producto("Encendedor Tipo Zippo Tornasolado Bencina Metálico","tigho", "Encendedor Tipo Zippo tornasolado Liso A Bencina\n" + "Tamaño tradicional Color tornasol", 3999, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_755684-MLA54056565531_022023-O.webp", 15, true ,"ARS");
-            Producto honestPipa= new Producto("Encendedor Honest Para Pipa","Honest", "ENCENDEDOR HONEST PARA PIPA INCLUYE CAJA EXCELENTE CALIDAD, IDEAL PARA REGALO", 15000, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_841226-MLA70440668980_072023-O.webp", 15, true ,"ARS");
+                    "- Indicador de carga en el encendedor", 2450, Categoria.ACCESORIOS,"Encendedores","https://http2.mlstatic.com/D_NQ_NP_693234-MLA70540658204_072023-O.webp", 25, true ,"ARS");
+            Producto zippoJack = new Producto("Encendedor Tipo Zippo Jack Daniels","Bonsai", "", 5499, Categoria.ACCESORIOS,"Encendedores","https://http2.mlstatic.com/D_NQ_NP_692930-MLA54713042265_032023-O.webp", 12, true  ,"ARS");
+            Producto zippoTorna = new Producto("Encendedor Tipo Zippo Tornasolado","tigho", "Encendedor Tipo Zippo tornasolado Liso A Bencina\n" + "Tamaño tradicional Color tornasol", 3999, Categoria.ACCESORIOS,"Encendedores","https://http2.mlstatic.com/D_NQ_NP_755684-MLA54056565531_022023-O.webp", 15, true ,"ARS");
+            Producto honestPipa= new Producto("Encendedor Honest Para Pipa","Honest", "ENCENDEDOR HONEST PARA PIPA INCLUYE CAJA EXCELENTE CALIDAD, IDEAL PARA REGALO", 15000, Categoria.ACCESORIOS,"Encendedores", "https://http2.mlstatic.com/D_NQ_NP_841226-MLA70440668980_072023-O.webp", 15, true ,"ARS");
             Producto encededorZengaz = new Producto("Encendedor Catalítico Zengaz ","zengaz", "Encendedor Catalítico Zengaz Con Estampados  "+ "- Recargable con gas butano.\n" + "- Tipo soplete Zengaz.\n" +
-                    "- Posee regluador de llama e incluye una traba de seguridad para cuando no es usado.\n" + "- Al ser catalítico es ideal ya que no se apaga ni se mueve la llama con el viento.\n" + "- Dimensiones: 4 × 6.5 × 1.5 cm\n" + "- Peso: 0.040 kg", 4635, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_614612-MLA54977131728_042023-O.webp", 10, true ,"ARS");
+                    "- Posee regluador de llama e incluye una traba de seguridad para cuando no es usado.\n" + "- Al ser catalítico es ideal ya que no se apaga ni se mueve la llama con el viento.\n" + "- Dimensiones: 4 × 6.5 × 1.5 cm\n" + "- Peso: 0.040 kg", 4635, Categoria.ACCESORIOS,"Encendedores", "https://http2.mlstatic.com/D_NQ_NP_614612-MLA54977131728_042023-O.webp", 10, true ,"ARS");
 
             productoRepositorio.save(encededorBoton);
             productoRepositorio.save(zippoJack);
@@ -479,11 +479,11 @@ public class GrowshopApplication {
             productoRepositorio.save(encededorZengaz);
 
 //            sedas
-            Producto sedasSmokings = new Producto("Pack X5 Papelillos Smoking Red X75 Sedas","Smoking", "PACK X5 PAPELILLOS SMOKING RED 78MM 75 SEDAS POR DISPLAY - TOTAL DE 375 PAPELILLOS", 950, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_749610-MLA69400718437_052023-O.webp", 25, true ,"ARS");
-            Producto sedasZeus = new Producto("Pack X5 Papelillos Zeus Black Sedas","Zeus", "PACK X5 UNIDADES PAPELILO ZEUS BLACK TAMAÑO: 78MM", 1895, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_977992-MLA54234520365_032023-O.webp", 15, true ,"ARS");
-            Producto celulosaZeus = new Producto("Papel Zeus Celulosa 300 Ancha - 300 Papelillos","Zeus", "CELULOSA ZEUS 300 Ud TAMAÑO: 78MM X 45MM ", 1200, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_748597-MLA54234727586_032023-O.webp", 12, true  ,"ARS");
-            Producto sedasGizeh = new Producto("Papelillos Sedas Gizeh Super Fine C/iman Pack X5 Und","Gizen", "PACK X5 UNIDADES PAPELILLOS GIZEH SUPER FINE C/IMAN (VERDE) CADA PAQUETITO CONTIENE 50 PAPELILLOS, TOTAL DEL PACK 250 PAPELILLOS", 2950, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_961924-MLA54971081718_042023-O.webp", 15, true ,"ARS");
-            Producto sedasKing = new Producto("Sedas Raw Classic King Size Papel Para Armar","King Size", "apel Raw King Size Slim Classic es un papel sin cloro, vegano completamente natural, totalmente crudo y hecho de papel sin refinar", 1160, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_658012-MLA43557024195_092020-O.webp", 12, true ,"ARS");
+            Producto sedasSmokings = new Producto("Pack X5 Papelillos Smoking Red X75","Smoking", "PACK X5 PAPELILLOS SMOKING RED 78MM 75 SEDAS POR DISPLAY - TOTAL DE 375 PAPELILLOS", 950, Categoria.ACCESORIOS,"Sedas","https://http2.mlstatic.com/D_NQ_NP_749610-MLA69400718437_052023-O.webp", 25, true ,"ARS");
+            Producto sedasZeus = new Producto("Pack X5 Papelillos Zeus Black","Zeus", "PACK X5 UNIDADES PAPELILO ZEUS BLACK TAMAÑO: 78MM", 1895, Categoria.ACCESORIOS,"Sedas","https://http2.mlstatic.com/D_NQ_NP_977992-MLA54234520365_032023-O.webp", 15, true ,"ARS");
+            Producto celulosaZeus = new Producto("Papel Zeus Celulosa 300 Ancha","Zeus", "CELULOSA ZEUS 300 Ud TAMAÑO: 78MM X 45MM ", 1200, Categoria.ACCESORIOS,"Sedas","https://http2.mlstatic.com/D_NQ_NP_748597-MLA54234727586_032023-O.webp", 12, true  ,"ARS");
+            Producto sedasGizeh = new Producto("Papelillos Sedas Gizeh Super Fine","Gizen", "PACK X5 UNIDADES PAPELILLOS GIZEH SUPER FINE C/IMAN (VERDE) CADA PAQUETITO CONTIENE 50 PAPELILLOS, TOTAL DEL PACK 250 PAPELILLOS", 2950, Categoria.ACCESORIOS,"Sedas","https://http2.mlstatic.com/D_NQ_NP_961924-MLA54971081718_042023-O.webp", 15, true ,"ARS");
+            Producto sedasKing = new Producto("Sedas Raw Classic King Size Papel Para Armar","King Size", "apel Raw King Size Slim Classic es un papel sin cloro, vegano completamente natural, totalmente crudo y hecho de papel sin refinar", 1160, Categoria.ACCESORIOS,"Sedas", "https://http2.mlstatic.com/D_NQ_NP_658012-MLA43557024195_092020-O.webp", 12, true ,"ARS");
 
             productoRepositorio.save(sedasSmokings);
             productoRepositorio.save(sedasZeus);
@@ -493,10 +493,10 @@ public class GrowshopApplication {
 
 //            ceniceros
 
-            Producto setCenicero = new Producto("Set X 4 Cenicero De Metal Varios Modelos","Le Toton Casa", "Divinos ceniceros de diseños variados, para darle estilo a cualquier rincón Podés elegir los que más te gusten y combinarlos como quieras medidas: 12,7 cm. de diámetro", 1270, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_662645-MLA70454777549_072023-O.webp", 25, true ,"ARS");
-            Producto ceniceroGlitter = new Producto("Molde Silicona Cenicero Facetado Resina Epoxi Doctor Glitter","Doctor Glitter", "MOLDE CENICERO CRISTAL GRANDE FACETADO OCTOGONAL SILICONA NEUTRA 1ERA CALIDAD", 2050, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_650855-MLA54483223777_032023-O.webp", 20, true ,"ARS");
-            Producto ceniceroVidrio = new Producto("Cenicero Vidrio Tallado 13 Cms D+m Bazar","D+M Bazar", "La garantía es por defecto de fabricación, no por golpes o caídas ", 1270, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_917340-MLA43398948398_092020-O.webp", 10, true  ,"ARS");
-            Producto ceniceroMarilyn = new Producto("Cenicero Con Tragacolillas A Presion De Marilyn","Le Toton Casa", "CENICERO PUSH TRAGACOLILLAS Hermosos ceniceros de diseño, con sistema a presión MEDIDAS: 7,5 cm. de alto | 9 cm. de diámetro", 2645, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_987618-MLA40427847908_012020-O.webp", 12, true ,"ARS");
+            Producto setCenicero = new Producto("Cenicero De Metal Varios Modelos","Le Toton Casa", "Divinos ceniceros de diseños variados, para darle estilo a cualquier rincón Podés elegir los que más te gusten y combinarlos como quieras medidas: 12,7 cm. de diámetro", 1270, Categoria.ACCESORIOS,"Ceniceros","https://http2.mlstatic.com/D_NQ_NP_662645-MLA70454777549_072023-O.webp", 25, true ,"ARS");
+            Producto ceniceroGlitter = new Producto("Cenicero Facetado Resina Doctor Glitter","Doctor Glitter", "MOLDE CENICERO CRISTAL GRANDE FACETADO OCTOGONAL SILICONA NEUTRA 1ERA CALIDAD", 2050, Categoria.ACCESORIOS,"Ceniceros","https://http2.mlstatic.com/D_NQ_NP_650855-MLA54483223777_032023-O.webp", 20, true ,"ARS");
+            Producto ceniceroVidrio = new Producto("Cenicero Vidrio Tallado 13 Cms D+m Bazar","D+M Bazar", "La garantía es por defecto de fabricación, no por golpes o caídas ", 1270, Categoria.ACCESORIOS,"Ceniceros","https://http2.mlstatic.com/D_NQ_NP_917340-MLA43398948398_092020-O.webp", 10, true  ,"ARS");
+            Producto ceniceroMarilyn = new Producto("Cenicero Con Tragacolillas Marilyn","Le Toton Casa", "CENICERO PUSH TRAGACOLILLAS Hermosos ceniceros de diseño, con sistema a presión MEDIDAS: 7,5 cm. de alto | 9 cm. de diámetro", 2645, Categoria.ACCESORIOS,"Ceniceros","https://http2.mlstatic.com/D_NQ_NP_987618-MLA40427847908_012020-O.webp", 12, true ,"ARS");
 
             productoRepositorio.save(setCenicero);
             productoRepositorio.save(ceniceroGlitter);
@@ -508,11 +508,11 @@ public class GrowshopApplication {
             Producto lataOcb = new Producto("OCB Premium Lata Porta Seda","Ocb", "Lata porta sedas\n" +
                     "•Ideal para resguardar tu paquete de sedas\n" +
                     "•Marca: OCB\n" +
-                    "•Material: Metal", 1700, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_746168-MLA51301639202_082022-O.webp", 25, true ,"ARS");
-            Producto lataBulldog = new Producto("Bulldog Lata Redonda Guarda Tabaco Sedas Gabba Grow Olivos","Bulldog", " BULLDOG Lata Clásica Redonda para guardar tabaco ++\n" + "Se abre y cierra a presión\n Medidas :: 5,6cm de diámetro Altura 1,5cm.\n", 1250, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_996579-MLA54272122444_032023-O.webp", 25, true ,"ARS");
-            Producto lataRaw = new Producto("Lata Guarda Tabaco Raw Sedas Ks 110 Gabba Grow Olivos","Raw", " RAW +++ Lata Clasica para guardar tabaco ++ KS 110´s\n" + "Medidas :: 12cm x 4cm x 2,5cm de altura ", 1900, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_832080-MLA48860779741_012022-O.webp", 12, true  ,"ARS");
-            Producto lataElements  = new Producto("Elements Lata Porta Sedas Pro Portasedas Gabba Grow Olivos","Elements", "ELEMENTS  Lata Portasedas  Metal ", 820, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_936926-MLA43915734902_102020-O.webp", 15, true ,"ARS");
-            Producto lataRawTin= new Producto("Lata Porta Sedas - Raw Shredder Tin","Raw", "PORTA SEDAS GLINDER SHREDDER TIN 1 1/4 - RAW Caja Grinder Shredder Case 1 1/4 es una caja de metal con dos funciones. Por un lado resguarda tu papel y por otro sirve de grinder para machacar tus flores favoritas", 4600, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_980169-MLA44243422999_122020-O.webp", 5, true ,"ARS");
+                    "•Material: Metal", 1700, Categoria.ACCESORIOS,"Latas","https://http2.mlstatic.com/D_NQ_NP_746168-MLA51301639202_082022-O.webp", 25, true ,"ARS");
+            Producto lataBulldog = new Producto("Bulldog Lata Redonda Guarda Tabaco","Bulldog", " BULLDOG Lata Clásica Redonda para guardar tabaco ++\n" + "Se abre y cierra a presión\n Medidas :: 5,6cm de diámetro Altura 1,5cm.\n", 1250, Categoria.ACCESORIOS,"Latas","https://http2.mlstatic.com/D_NQ_NP_996579-MLA54272122444_032023-O.webp", 25, true ,"ARS");
+            Producto lataRaw = new Producto("Lata Guarda Tabaco Raw Sedas Ks 110","Raw", " RAW +++ Lata Clasica para guardar tabaco ++ KS 110´s\n" + "Medidas :: 12cm x 4cm x 2,5cm de altura ", 1900, Categoria.ACCESORIOS,"Latas","https://http2.mlstatic.com/D_NQ_NP_832080-MLA48860779741_012022-O.webp", 12, true  ,"ARS");
+            Producto lataElements  = new Producto("Elements Lata Porta Sedas Pro","Elements", "ELEMENTS  Lata Portasedas  Metal ", 820, Categoria.ACCESORIOS,"Latas","https://http2.mlstatic.com/D_NQ_NP_936926-MLA43915734902_102020-O.webp", 15, true ,"ARS");
+            Producto lataRawTin= new Producto("Lata Porta Sedas - Raw Shredder Tin","Raw", "PORTA SEDAS GLINDER SHREDDER TIN 1 1/4 - RAW Caja Grinder Shredder Case 1 1/4 es una caja de metal con dos funciones. Por un lado resguarda tu papel y por otro sirve de grinder para machacar tus flores favoritas", 4600, Categoria.ACCESORIOS,"Latas", "https://http2.mlstatic.com/D_NQ_NP_980169-MLA44243422999_122020-O.webp", 5, true ,"ARS");
 
             productoRepositorio.save(lataOcb);
             productoRepositorio.save(lataBulldog);
@@ -521,10 +521,10 @@ public class GrowshopApplication {
             productoRepositorio.save(lataRawTin);
 
 //            filtros
-            Producto filtroLibella = new Producto("Filtro Libella Slim Long X 5 Bolsas ( 1000 Filtros )","Libella", "Combo 5 Bolsas Filtros Slim Long total( 1000 filtros) de 6 mm", 4600, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_886691-MLA70219510262_062023-O.webp", 25, true ,"ARS");
-            Producto filtroLibrito = new Producto("Filtros Eco Tips Stamps Mini Eco X10 Libritos Gabba Grow","Stamps", "10 libritos STAMPS de 50 unidades cada uno ++ Medidas: 4.5cm x 1.7cm", 2200, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_702363-MLA51454195586_092022-O.webp", 25, true ,"ARS");
-            Producto filtroRaw = new Producto("Filtros Raw Slim X 200 Unbleached Gabba Grow","Raw", "Filtros Tabaco RAW UNBLEACHED x200 u SLIM ", 950, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_602750-MLA51823478508_102022-O.webp", 12, true  ,"ARS");
-            Producto filtroOcb = new Producto("Filtros Ocb Slim 6mm - 150 Filtros Pack X 10","Ocb", "Los OCB Slim son filtros con un diámetro de 6 mm (con Pegamento) . Contiene 150 Unidades\n" + "pack x 10\n", 5500, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_645965-MLA45064936274_032021-O.webp", 15, true ,"ARS");
+            Producto filtroLibella = new Producto("Filtro Libella Slim Long x200","Libella", "Combo 5 Bolsas Filtros Slim Long total( 1000 filtros) de 6 mm", 4600, Categoria.ACCESORIOS,"Filtros","https://http2.mlstatic.com/D_NQ_NP_886691-MLA70219510262_062023-O.webp", 25, true ,"ARS");
+            Producto filtroLibrito = new Producto("Filtros Eco Tips Stamps Mini Eco","Stamps", "10 libritos STAMPS de 50 unidades cada uno ++ Medidas: 4.5cm x 1.7cm", 2200, Categoria.ACCESORIOS,"Filtros","https://http2.mlstatic.com/D_NQ_NP_702363-MLA51454195586_092022-O.webp", 25, true ,"ARS");
+            Producto filtroRaw = new Producto("Filtros Raw Slim X 200 Unbleached","Raw", "Filtros Tabaco RAW UNBLEACHED x200 u SLIM ", 950, Categoria.ACCESORIOS,"Filtros","https://http2.mlstatic.com/D_NQ_NP_602750-MLA51823478508_102022-O.webp", 12, true  ,"ARS");
+            Producto filtroOcb = new Producto("Filtros Ocb Slim 6mm - 150 Filtros Pack X 10","Ocb", "Los OCB Slim son filtros con un diámetro de 6 mm (con Pegamento) . Contiene 150 Unidades\n" + "pack x 10\n", 5500, Categoria.ACCESORIOS,"Filtros","https://http2.mlstatic.com/D_NQ_NP_645965-MLA45064936274_032021-O.webp", 15, true ,"ARS");
 
             productoRepositorio.save(filtroLibella);
             productoRepositorio.save(filtroLibrito);
@@ -532,11 +532,11 @@ public class GrowshopApplication {
             productoRepositorio.save(filtroOcb);
 
 //            armadores
-            Producto maquinaOcb = new Producto("Máquina Automatica Para Armar De Metal Ocb","Ocb", "máquina para armar automática ocb.", 4920, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_998545-MLA70261738728_072023-O.webp", 10, true ,"ARS");
-            Producto armadorOcb = new Producto("Ocb Armador Máquina De Plastico Regular 79 Mm","Ocb", "Ocb Armador Plastico Rolling Machine Regular 79 mm.", 1700, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_873295-MLA51634463024_092022-O.webp", 15, true ,"ARS");
-            Producto maquinaAtomic= new Producto("Maquina Armadora// Automática Engomada Negro 78mm","Atomic", "Maquina Armadora Atomic Excelente Material Engomado Extraordinario Manejo suave dado el recubrimiento con que cuenta el Material.Máximo Papel Soportado Hasta 78mm, pudiendo regularse. ", 3600, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_788783-MLA70240293783_062023-O.webp", 12, true  ,"ARS");
-            Producto armadorSmoking = new Producto("Smoking 78mm Armador Acrílico","Smoking", "Maquina de Armar\n" + "Smoking Tamaño: 78mm", 1490, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_863528-MLA51078479047_082022-O.webp", 15, true ,"ARS");
-            Producto armadorBlunt = new Producto("Armador Tabaquera Blunt Rey / Acrilico / Colores","Blunt Rey", "Porta cigarrera Blunt Rey\n" + "Tamaño: 11x8cm. Material: Acrílico", 2260, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_719688-MLA52218614417_102022-O.webp", 15, true ,"ARS");
+            Producto maquinaOcb = new Producto("Máquina Para Armar De Metal Ocb","Ocb", "máquina para armar automática ocb.", 4920, Categoria.ACCESORIOS,"Armadores","https://http2.mlstatic.com/D_NQ_NP_998545-MLA70261738728_072023-O.webp", 10, true ,"ARS");
+            Producto armadorOcb = new Producto("Ocb Armador Máquina De Plastico Regular","Ocb", "Ocb Armador Plastico Rolling Machine Regular 79 mm.", 1700, Categoria.ACCESORIOS,"Armadores","https://http2.mlstatic.com/D_NQ_NP_873295-MLA51634463024_092022-O.webp", 15, true ,"ARS");
+            Producto maquinaAtomic= new Producto("Maquina Armadora Engomada Negro","Atomic", "Maquina Armadora Atomic Excelente Material Engomado Extraordinario Manejo suave dado el recubrimiento con que cuenta el Material.Máximo Papel Soportado Hasta 78mm, pudiendo regularse. ", 3600, Categoria.ACCESORIOS,"Armadores","https://http2.mlstatic.com/D_NQ_NP_788783-MLA70240293783_062023-O.webp", 12, true  ,"ARS");
+            Producto armadorSmoking = new Producto("Smoking 78mm Armador Acrílico","Smoking", "Maquina de Armar\n" + "Smoking Tamaño: 78mm", 1490, Categoria.ACCESORIOS,"Armadores","https://http2.mlstatic.com/D_NQ_NP_863528-MLA51078479047_082022-O.webp", 15, true ,"ARS");
+            Producto armadorBlunt = new Producto("Armador Tabaquera Blunt Rey ","Blunt Rey", "Porta cigarrera Blunt Rey\n" + "Tamaño: 11x8cm. Material: Acrílico", 2260, Categoria.ACCESORIOS,"Armadores", "https://http2.mlstatic.com/D_NQ_NP_719688-MLA52218614417_102022-O.webp", 15, true ,"ARS");
 
             productoRepositorio.save(maquinaOcb);
             productoRepositorio.save(maquinaAtomic);
@@ -545,17 +545,17 @@ public class GrowshopApplication {
             productoRepositorio.save(armadorSmoking);
 
 //            narguiles
-            Producto narguiShisha = new Producto("Narguile Shisha Pipa De Agua- Completo 37cm Local Arguile","Tebho Shop", "NR085 NARGUILE MEDIANO\n" +
-                    "Descripcion Modelos medianos de 1 manguera altura 37CM", 10879, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_877983-MLA52627120128_112022-O.webp", 12, true ,"ARS");
-            Producto shishaSabores = new Producto("Narguile De Agua Vapor Dos Mangueras Gadnic Shisha Sabores","Gadnic", " PIPAV01X\n" +
-                    "Pipa De Agua Gadnic Narguile Dos Mangueras Hookah Shisha\n", 10849, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_694852-MLA69943866745_062023-O.webp", 12, true  ,"ARS");
-            Producto zeusColores = new Producto("Pipa De Agua Narguile Hooka Zeus Dos Boca Colores","Zeus", "SOMOS JELOUDA, DISTRIBUIDORA MINORISTA/MAYORISTA UBICADA EN LA ZONA DE VILLA DEVOTO\n" +
-                    "\n" + "Narguile ZEUS de DOS BOCAS", 7595, Categoria.ACCESORIOS,"Acessorios","https://http2.mlstatic.com/D_NQ_NP_845088-MLA51459851503_092022-O.webp", 10, true ,"ARS");
-            Producto herbalFrutal = new Producto("Accesorios Frutal 250gr Herbal Natural Mazaya Narguile","Mazaya", "Accesorios frutal de 250gr Narguile Shisha Hookah Pipa\n" +
-                    "Es un producto hecho con Hierbas Naturales" + "Sin nicoti.na" + "NO CONTIENE TABA.CO" + "Lila Mazaya 250gr - variedad gustos", 7245, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_806082-MLA52446512326_112022-O.webp", 20, true ,"ARS");
-            Producto carbonesPremiun = new Producto("Carbones Premium Sahumar / Narguile Hamil Al Musk X100","Hamil Al Musk", "MUNDO HINDÚ " +
+            Producto narguiShisha = new Producto("Narguile Shisha Completo 37cm","Tebho Shop", "NR085 NARGUILE MEDIANO\n" +
+                    "Descripcion Modelos medianos de 1 manguera altura 37CM", 10879, Categoria.ACCESORIOS,"Narguiles","https://http2.mlstatic.com/D_NQ_NP_877983-MLA52627120128_112022-O.webp", 12, true ,"ARS");
+            Producto shishaSabores = new Producto("Narguile De Agua Vapor Dos Mangueras Gadnic","Gadnic", " PIPAV01X\n" +
+                    "Pipa De Agua Gadnic Narguile Dos Mangueras Hookah Shisha\n", 10849, Categoria.ACCESORIOS,"Narguiles","https://http2.mlstatic.com/D_NQ_NP_694852-MLA69943866745_062023-O.webp", 12, true  ,"ARS");
+            Producto zeusColores = new Producto("Pipa De Agua Narguile Hooka Zeus","Zeus", "SOMOS JELOUDA, DISTRIBUIDORA MINORISTA/MAYORISTA UBICADA EN LA ZONA DE VILLA DEVOTO\n" +
+                    "\n" + "Narguile ZEUS de DOS BOCAS", 7595, Categoria.ACCESORIOS,"Narguiles","https://http2.mlstatic.com/D_NQ_NP_845088-MLA51459851503_092022-O.webp", 10, true ,"ARS");
+            Producto herbalFrutal = new Producto("250gr Herbal Natural Mazaya Narguile","Mazaya", "Accesorios frutal de 250gr Narguile Shisha Hookah Pipa\n" +
+                    "Es un producto hecho con Hierbas Naturales" + "Sin nicoti.na" + "NO CONTIENE TABA.CO" + "Lila Mazaya 250gr - variedad gustos", 7245, Categoria.ACCESORIOS,"Narguiles", "https://http2.mlstatic.com/D_NQ_NP_806082-MLA52446512326_112022-O.webp", 20, true ,"ARS");
+            Producto carbonesPremiun = new Producto("Carbones Premium Sahumar Hamil Al Musk X100","Hamil Al Musk", "MUNDO HINDÚ " +
                     "Carbón de encendido rápido para quemar incienso, mirra, benjui, palo santo, etc" +
-                    "o utilizar en narguile." + "Caja de 100 unidades CALIDAD PREMIUM", 4799, Categoria.ACCESORIOS,"Acessorios", "https://http2.mlstatic.com/D_NQ_NP_729655-MLA42630288829_072020-O.webp", 9, true ,"ARS");
+                    "o utilizar en narguile." + "Caja de 100 unidades CALIDAD PREMIUM", 4799, Categoria.ACCESORIOS,"Narguiles", "https://http2.mlstatic.com/D_NQ_NP_729655-MLA42630288829_072020-O.webp", 9, true ,"ARS");
 
 
             productoRepositorio.save(narguiShisha);
@@ -587,6 +587,15 @@ public class GrowshopApplication {
             clienteRepositorio.save(clientePrueba);
             clienteRepositorio.save(clientePrueba2);
 
+
+            Pago pago = new Pago(TipoDePago.CREDITO, 2000, LocalDateTime.now());
+            Pago pago2 = new Pago(TipoDePago.DEBITO, 5000, LocalDateTime.now());
+
+            pagoRepositorio.save(pago);
+            pagoRepositorio.save(pago2);
+
+            orden.setPago(pago);
+            orden2.setPago(pago2);
             ordenRepositorio.save(orden);
             ordenRepositorio.save(orden2);
 
@@ -612,6 +621,8 @@ public class GrowshopApplication {
 
             ordenProductoRepositorio.save(ordenProducto);
             ordenProductoRepositorio.save(ordenProducto2);
+
+
         };
 
     }

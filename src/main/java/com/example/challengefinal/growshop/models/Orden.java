@@ -26,6 +26,10 @@ public class Orden {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    @OneToOne
+    @JoinColumn(name = "pago_id")
+    private Pago pago;
+
     @OneToMany(mappedBy = "orden", fetch = FetchType.EAGER)
     private Set<OrdenProducto> ordenProductos = new HashSet<>();
 
@@ -60,6 +64,18 @@ public class Orden {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public void añadirPago(Pago pago) {
+        pago.setOrdenDeCompra(this);
+    }
+
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
 
     public Double getMontoTotal() {return montoTotal;}
