@@ -46,8 +46,7 @@
                                 <a class="navbar-brand text-white" href="./cultivo.html" class="a-nav">Cultivo</a>
                             </li>
                             <li class="nav-item">
-                                <a class="navbar-brand text-white" href="/assets/pages/tabacos.html"
-                                    class="a-nav">Tabacos</a>
+                                <a class="navbar-brand text-white" href="./tabacos.html" class="a-nav">Tabacos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="navbar-brand text-white" href="./contacto.html" class="a-nav">Contacto</a>
@@ -66,7 +65,7 @@
                                         class="bi bi-box-arrow-left text-white"></i></button>
                             </span>
                             <span v-if="!logged" class="text-center d-flex align-items-center">
-                                <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
+                                <a href="./login.html" class="btn btn-success mx-2">Ingresar</a>
                             </span>
 
                             <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i><span
@@ -79,6 +78,11 @@
                 </div>
             </nav>
         </header>
+        <div class="montoTotal p-2 m-2" v-if="totalPrecioProductos != 0">
+            <p style="margin-bottom: 8px;">Monto Total:</p>
+            <p style="margin-bottom: 0px;"> {{ format.format(totalPrecioProductos) }}</p>
+        </div>
+
         {{filtroBusquedaAccesorios}}
         <main class="col-12 d-flex flex-column align-items-center">
             <div class="col-12 categoria-accesorios">
@@ -92,9 +96,9 @@
             <div class="p-5 col-12 d-flex flex-column flex-wrap">
                 <h4 class="fs-2">Filtrar por categoría</h4>
                 <div class="d-flex justify-content-center filtros pt-2 gap-5 col-8">
-                    <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check form-switch">
+                    <div v-for="categoria of accesoriosFiltrados" style="height: 1rem;" class="form-check">
                         <input class="form-check-input me-2" style="height: 1.5rem; width: 1.5rem;" type="checkbox"
-                            v-model="checkedCheckbox" :name="categoria" :value="categoria" role="switch" :id="marca"
+                            v-model="checkedCheckbox" :name="categoria" :value="categoria" :id="marca"
                             @change="filtroBusquedaAccesorios">
                         <label class="form-check-label" :for="categoria">
                             <p class="fs-5">{{categoria}}</p>
@@ -145,12 +149,15 @@
                             <div class="text-center">
                                 <img :src="productoSeleccionado.imagen" class="w-50" alt="Imagen del producto">
                             </div>
-                            <p>Precio: {{productoSeleccionado.precio }}</p>
-                            <p>Marca: {{ productoSeleccionado.marca }}</p>
-                            <p>Cantidad disponible: {{ productoSeleccionado.cantidad }}</p>
-                            <p>Categoria: {{productoSeleccionado.categoria}}</p>
-                            <p>Subcateogria:{{productoSeleccionado.subcategoria}} </p>
-                            <p>Descripción:</p>
+                            <p><span class="fw-bolder">Precio:</span>{{format.format(productoSeleccionado.precio)}}</p>
+                            <p><span class="fw-bolder">Marca:</span> {{ productoSeleccionado.marca }}</p>
+                            <p><span class="fw-bolder">Cantidad disponible:</span> {{ productoSeleccionado.cantidad
+                                }}
+                            </p>
+                            <p><span class="fw-bolder">Categoria:</span> {{productoSeleccionado.categoria}}</p>
+                            <p><span class="fw-bolder">Sub-categoria:</span>{{productoSeleccionado.subcategoria}}
+                            </p>
+                            <p><span class="fw-bolder">Descripcion:</span></p>
                             <p class="text-center">{{ productoSeleccionado.descripcion }}</p>
                         </div>
                         <div class="modal-footer">

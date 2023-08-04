@@ -45,7 +45,7 @@
                                     class="a-nav">Accessorios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="navbar-brand text-white" href="./cultivo.html" class="a-nav">Cultivo</a>
+                                <a class="navbar-brand text-white" href="#" class="a-nav">Cultivo</a>
                             </li>
                             <li class="nav-item">
                                 <a class="navbar-brand text-white" href="./tabacos.html" class="a-nav">Tabacos</a>
@@ -67,7 +67,7 @@
                                         class="bi bi-box-arrow-left text-white"></i></button>
                             </span>
                             <span v-if="!logged" class="text-center d-flex align-items-center">
-                                <a href="./assets/pages/login.html" class="btn btn-success mx-2">Ingresar</a>
+                                <a href="./login.html" class="btn btn-success mx-2">Ingresar</a>
                             </span>
 
                             <a href="./carrito.html"><i class="bi bi-cart-fill text-white icons-navbar"></i><span
@@ -80,6 +80,11 @@
                 </div>
             </nav>
         </header>
+        <div class="montoTotal p-2 m-2" v-if="totalPrecioProductos != 0">
+            <p style="margin-bottom: 8px;">Monto Total:</p>
+            <p style="margin-bottom: 0px;"> {{ format.format(totalPrecioProductos) }}</p>
+        </div>
+
         <main class="col-12 d-flex flex-column align-items-center">
             <div class="col-12 categoria-cultivo">
             </div>

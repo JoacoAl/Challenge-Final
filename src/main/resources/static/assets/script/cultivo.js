@@ -38,6 +38,8 @@ createApp({
       cliente: [],
       cantidadProductosCarrito: this.getCantidadProductosCarrito(),
       format: [],
+      totalPrecioProductos: 0,
+
     };
   },
   created() {
@@ -119,6 +121,7 @@ createApp({
               });
             }
             this.cantidadProductosCarrito += cantidad;
+            this.calcularTotalPrecioProductos();
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
 
@@ -141,7 +144,32 @@ createApp({
       return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
 
+    calcularTotalPrecioProductos() {
+      this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
+        return total + producto.precio * producto.cantidad;
+      }, 0);
 
+      // Guardar el precio total en el localStorage
+      localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
+    },
+    comprarEnElModal(id) {
+      const producto = this.productos.find((e) => e.id == id);
+      const cantidad = parseInt(this.cantidadEscogida);
+
+      if (cantidad > 0 && cantidad <= producto.cantidad) {
+        const item = this.seleccionadas.find((e) => e.id == id);
+        if (item) {
+          item.cantidad += cantidad;
+        } else {
+          this.seleccionadas.push({
+            ...producto,
+            cantidad,
+          });
+        }
+      }
+
+
+    },
   },
   computed: {
     filtroBusquedaCultivo() {
@@ -153,7 +181,8 @@ createApp({
       }
     },
   }
-}).mount("#app")
+}
+).mount("#app")
 
 
 
