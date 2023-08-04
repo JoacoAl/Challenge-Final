@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 window.addEventListener("scroll", function () {
   const navbar = document.getElementById("navbar");
   const scrollPosition = window.scrollY;
@@ -77,7 +76,7 @@ const app = createApp({
         body: JSON.stringify({
           items,
           back_urls: {
-            success: `/assets/pages/carrito.html`
+            success: `gozogrowshop.onrender.com/assets/pages/carrito.html`
           }
         })
       })
@@ -119,6 +118,7 @@ const app = createApp({
 
     deleteCompras() {
       localStorage.removeItem("seleccionadas");
+      localStorage.removeItem("cantidadProductosCarrito")
       this.seleccionadas = [];
     },
     redirection() {
