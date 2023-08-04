@@ -44,7 +44,6 @@ const app = createApp({
         logout() {
             axios.post("/api/logout")
                 .then(response => {
-
                     window.location.href = "/index.html";
                 })
         }

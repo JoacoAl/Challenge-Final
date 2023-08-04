@@ -71,16 +71,11 @@ const app = createApp ({
         .then(response => response.json())
         .then(data => {
             // Aquí puedes obtener el ID y la URL de la preferencia de pago
-            const preferenceId = data.id;
             const preferenceUrl = data.init_point;
     
             // Redirige al usuario a la página de pago
             window.location.href = preferenceUrl;
         })
-        .then(() => {
-            // Aquí puedes llamar al método generarOrdenPago para crear la orden de compra
-            
-        });
     },
     
     generarOrdenPago() {
@@ -105,7 +100,7 @@ const app = createApp ({
     ,
 
     deleteCompras() {
-        localStorage.removeItem("seleccionadas");
+        localStorage.clear
         this.seleccionadas = [];
     },
     redirection(){
