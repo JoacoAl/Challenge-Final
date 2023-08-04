@@ -38,7 +38,7 @@ createApp({
       cliente: [],
       cantidadProductosCarrito: this.getCantidadProductosCarrito(),
       format: [],
-      totalPrecioProductos: 0,
+      totalPrecioProductos: this.getMontoTotalProductos(),
 
     };
   },
@@ -121,7 +121,10 @@ createApp({
               });
             }
             this.cantidadProductosCarrito += cantidad;
-            this.calcularTotalPrecioProductos();
+            this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
+              return total + producto.precio * producto.cantidad;
+            }, 0);
+            localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
 
@@ -143,14 +146,12 @@ createApp({
       }
       return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
-
-    calcularTotalPrecioProductos() {
-      this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
-        return total + producto.precio * producto.cantidad;
-      }, 0);
-
-      // Guardar el precio total en el localStorage
-      localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
+    getMontoTotalProductos() {
+      const storedMontoTotalProductos = localStorage.getItem("totalPrecioProductos");
+      if (storedMontoTotalProductos) {
+        return storedMontoTotalProductos;
+      }
+      return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
     comprarEnElModal(id) {
       const producto = this.productos.find((e) => e.id == id);

@@ -50,7 +50,7 @@ createApp({
       categoriasCultivo: [],
       categoriasAccesorios: [],
       cantidadProductosCarrito: this.getCantidadProductosCarrito(),
-      totalPrecioProductos: 0,
+      totalPrecioProductos: this.getMontoTotalProductos(),
 
 
 
@@ -72,6 +72,10 @@ createApp({
     this.traerProductosAccesorios();
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
     this.traerProductosTabacos();
+    this.format = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
   },
 
   methods: {
@@ -87,11 +91,6 @@ createApp({
         .get('/api/productos')
         .then(response => {
           this.productos = response.data.filter(productos => productos.activo == true)
-
-          this.format = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
 
           //TABACOS
           this.tabacos = this.productos.filter(producto => producto.categoria == "TABACO");
@@ -183,7 +182,10 @@ createApp({
               });
             }
             this.cantidadProductosCarrito += cantidad;
-            this.calcularTotalPrecioProductos();
+            this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
+              return total + producto.precio * producto.cantidad;
+            }, 0);
+            localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
             const json = JSON.stringify(this.seleccionadas);
@@ -212,13 +214,12 @@ createApp({
       localStorage.clear();
       this.seleccionadas = [];
     },
-    calcularTotalPrecioProductos() {
-      this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
-        return total + producto.precio * producto.cantidad;
-      }, 0);
-
-      // Guardar el precio total en el localStorage
-      localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
+    getMontoTotalProductos() {
+      const storedMontoTotalProductos = localStorage.getItem("totalPrecioProductos");
+      if (storedMontoTotalProductos) {
+        return storedMontoTotalProductos;
+      }
+      return 0; // Valor predeterminado si no se encuentra en el LocalStorage
     },
     comprarEnElModal(id) {
       const producto = this.productos.find((e) => e.id == id);
@@ -240,28 +241,12 @@ createApp({
     },
   },
   computed: {
-    filtroBusquedaCultivo() {
-      if (this.checkedCheckbox.length != 0) {
-        this.filtroCultivo = this.cultivo.filter(producto => this.checkedCheckbox.includes(producto.subCategoria))
-        console.log(this.filtroCultivo)
-      } else {
-        this.filtroCultivo = this.cultivo;
-      }
-    },
     filtroBusquedaTabacos() {
       if (this.checkedCheckbox.length != 0) {
         this.filtroTabacos = this.tabacos.filter(tabaco => this.checkedCheckbox.includes(tabaco.marca));
         console.log(this.filtroTabacos)
       } else {
         this.filtroTabacos = this.tabacos;
-      }
-    },
-    filtroBusquedaAccesorios() {
-      if (this.checkedCheckbox.length != 0) {
-        this.filtroAccesorios = this.accesorios.filter(accesorio => this.checkedCheckbox.includes(accesorio.subCategoria));
-        console.log(this.filtroAccesorios)
-      } else {
-        this.filtroAccesorios = this.accesorios;
       }
     },
   }

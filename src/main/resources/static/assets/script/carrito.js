@@ -143,6 +143,15 @@ const app = createApp({
 
         const nuevaCantidadProductos = this.elementosFiltrados.reduce((total, elemento) => total + elemento.cantidad, 0);
         localStorage.setItem('cantidadProductosCarrito', nuevaCantidadProductos.toString());
+        
+        
+        const montoActual = localStorage.getItem('totalPrecioProductos') || 0; 
+        // Calcular el nuevo monto total
+        const productoAEliminar = this.elementos.find(elemento => elemento.id === id);
+        const nuevoMontoTotal = montoActual - productoAEliminar.precio * productoAEliminar.cantidad;
+
+        // Actualizar el monto total en localStorage
+        localStorage.setItem("totalPrecioProductos", nuevoMontoTotal);
 
         await Swal.fire({
           title: '¡Producto descartado!',
