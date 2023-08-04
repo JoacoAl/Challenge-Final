@@ -43,6 +43,11 @@ const app = createApp({
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
     // Detecta si el usuario ha sido redirigido desde la página de pago
     if (window.location.search.includes('payment_id')) {
+      Swal.fire({
+        title: 'Pago exitoso',
+        icon: 'success',
+        text: 'Gracias por su compra!'
+      });
     this.generarOrdenPago();
     this.deleteCompras();
   }

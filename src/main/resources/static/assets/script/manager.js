@@ -142,27 +142,27 @@ const app = createApp({
                 });
         },
         borrarProducto(id) {
-            axios.patch(`http://localhost:8080/api/productos/${id}/deactivate`)
+            axios.patch(`/api/productos/${id}/deactivate`)
                 .then(res => {
                     alert("se borro")
-                    window.location.href = "http://localhost:8080/manager.html"
+                    window.location.href = "/manager.html"
                 })
                 .catch(error => {
                     alert("no se borro")
                 });
         },
         reactivar(id) {
-            axios.patch(`http://localhost:8080/api/productos/${id}/activate`)
+            axios.patch(`/api/productos/${id}/activate`)
                 .then(res => {
                     alert("se agrego")
-                    window.location.href = "http://localhost:8080/assets/pages/manager.html"
+                    window.location.href = "/assets/pages/manager.html"
                 })
                 .catch(error => {
                     alert("se agrego")
                 });
         },
         getClientes() {
-            axios.get("http://localhost:8080/api/clientes")
+            axios.get("/api/clientes")
                 .then(res => {
                     this.clientes = res.data
                     console.log(this.clientes)
@@ -182,7 +182,7 @@ const app = createApp({
                 edad: this.edad,
 
             };
-            axios.post("http://localhost:8080/api/clientes", data, {
+            axios.post("/api/clientes", data, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -205,7 +205,7 @@ const app = createApp({
                 cantidad: this.Pcantidad,
                 precio: this.Pprecio,
             }
-            axios.patch(`http://localhost:8080/api/productos/${this.selectedProductId}/modificar`, data, {
+            axios.patch(`/api/productos/${this.selectedProductId}/modificar`, data, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -214,7 +214,7 @@ const app = createApp({
                     window.location.href = "#close";
                     Swal.fire('¡Éxito!', 'El producto fue modificado correctamente', 'success')
                         .then(() => {
-                            window.location.href = "http://localhost:8080/assets/pages/manager.html";
+                            window.location.href = "/assets/pages/manager.html";
                         });
                 })
                 .catch(err => {
