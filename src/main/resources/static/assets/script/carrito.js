@@ -71,12 +71,12 @@ const app = createApp({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer TEST-1559251038431848-073110-e6100fab33c28279e8189aa2c02b7bbf-63764321'
+          'Authorization': 'Bearer APP_USR-3626152189977637-073022-e75fb2a65955a5c01e55f56a337d3081-1436732273'
         },
         body: JSON.stringify({
           items,
           back_urls: {
-            success: `gozogrowshop.onrender.com/assets/pages/carrito.html`
+            success: `/assets/pages/carrito.html`
           }
         })
       })
@@ -118,7 +118,6 @@ const app = createApp({
 
     deleteCompras() {
       localStorage.removeItem("seleccionadas");
-      localStorage.removeItem("cantidadProductosCarrito")
       this.seleccionadas = [];
     },
     redirection() {

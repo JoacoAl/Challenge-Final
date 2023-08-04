@@ -50,6 +50,8 @@ createApp({
       categoriasCultivo: [],
       categoriasAccesorios: [],
       cantidadProductosCarrito: this.getCantidadProductosCarrito(),
+      totalPrecioProductos: 0,
+
 
 
       productoSeleccionado: {},
@@ -76,7 +78,7 @@ createApp({
     logout() {
       axios.post("/api/logout")
         .then(response => {
-
+          this.deleteCompras();
           window.location.href = "/index.html";
         })
     },
@@ -181,6 +183,7 @@ createApp({
               });
             }
             this.cantidadProductosCarrito += cantidad;
+            this.calcularTotalPrecioProductos();
             const jsonProductos = JSON.stringify(this.cantidadProductosCarrito)
             localStorage.setItem("cantidadProductosCarrito", jsonProductos);
             const json = JSON.stringify(this.seleccionadas);
@@ -205,7 +208,36 @@ createApp({
         this.productoSeleccionado = producto;
       }
     },
+    deleteCompras() {
+      localStorage.clear();
+      this.seleccionadas = [];
+    },
+    calcularTotalPrecioProductos() {
+      this.totalPrecioProductos = this.seleccionadas.reduce((total, producto) => {
+        return total + producto.precio * producto.cantidad;
+      }, 0);
 
+      // Guardar el precio total en el localStorage
+      localStorage.setItem("totalPrecioProductos", this.totalPrecioProductos);
+    },
+    comprarEnElModal(id) {
+      const producto = this.productos.find((e) => e.id == id);
+      const cantidad = parseInt(this.cantidadEscogida);
+
+      if (cantidad > 0 && cantidad <= producto.cantidad) {
+        const item = this.seleccionadas.find((e) => e.id == id);
+        if (item) {
+          item.cantidad += cantidad;
+        } else {
+          this.seleccionadas.push({
+            ...producto,
+            cantidad,
+          });
+        }
+      }
+
+
+    },
   },
   computed: {
     filtroBusquedaCultivo() {

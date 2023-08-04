@@ -331,3 +331,47 @@ footer > h1 {
     opacity: 1;
   }
 }
+
+form {
+  width: 50%;
+}
+
+@media only screen and (max-width: 850px) {
+  .section-contacto {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .section-contacto > div {
+    width: 90% !important;
+    margin: 0 !important;
+  }
+
+  .imagenmata {
+    width: 100% !important;
+    margin-top: 1rem;
+    height: 200px !important;
+  }
+  .fondo {
+    width: 100% !important;
+  }
+
+  form {
+    width: 90% !important;
+  }
+
+  p {
+    font-size: 15px !important;
+  }
+
+  footer {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 992px) {
+  .iframe-footer {
+    width: 75%;
+    height: 300px;
+  }
+}

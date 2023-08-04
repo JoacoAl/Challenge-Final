@@ -41,9 +41,9 @@ input {
 input:focus {
   border-bottom: 5px solid #ffa580;
 }
-legend{
-	font-family: "Bebas Neue", sans-serif;
-	font-size: 40px;
+legend {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 40px;
 }
 button {
   display: block;
@@ -71,7 +71,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   border-bottom: 5px solid #95a4ff;
-  -webkit-text-fill-color: #2A293E;
+  -webkit-text-fill-color: #2a293e;
   -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
   transition: background-color 5000s ease-in-out 0s;
 }

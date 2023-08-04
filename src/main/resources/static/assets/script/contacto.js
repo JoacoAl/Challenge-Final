@@ -50,7 +50,7 @@ const app = createApp({
         logout() {
             axios.post("/api/logout")
                 .then(response => {
-
+                    this.deleteCompras();
                     window.location.href = "/index.html";
                 })
         },
@@ -77,7 +77,7 @@ const app = createApp({
                         }),
                         setTimeout(() => {
                             location.reload()
-                        }, 3500)
+                        }, 1000)
                     ).catch(error => {
                         console.log(error);
                     })
@@ -90,6 +90,10 @@ const app = createApp({
                 return parseInt(storedCantidadProductosCarrito);
             }
             return 0; // Valor predeterminado si no se encuentra en el LocalStorage
+        },
+        deleteCompras() {
+            localStorage.clear();
+            this.seleccionadas = [];
         },
     }
 })
