@@ -43,16 +43,11 @@ const app = createApp({
     this.seleccionadas = JSON.parse(localStorage.getItem("seleccionadas")) ?? [];
     // Detecta si el usuario ha sido redirigido desde la página de pago
     if (window.location.search.includes('payment_id')) {
-      // El usuario ha sido redirigido desde la página de pago
-      // Muestra un mensaje de éxito y borra el carrito
-      this.generarOrdenPago();
-      Swal.fire({
-        title: '¡Pago exitoso!',
-        icon: 'success'
-      });
-      this.deleteCompras();
-      console.log(this.seleccionadas);
-    }
+    this.generarOrdenPago();
+    this.deleteCompras();
+  }
+      console.log(this.seleccionadas)
+    
   },
 
   methods: {
@@ -71,18 +66,19 @@ const app = createApp({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer APP_USR-3626152189977637-073022-e75fb2a65955a5c01e55f56a337d3081-1436732273'
+          'Authorization': 'Bearer TEST-3626152189977637-073022-5309ede04cf2730a9112c7429c6ad1f9-1436732273'
         },
         body: JSON.stringify({
           items,
           back_urls: {
-            success: `/assets/pages/carrito.html`
+            success: `gozogrowshop.onrender.com/assets/pages/carrito.html`
           }
         })
       })
         .then(response => response.json())
         .then(data => {
           // Aquí puedes obtener el ID y la URL de la preferencia de pago
+          
           const preferenceId = data.id;
           const preferenceUrl = data.init_point;
 
@@ -90,8 +86,7 @@ const app = createApp({
           window.location.href = preferenceUrl;
         })
         .then(() => {
-          // Aquí puedes llamar al método generarOrdenPago para crear la orden de compra
-
+          
         });
     },
 
@@ -109,7 +104,7 @@ const app = createApp({
         }
       })
         .then(response => {
-          console.log(response)
+          console.log("hola");
         })
         .catch(error => {
           console.log(error.response)
@@ -117,7 +112,7 @@ const app = createApp({
     },
 
     deleteCompras() {
-      localStorage.removeItem("seleccionadas");
+      localStorage.clear();
       this.seleccionadas = [];
     },
     redirection() {
